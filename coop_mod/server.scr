@@ -12,7 +12,7 @@
 //=========================================================================
 main:{
 //=========================================================================
-if(level.cMTE_coop_server){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread server/main->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "server/main->"
 	//[201] chrissstrahl - reset last saved status if the map has changed
 	if( level.coop_mapname != getCvar("coop_prevMap")){ setcvar coop_save "" }
 	
@@ -58,7 +58,7 @@ if(level.cMTE_coop_server){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println(
 //=========================================================================
 setScoreboard:{
 //=========================================================================
-if(level.cMTE_coop_server){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread server/setScoreboard->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "server/setScoreboard->"
 	//[202] chrissstrahl - have some delay here
 	//we are not in rush to have this updated other data has priority
 	//assume that after 1 or 1 secs on the server the majority of data has been exchanged between server and client
@@ -108,7 +108,7 @@ if(level.cMTE_coop_server){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println(
 //=========================================================================
 resetMapList:{
 //=========================================================================
-if(level.cMTE_coop_server){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread server/resetMapList->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "server/resetMapList->"
 	if (level.coop_dedicated && level.coop_cvars["coop_prevMapList"]){
 		setcvar "coop_prevMapList" ""
 		setcvar "sv_maplist" level.coop_cvars["coop_prevMapList"]
@@ -124,7 +124,7 @@ if(level.cMTE_coop_server){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println(
 //=========================================================================
 coop_checkMaps:{
 //=========================================================================
-if(level.cMTE_coop_server){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread server/coop_checkMaps->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "server/coop_checkMaps->"
 	if((int(getcvar("coop_dev")) == 1) && (int(getcvar("coop_diag")) == 1)){ //[200] chrissstrahl - changed to coop_diag cuz other coop mod also uses same cvar
 		//[200] chrissstrahl - make sure we have at least two clients so it does not wait for player ready in loadingscreen
 		if(int(getcvar("sv_maxclients")) < 2){
@@ -161,7 +161,7 @@ if(level.cMTE_coop_server){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println(
 //=========================================================================
 updateServer:{
 //=========================================================================
-if(level.cMTE_coop_server){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread server/updateServer->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "server/updateServer->"
 	local.serverWasPopulated=0
 	updateServer_start:
 	while($player){
@@ -208,7 +208,7 @@ rebootServer:{
 //=========================================================================
 checkScoreboard:{
 //=========================================================================
-if(level.cMTE_coop_server){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread server/checkScoreboard->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "server/checkScoreboard->"
 	local.cvardata = int(getcvar("coop_health"))
 	if(NIL == level.prevCoopHealth || level.coop_health == NIL || level.coop_health != level.prevCoopHealth || local.cvardata > 0 && level.prevCoopHealth != local.cvardata){
 		if(local.cvardata > 0){
@@ -231,7 +231,7 @@ if(level.cMTE_coop_server){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println(
 //=========================================================================
 checkCvars:{
 //=========================================================================
-if(level.cMTE_coop_server){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread server/checkCvars->"+level.cMTE+"" )}
+thread debugThread "server/checkCvars->"
 	local.coop_cvarRespawnDisable = int(getcvar("coop_disRespawnWarp"))
 	
 	if(local.coop_cvarRespawnDisable != level.coop_cvarRespawnDisable){
@@ -247,7 +247,7 @@ if(level.cMTE_coop_server){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println(
 //=========================================================================
 checkForVote:{
 //=========================================================================
-if(level.cMTE_coop_server){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread server/checkForVote->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "server/checkForVote->"
 	local.cvarValue = getCvar("coop_callvote")
 	if(local.cvarValue == ""){ end }
 	
@@ -268,7 +268,7 @@ if(level.cMTE_coop_server){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println(
 //=========================================================================
 fixServer:{
 //=========================================================================
-if(level.cMTE_coop_server){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread server/fixServer->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "server/fixServer->"
 	wait 3
 	for(local.count=0;local.count<8;local.count++){
 		iprintlnbold_noloc ( "=*= BAD SERVER SETTINGS, reloading map =*=" )
@@ -298,5 +298,17 @@ if(level.cMTE_coop_server){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println(
 
 	//this is a ugly way to do this, but the best result so far
 	thread loadMap level.coop_mapname game.false
+}end
+
+
+//[204] cleanup - central debug print helper to reduce repeated preamble code
+//==========================================================================
+debugThread local.label:{
+//==========================================================================
+	if(level.cMTE_coop_server){
+		if(!level.cMTE){ level.cMTE = 0 }
+		level.cMTE++
+		println( "-#-#- thread " + local.label + "->" + level.cMTE )
+	}
 }end
 

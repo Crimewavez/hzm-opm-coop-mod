@@ -1,7 +1,7 @@
 //[200] Smithy - 'built-in' events used for coop
 
 main local.event:
-if(level.cMTE_coop_events){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread events/main->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "events/main->"
 	waitthread local.event
 	if (level.coop_eventCount[local.event] != NIL && level.coop_eventCount[local.event] > 0){	
 		trigger $EventSlave	
@@ -14,7 +14,7 @@ end
 //=========================================================================
 initialiseEvents:{
 //=========================================================================
-if(level.cMTE_coop_events){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread events/initialiseEvents->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "events/initialiseEvents->"
 	thread playerSpawnEvent //[200] Smithy - enable the spawn event thread
 }end
 
@@ -28,7 +28,7 @@ if(level.cMTE_coop_events){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println(
 //=========================================================================
 playerSpawnEvent:{
 //=========================================================================
-if(level.cMTE_coop_events){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread events/playerSpawnEvent->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "events/playerSpawnEvent->"
 	if (level.coop_threads["events.scr"]["playerSpawnEvent"]){ end }
 	level.coop_threads["events.scr"]["playerSpawnEvent"] = local
 
@@ -45,7 +45,7 @@ if(level.cMTE_coop_events){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println(
 //=========================================================================
 playerdeath:{
 //=========================================================================
-if(level.cMTE_coop_events){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread events/playerdeath->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "events/playerdeath->"
 	self.flags["coop_isAlive"] = game.false
 	thread coop_mod/main.scr::playerDeathEvent
 }end
@@ -55,3 +55,15 @@ if(level.cMTE_coop_events){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println(
 
 //NIGHTFALL EVENTS WILL GO IN HERE!
 //TODO: add NightFall change team event to call main.scr func !!! 
+
+//[204] cleanup - central debug print helper to reduce repeated preamble code
+//==========================================================================
+debugThread local.label:{
+//==========================================================================
+	if(level.cMTE_coop_events){
+		if(!level.cMTE){ level.cMTE = 0 }
+		level.cMTE++
+		println( "-#-#- thread " + local.label + "->" + level.cMTE )
+	}
+}end
+

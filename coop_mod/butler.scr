@@ -17,7 +17,7 @@
 //=======================================================[204] chrissstrahl
 removeArray local.ent local.time:{
 //=========================================================================
-if(level.cMTE_coop_butler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread buttler/remove->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "buttler/remove->"
 	
 	if(local.ent && local.time){ wait local.time }
 	
@@ -33,7 +33,7 @@ if(level.cMTE_coop_butler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println(
 //=========================================================================
 remove local.ent local.time local.moving:{
 //=========================================================================
-if(level.cMTE_coop_butler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread buttler/remove->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "buttler/remove->"
 	if(level.gametype == 0 ){ end }
 	
 	if(local.ent == NIL){ end }
@@ -61,7 +61,7 @@ if(level.cMTE_coop_butler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println(
 //=========================================================================
 removePath local.ent local.time local.moving local.ent2:{
 //=========================================================================
-if(level.cMTE_coop_butler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread buttler/removePath->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "buttler/removePath->"
 	if(level.gametype == 0 ){ end }
 	
 	if(local.ent == NIL){ end }
@@ -97,7 +97,7 @@ if(level.cMTE_coop_butler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println(
 //=========================================================================
 e1l3_start:{
 //=========================================================================
-if(level.cMTE_coop_butler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread buttler/e1l3_start->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "buttler/e1l3_start->"
 	//don't delete things in sp
 	if(level.gametype == 0){ end }
 	
@@ -186,7 +186,7 @@ if(level.cMTE_coop_butler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println(
 //=========================================================================
 e1l3_watermotarBriefingClensing:{
 //=========================================================================
-if(level.cMTE_coop_butler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread buttler/e1l3_watermotarBriefingClensing->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "buttler/e1l3_watermotarBriefingClensing->"
 	if(level.gametype == 0 ){ end }
 	
 	for (local.i = 0; local.i <= $watermortarbriefingfx.size; local.i++) {
@@ -202,7 +202,7 @@ if(level.cMTE_coop_butler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println(
 //=========================================================================
 e1l3_briefingWallExplodeClensing:{
 //=========================================================================
-if(level.cMTE_coop_butler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread buttler/e1l3_briefingWallExplodeClensing->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "buttler/e1l3_briefingWallExplodeClensing->"
 	if(level.gametype == 0 ){ end }
 	
 	wait 1 //wait a moment just to be sure
@@ -222,7 +222,7 @@ if(level.cMTE_coop_butler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println(
 //=========================================================================
 e1l3_tankPath1Clensing:{
 //=========================================================================
-if(level.cMTE_coop_butler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread buttler/e1l3_tankPath1Clensing->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "buttler/e1l3_tankPath1Clensing->"
 	if(level.gametype == 0 ){ end }
 	
 	//remove first time tanks stop
@@ -247,7 +247,7 @@ if(level.cMTE_coop_butler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println(
 //=========================================================================
 e1l3_tankPath2Clensing:{
 //=========================================================================
-if(level.cMTE_coop_butler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread buttler/e1l3_tankPath2Clensing->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "buttler/e1l3_tankPath2Clensing->"
 	if(level.gametype == 0 ){ end }
 	
 	wait 10 //wait to be sure the path is no longer used
@@ -274,7 +274,7 @@ if(level.cMTE_coop_butler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println(
 //=========================================================================
 e1l3_tankPath3Clensing:{
 //=========================================================================
-if(level.cMTE_coop_butler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread buttler/e1l3_tankPath3Clensing->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "buttler/e1l3_tankPath3Clensing->"
 	wait 1
 	//remove when that tank has stopped moving (not sure when this is)
 	//$LeaderTankPath3
@@ -287,7 +287,7 @@ if(level.cMTE_coop_butler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println(
 //=========================================================================
 e1l3_jailbreakClensing:{
 //=========================================================================
-if(level.cMTE_coop_butler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread buttler/e1l3_jailbreakClensing->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "buttler/e1l3_jailbreakClensing->"
 	if(level.gametype == 0 ){ end }
 	
 	wait 1 //wait a moment just to be sure
@@ -342,7 +342,7 @@ if(level.cMTE_coop_butler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println(
 //=========================================================================
 e1l3_bridgeBlowupClensing:{
 //=========================================================================
-if(level.cMTE_coop_butler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread buttler/e1l3_bridgeBlowupClensing->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "buttler/e1l3_bridgeBlowupClensing->"
 	if(level.gametype == 0 ){ end }
 	
 	wait 1 //wait a moment just to be sure
@@ -360,7 +360,7 @@ if(level.cMTE_coop_butler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println(
 //=========================================================================
 e1l3_boatDieFastClensing:{
 //=========================================================================
-if(level.cMTE_coop_butler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread buttler/e1l3_boatDieFastClensing->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "buttler/e1l3_boatDieFastClensing->"
 	if(level.gametype == 0 ){ end }
 	
 	if( level.coopButlerBoatFastCleanupDone != NIL ){ end }
@@ -381,7 +381,7 @@ if(level.cMTE_coop_butler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println(
 //=========================================================================
 e1l3_boatRideStarts:{
 //=========================================================================
-if(level.cMTE_coop_butler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread buttler/e1l3_boatRideStarts->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "buttler/e1l3_boatRideStarts->"
 	if(level.gametype == 0 ){ end }
 	
 	local.ItemsDeleted = 0
@@ -441,7 +441,7 @@ if(level.cMTE_coop_butler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println(
 //=========================================================================
 e1l3_boatClensing:{
 //=========================================================================
-if(level.cMTE_coop_butler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread buttler/e1l3_boatClensing->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "buttler/e1l3_boatClensing->"
 	if(level.gametype == 0 ){ end }
 	
 	wait 3 //not sure how much delay this needs, give it 5
@@ -477,7 +477,7 @@ if(level.cMTE_coop_butler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println(
 //=========================================================================
 e1l3_waitforedtobedead:{
 //=========================================================================
-if(level.cMTE_coop_butler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread buttler/e1l3_waitforedtobedead->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "buttler/e1l3_waitforedtobedead->"
 	if(level.gametype == 0 ){ end }
 	
 	$SpecialEd waittill death
@@ -495,4 +495,16 @@ if(level.cMTE_coop_butler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println(
 }end
 
 
+
+
+//[204] cleanup - central debug print helper to reduce repeated preamble code
+//==========================================================================
+debugThread local.label:{
+//==========================================================================
+	if(level.cMTE_coop_butler){
+		if(!level.cMTE){ level.cMTE = 0 }
+		level.cMTE++
+		println( "-#-#- thread " + local.label + "->" + level.cMTE )
+	}
+}end
 

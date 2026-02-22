@@ -31,7 +31,7 @@
 //=========================================================================
 main local.thread local.arg1 local.arg2:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/main->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/main->"
 	local.threadName = "coop_mod/itemhandler.scr::main"
 
 	if !(waitthread coop_mod/main.scr::inCoopMode){ end } //dont load this if we aren't in coop mode
@@ -119,7 +119,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 initialiseItem local.ammotype:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/initialiseItem->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/initialiseItem->"
 	local.threadName = "coop_mod/itemhandler.scr::initialiseItem"
 	group.thread["initialiseItem"] = local
 
@@ -204,7 +204,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 handleWeaponPickup:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/handleWeaponPickup->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/handleWeaponPickup->"
 	local.threadName = "coop_mod/itemhandler.scr::handleWeaponPickup"
 
 	if (group.type != "Weapon"){ end }
@@ -295,7 +295,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 waitTillPickupEvent:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/waitTillPickupEvent->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/waitTillPickupEvent->"
 	local.threadName = "coop_mod/itemhandler.scr::waitTillPickupEvent"
 
 	group.pickupEventThread = local
@@ -331,7 +331,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 uninitialiseTimer:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/uninitialiseTimer->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/uninitialiseTimer->"
 	wait 3
 	if ((group.item && group.item.angles == (0 0 0) && group.item.origin == (0 0 0)) || !group.item){
 		group.thread["initialiseItem"] end //we now kill thread via group as parm.previousthread, like parm.other, is a global var that can change due to external thread calls
@@ -345,7 +345,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 droppedItemLife:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/droppedItemLife->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/droppedItemLife->"
 	local.threadName = "coop_mod/itemhandler.scr::droppedItemLife"
 
 	if (!group.droppedByEntity){ end }
@@ -369,7 +369,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 itemDropCheck:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/itemDropCheck->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/itemDropCheck->"
 	if (group.item && ((group.item.flags["coop_droppedItem"]) || (group.item.velocity != (0 0 0) && group.item.angles != (0 0 0)))){
 		group.droppedByEntity = game.true
 	}else{
@@ -381,7 +381,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 updateRespawnTime:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/updateRespawnTime->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/updateRespawnTime->"
 	if (group.itemFlags["coop_itemRespawnTime"] != NIL){
 		group.respawnTime = group.itemFlags["coop_itemRespawnTime"]
 		end
@@ -397,7 +397,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 waitTillValidTime:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/waitTillValidTime->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/waitTillValidTime->"
 	while (group.respawnTime == 0){
 		wait 5
 		thread updateRespawnTime
@@ -408,7 +408,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 getItemWorldProperties:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/getItemWorldProperties->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/getItemWorldProperties->"
 	if (!group.item){ end }
 	group.model 		= group.item.model
 	group.angles 		= group.item.angles
@@ -421,7 +421,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 respawnItem:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/respawnItem->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/respawnItem->"
 	group.item 								= spawn group.model
 	group.item.flags["coop_respawnedItem"] 	= game.true 			//dont reprocess this item
 	group.item angles 						group.angles
@@ -440,7 +440,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 storeActorWeapon:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/storeActorWeapon->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/storeActorWeapon->"
 	self weaponcommand "dual" targetname ("actorGun" + self.entnum) //grab any gun in either hand (dual) and then give it a unique targetname
 	local.weap = $("actorGun" + self.entnum) 						//with this new targetname we can now store it in a var
 	if (local.weap){                                                //you never know, the AI could be unarmed!
@@ -458,7 +458,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 enableWeapon:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/enableWeapon->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/enableWeapon->"
 	if (!self){ end }
 	local.weapon = self.flags["coop_mainActorWeapon"]
 	self.flags["coop_mainActorWeapon"] = NULL
@@ -475,7 +475,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 restoreNadeCount:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/restoreNadeCount->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/restoreNadeCount->"
 	waitframe
 	if (!isAlive self || self.classname != "Actor" || !self.gun){ end }
 	//iprintlnbold_noloc("weapontype is " + self.weapontype)
@@ -528,7 +528,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 handleHealthDrop:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/handleHealthDrop->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/handleHealthDrop->"
 	if (level.coop_healthDropFreq <= 0){ end }
 	wait 0.001
 	if (!self){ 																		//deleted guys don't drop health...
@@ -553,7 +553,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=====================================================================
 dropItem local.model local.doVelocity local.targetname local.angles local.mass:{
 //=====================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/dropItem->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/dropItem->"
 	if (!local.model){ end }
 
 	if (local.angles){
@@ -606,7 +606,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=====================================================================
 calculateDropVelocity:{
 //=====================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/calculateDropVelocity->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/calculateDropVelocity->"
 	group.velocity 		= self.velocity
 	group.velocity[0] 	= (group.velocity[0] * 0.5) + randomint(50)
 	group.velocity[1] 	= (group.velocity[1] * 0.5) + randomint(50)
@@ -617,7 +617,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=====================================================================
 isWeaponAllowed local.player local.item:{
 //=====================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/isWeaponAllowed->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/isWeaponAllowed->"
 	if (local.player.flags["coop_PrimaryWeapon"] || local.player.flags["coop_SecondaryWeapon"]){
 		if (local.player.flags["coop_PrimaryWeapon"] == local.item.model){
 			end(game.true)
@@ -634,7 +634,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=====================================================================
 forceWeaponOnAll local.model:{
 //=====================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/forceWeaponOnAll->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/forceWeaponOnAll->"
 	if ($player){
 		for (local.i = 1; local.i <= $player.size; local.i++){
 			thread forceWeaponOnPlayer $player[local.i] local.model
@@ -651,7 +651,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=====================================================================
 forceWeaponOnPlayer local.player local.model:{
 //=====================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/forceWeaponOnPlayer->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/forceWeaponOnPlayer->"
 	if (waitthread isPrimaryWeapon local.model){
 		local.player.flags["coop_PrimaryWeapon"] = local.model
 	}else{
@@ -663,7 +663,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=====================================================================
 stopForceWeaponOnAll local.type:{
 //=====================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/stopForceWeaponOnAll->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/stopForceWeaponOnAll->"
 	if ($player){
 		for (local.i = 1; local.i <= $player.size; local.i++){
 			thread stopForceWeaponOnPlayer $player[local.i] local.type
@@ -680,7 +680,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=====================================================================
 stopForceWeaponOnPlayer local.player local.type:{
 //=====================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/stopForceWeaponOnPlayer->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/stopForceWeaponOnPlayer->"
 	if (local.type == "primary"){
 		local.player.flags["coop_PrimaryWeapon"] = NIL
 	}else{
@@ -694,7 +694,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 managePlayerInventory:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/managePlayerInventory->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/managePlayerInventory->"
 	group.player = self
 	group.thread["managePlayerInventory"] = local
 
@@ -743,7 +743,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 takeUniformFromPlayer local.player:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/takeUniformFromPlayer->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/takeUniformFromPlayer->"
 /*
 	if (local.player.flags["coop_hasEnemyUniform"]){
 		if (local.player.flags["coop_alliedUniform"]){
@@ -799,7 +799,7 @@ playerHasEnemyUniform local.player local.uniform:{
 //=========================================================================
 giveUniformToPlayer local.player:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/giveUniformToPlayer->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/giveUniformToPlayer->"
 	if (!level.coop_disguiseUniform){
 		local.uniform = "german_waffenss_officer"
 	}else{
@@ -840,7 +840,7 @@ getPlayerUniform local.player:{
 //=========================================================================
 giveUniformToAll:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/giveUniformToAll->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/giveUniformToAll->"
 	level.coop_uniformOnSpawn = game.true
 	for (local.i = 1; local.i <= $player.size; local.i++){
 		thread giveUniformToPlayer $player[local.i]
@@ -853,7 +853,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 giveDisguiseOnConnect:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/giveDisguiseOnConnect->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/giveDisguiseOnConnect->"
 	thread giveDisguise group.player
 }end
 
@@ -864,7 +864,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 giveDisguiseOnSpawn local.player:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/giveDisguiseOnSpawn->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/giveDisguiseOnSpawn->"
 	local.start = level.time
 	local.player.flags["coop_startingDisguise"] = game.true
 
@@ -880,7 +880,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 giveDisguise local.player:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/giveDisguise->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/giveDisguise->"
 	local.threadName = "coop_mod/itemhandler.scr::giveDisguise"
 
 	//make sure this isn't a concurrent func
@@ -934,7 +934,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 giveDisguiseToAll:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/giveDisguiseToAll->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/giveDisguiseToAll->"
 	local.threadName = "coop_mod/itemhandler.scr::giveDisguiseToAll"
 
 	if (level.coop_enableDisguises || level.alarm){ end }
@@ -1002,7 +1002,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 anyPlayerNotDisguised:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/anyPlayerNotDisguised->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/anyPlayerNotDisguised->"
 	for (local.i = 1; local.i <= $player.size; local.i++){
 		if (!$player[local.i].is_disguised){
 			end (game.true)
@@ -1013,7 +1013,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 deactivateAllPlayerWeapons:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/deactivateAllPlayerWeapons->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/deactivateAllPlayerWeapons->"
 	for (local.i = 1; local.i <= $player.size; local.i++){
 		local.player = $player[local.i]
 		local.player thread deactivatePlayerWeapon
@@ -1023,7 +1023,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 activateAllPlayerWeapons:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/activateAllPlayerWeapons->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/activateAllPlayerWeapons->"
 	for (local.i = 1; local.i <= $player.size; local.i++){
 		local.player = $player[local.i]
 		local.player thread activatePlayerWeapon
@@ -1038,7 +1038,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 deactivatePlayerWeapon:
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/deactivatePlayerWeapon->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/deactivatePlayerWeapon->"
 	local.player = self
 	if (!isAlive local.player || local.player.dmteam == "spectator"){
 		end
@@ -1060,7 +1060,7 @@ end
 //=========================================================================
 activatePlayerWeapon:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/activatePlayerWeapon->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/activatePlayerWeapon->"
 	local.player = self
 	if (!isAlive local.player || local.player.dmteam == "spectator" || local.player.flags["coop_lastActiveWeapon"] == NULL){
 		end
@@ -1081,7 +1081,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 takeAllDisguises:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/takeAllDisguises->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/takeAllDisguises->"
 	if (!level.coop_enableDisguises){ end } //[202] Smithy - don't bother doing this if all disguises are already taken
 
 	local.threadName = "coop_mod/itemhandler.scr::takeAllDisguises"
@@ -1103,7 +1103,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 giveWeaponLoadout local.default:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/giveWeaponLoadout->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/giveWeaponLoadout->"
 	group.invTargetname = ("player" + group.player.entnum + "Inventory") 	//e.g. player0Inventory
 
 	if (local.default){
@@ -1171,7 +1171,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 spawnInventory local.default:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/spawnInventory->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/spawnInventory->"
 	if ((!level.coop_weaponLoadout || level.coop_weaponLoadout.size == 0) && !level.coop_playerPrimaryWeapon && !level.coop_playerSecondaryWeapon){
 		//println "(coop_mod/itemhandler.scr::spawnInventory): *ERROR* - no weapon loadout found!"
 		end
@@ -1211,7 +1211,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 giveInventory:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/giveInventory->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/giveInventory->"
 	local.threadName = "coop_mod/itemhandler.scr::giveInventory"
 	
 	waitthread coop_mod/main.scr::changeGameType 0 0
@@ -1229,7 +1229,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 playerHasInventory local.player:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/playerHasInventory->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/playerHasInventory->"
 }end (local.player.flags["coop_inventoryWeapons"].size > 0)
 
 //add weapon to everyone's inventory, whether current or future
@@ -1237,7 +1237,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 addWeaponToEveryone local.model:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/addWeaponToEveryone->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/addWeaponToEveryone->"
 	if (level.gametype == 0){ end }
 	thread addWeaponToAllInventories local.model
 	thread addWeaponToLoadout local.model
@@ -1248,7 +1248,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 removeWeaponFromEveryone local.model:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/removeWeaponFromEveryone->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/removeWeaponFromEveryone->"
 	if (level.gametype == 0){ end }
 	thread removeWeaponFromAllInventories local.model
 	thread removeWeaponFromLoadout local.model
@@ -1258,7 +1258,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 addWeaponToAllInventories local.model:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/addWeaponToAllInventories->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/addWeaponToAllInventories->"
 	if (level.gametype == 0){ end }
 
 	if ($player){
@@ -1274,7 +1274,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 addWeaponToInventory local.player local.model local.pickup local.ammo:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/addWeaponToInventory->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/addWeaponToInventory->"
 	if (level.gametype == 0){ end }
 
 	if (waitthread playerHasWeapon local.player local.model){
@@ -1308,7 +1308,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 isCarryingAmmoType local.player local.ammoType:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/isCarryingAmmoType->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/isCarryingAmmoType->"
 	if (waitthread playerHasInventory local.player){
 		for (local.i = 1; local.i <= local.player.flags["coop_inventoryWeapons"].size; local.i++){
 			local.weap = local.player.flags["coop_inventoryWeapons"][local.i]
@@ -1325,7 +1325,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 removeWeaponFromAllInventories local.model:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/removeWeaponFromAllInventories->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/removeWeaponFromAllInventories->"
 	if (level.gametype == 0){ end }
 
 	if ($player){
@@ -1339,7 +1339,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 removeWeaponFromInventory local.player local.model:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/removeWeaponFromInventory->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/removeWeaponFromInventory->"
 	if (level.gametype == 0){ end }
 
 	if (!waitthread playerHasWeapon local.player local.model){
@@ -1368,7 +1368,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 removeWeaponFromLoadout local.model:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/removeWeaponFromLoadout->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/removeWeaponFromLoadout->"
 	if (level.gametype == 0){ end }
 
 	if (waitthread isWeaponClass local.model){
@@ -1405,7 +1405,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 addWeaponToLoadout local.model:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/addWeaponToLoadout->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/addWeaponToLoadout->"
 	if (level.gametype == 0){ end }
 
 	local.model = waitthread makeWeaponStringValid local.model
@@ -1434,7 +1434,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 addAmmoToLoadout local.ammoType local.amount:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/addAmmoToLoadout->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/addAmmoToLoadout->"
 	if (level.coop_ammoLoadout[local.ammoType] == NIL){
 		level.coop_ammoLoadout[local.ammoType] = 0
 	}
@@ -1449,7 +1449,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 notStartGrenade local.model:
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/notStartGrenade->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/notStartGrenade->"
 end (local.model != "models/weapons/m2frag_grenade_sp_start.tik" && 
 	local.model != "models/weapons/steilhandgranate_start.tik" &&
 	local.model != "models/weapons/it_w_bomba_sp_start.tik") //[202] Smithy - some BT maps use this
@@ -1457,7 +1457,7 @@ end (local.model != "models/weapons/m2frag_grenade_sp_start.tik" &&
 //=========================================================================
 returnWeaponClassFromLoadout local.class:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/returnWeaponClassFromLoadout->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/returnWeaponClassFromLoadout->"
 	for (local.i = 1; local.i <= level.coop_weaponLoadout.size; local.i++){
 		local.invWeapon = level.coop_weaponLoadout[local.i]
 		if (waitthread notStartGrenade local.invWeapon){
@@ -1472,7 +1472,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 makeWeaponStringValid local.model:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/makeWeaponStringValid->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/makeWeaponStringValid->"
 	local.model = waitthread coop_mod/strings.scr::to_lower local.model //convert it to lowercase
 
 	//make sure the models folder is included in the name
@@ -1485,7 +1485,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 playerHasWeapon local.player local.model:{ 
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/playerHasWeapon->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/playerHasWeapon->"
 	local.weaponArray = local.player.flags["coop_inventoryWeapons"]
 	for (local.i = 1; local.i <= local.weaponArray.size; local.i++){
 		if (local.weaponArray[local.i] == local.model){
@@ -1498,7 +1498,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 deletePreviousInvWeapons:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/deletePreviousInvWeapons->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/deletePreviousInvWeapons->"
 	local.inventory = $("player"+group.player.entnum+"Inventory")
 	if (local.inventory){
 		local.inventory delete
@@ -1509,7 +1509,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 resetPlayerWeapons local.player:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/resetPlayerWeapons->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/resetPlayerWeapons->"
 	if (!local.player || local.player.classname != "Player"){ end }
 	local.player.flags["coop_inventoryWeapons"] 		= NIL
 	local.player.flags["coop_inventoryWeapons"][1]	= NIL
@@ -1522,7 +1522,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 setupGrenades:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/setupGrenades->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/setupGrenades->"
 	if (!group.item){ end }
 	
 	switch (group.model){
@@ -1584,7 +1584,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 waitTillLanded local.item:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/waitTillLanded->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/waitTillLanded->"
 	while (local.item && local.item.velocity != (0 0 0)){
 		waitframe
 	}
@@ -1594,7 +1594,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 dropItemOnDeath local.item local.angles local.mass:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/dropItemOnDeath->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/dropItemOnDeath->"
 	self waittill death
 	waitframe
 
@@ -1613,7 +1613,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 setIsDisguised local.player local.bool local.forceState:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/setIsDisguised->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/setIsDisguised->"
 	if (local.player.flags["coop_hasDisguise"] || local.forceState){
 		local.player.flags["coop_isDisguised"] = local.bool
 	}
@@ -1623,7 +1623,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 takeDisguise local.player:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/takeDisguise->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/takeDisguise->"
 	local.threadName = "coop_mod/itemhandler.scr::takeDisguise"
 
 	if (local.player.has_disguise && local.player.flags["coop_hasDisguise"]){
@@ -1639,7 +1639,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 returnActiveWeapon local.sentient:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/returnActiveWeapon->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/returnActiveWeapon->"
 	local.entnum = local.sentient.entnum
 	if (local.sentient.classname == "Player"){
 		local.tempName 	= ("player" + local.entnum + "ActiveItem")
@@ -1666,7 +1666,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 broadcastSound local.entity local.event local.radius:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/broadcastSound->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/broadcastSound->"
 
 	local.entity ai_event local.event local.radius
 
@@ -1693,7 +1693,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 givePapersFlag local.player:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/givePapersFlag->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/givePapersFlag->"
 	local.player.flags["coop_hasPapers"] = game.true
 }end
 
@@ -1702,7 +1702,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 givePapersFlagToAll local.papers:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/givePapersFlagToAll->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/givePapersFlagToAll->"
 	level.coop_itemPapers = local.papers
 	for (local.i = 1; local.i <= $player.size; local.i++){
 		thread givePapersFlag $player[local.i]
@@ -1718,7 +1718,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 enableClickablePapers local.guard local.player:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/enableClickablePapers->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/enableClickablePapers->"
 	if (!local.player.flags["coop_hasPapers"]){ end }
 
 	if (!local.player.flags["coop_clickPapersHint"]){
@@ -1751,7 +1751,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 takePlayerWeapon local.model:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/takePlayerWeapon->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/takePlayerWeapon->"
 	local.threadName = "coop_mod/itemhandler.scr::takePlayerWeapon"
 	local.player = self
 
@@ -1787,7 +1787,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 givePlayerWeapon local.model:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/givePlayerWeapon->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/givePlayerWeapon->"
 	local.threadName = "coop_mod/itemhandler.scr::givePlayerWeapon"
 	local.player = self
 
@@ -1830,7 +1830,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 usePlayerWeapon local.model local.wait:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/usePlayerWeapon->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/usePlayerWeapon->"
 	local.player = self
 	local.player.flags["coop_takenActiveWeapon"] = game.false
 
@@ -1845,7 +1845,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 getAmmoType local.model:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/getAmmoType->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/getAmmoType->"
 	local.model = waitthread makeWeaponStringValid local.model
 
 	switch (local.model){
@@ -1901,7 +1901,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 isWeaponClass local.string:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/isWeaponClass->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/isWeaponClass->"
 	switch (local.string){
 		case "pistol":
 		case "heavy":
@@ -1920,7 +1920,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 getWeaponOfClassFromPlayer local.player local.class:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/getWeaponOfClassFromPlayer->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/getWeaponOfClassFromPlayer->"
 	if (waitthread playerHasInventory local.player){
 		for (local.i = 1; local.i <= local.player.flags["coop_inventoryWeapons"].size; local.i++){
 			local.invWeapon = local.player.flags["coop_inventoryWeapons"][local.i]
@@ -1937,14 +1937,14 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 isWeaponModel local.model:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/isWeaponModel->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/isWeaponModel->"
 }end(waitthread coop_mod/main.scr::containsText local.model "weapons/")
 
 //[200] Smithy - taken from main, makes more sense here
 //=========================================================================
 isPrimaryWeapon local.weapon:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/isPrimaryWeapon->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/isPrimaryWeapon->"
 	if(local.weapon == "" || local.weapon == NIL){ end(game.false) }
 
 	//[200] Smithy - more efficient + looks nicer
@@ -1981,7 +1981,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 disableAllWeaponsOnMenu:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/disableAllWeaponsOnMenu->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/disableAllWeaponsOnMenu->"
 	/*
 	4194304 //rifle (1 << 22) 
 	8388608 //sniper (1 << 23)
@@ -1998,7 +1998,7 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 //=========================================================================
 removeAdditionalStartAmmo:{
 //=========================================================================
-if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread itemhandler/removeAdditionalStartAmmo->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "itemhandler/removeAdditionalStartAmmo->"
 	if (self.classname != "Weapon" || !waitthread notStartGrenade self.model){ end }
 	if (self.flags["coop_removedStartAmmo"]){ end }
 
@@ -2008,5 +2008,17 @@ if(level.cMTE_coop_itemhandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; pri
 	self additionalstartammo "smokegrenade" 6
 	self additionalstartammo "grenade" -6
 	self additionalstartammo "smokegrenade" -6
+}end
+
+
+//[204] cleanup - central debug print helper to reduce repeated preamble code
+//==========================================================================
+debugThread local.label:{
+//==========================================================================
+	if(level.cMTE_coop_itemhandler){
+		if(!level.cMTE){ level.cMTE = 0 }
+		level.cMTE++
+		println( "-#-#- thread " + local.label + "->" + level.cMTE )
+	}
 }end
 

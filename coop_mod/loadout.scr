@@ -1,6 +1,6 @@
 //[200] Smithy - this contains the weaponsloadout for coop
 main local.player:
-if(level.cMTE_coop_loadout){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread loadout/main->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "loadout/main->"
 		println "initialising coop weapon loadout for " level.script
 
 		level.coop_ammoType[1]	= "smg"
@@ -536,3 +536,15 @@ if(level.cMTE_coop_loadout){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println
 		}
 		//TODO: add SH and BT levels here
 end
+
+//[204] cleanup - central debug print helper to reduce repeated preamble code
+//==========================================================================
+debugThread local.label:{
+//==========================================================================
+	if(level.cMTE_coop_loadout){
+		if(!level.cMTE){ level.cMTE = 0 }
+		level.cMTE++
+		println( "-#-#- thread " + local.label + "->" + level.cMTE )
+	}
+}end
+

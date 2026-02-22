@@ -17,7 +17,7 @@
 //=========================================================================
 main local.thread:{
 //=========================================================================
-if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread aihandler/main->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "aihandler/main->"
 	local.threadName = "coop_mod/aihandler.scr::main"
 
 	if (!waitthread coop_mod/main.scr::inCoopMode){ end } //dont load this if we aren't in coop mode
@@ -53,7 +53,7 @@ if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; print
 //=========================================================================
 actorHandler:{
 //=========================================================================
-if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread aihandler/actorHandler->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "aihandler/actorHandler->"
 	if (!isAlive self){ end }	
 
 	group.team = self.team
@@ -114,7 +114,7 @@ if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; print
 //=========================================================================
 restoreSPProperties:{
 //=========================================================================
-if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread aihandler/restoreSPProperties->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "aihandler/restoreSPProperties->"
 	//restoreNadeCount func moved to itemhandler.scr. it is also called from global/weapon.scr now.
 	//thread restoreNadeCount
 }end
@@ -124,7 +124,7 @@ if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; print
 //=========================================================================
 restoreAAProperties:{
 //=========================================================================
-if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread aihandler/restoreAAProperties->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "aihandler/restoreAAProperties->"
 	if(group.team == "american"){
 		self.runanimrate = level.coop_aaRunSpeed[group.team]
 	}
@@ -134,7 +134,7 @@ if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; print
 //=========================================================================
 addActorToArray:{
 //=========================================================================
-if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread aihandler/addActorToArray->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "aihandler/addActorToArray->"
 	if(!isAlive self || self.classname != "Actor"){
 		//error ("coop_mod/aihandler.scr::addActorToArray - never call this func from outside aihandler.scr")
 		end
@@ -149,7 +149,7 @@ if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; print
 //=========================================================================
 removeActorFromArray:{
 //=========================================================================
-if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread aihandler/removeActorFromArray->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "aihandler/removeActorFromArray->"
 	local.oldArray[group.team] 		= level.coop_actorArray[group.team]
 	local.newArray[group.team][1] 	= NIL
 	local.j = 1
@@ -167,7 +167,7 @@ if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; print
 //=========================================================================
 updateTeamRunSpeed local.team local.speed:{
 //=========================================================================
-if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread aihandler/updateTeamRunSpeed->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "aihandler/updateTeamRunSpeed->"
 	if((local.team != "american" && local.team != "german") || local.speed == NIL){ end }
 	if(local.speed < 0){ local.speed = 0 }
 
@@ -182,7 +182,7 @@ if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; print
 //=========================================================================
 updateEnemyDifficulty:{
 //=========================================================================
-if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread aihandler/updateEnemyDifficulty->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "aihandler/updateEnemyDifficulty->"
 	if($player == NULL || $player.size == 0 || self == NULL || self.classname != "Actor"){ end }
 	thread calculateProperties self
 }end
@@ -191,7 +191,7 @@ if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; print
 //=========================================================================
 updateEnemyTeamDifficulty:{
 //=========================================================================
-if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread aihandler/updateEnemyTeamDifficulty->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "aihandler/updateEnemyTeamDifficulty->"
 	if($player == NULL || $player.size == 0){ end }
 
 	local.team = "german"
@@ -211,7 +211,7 @@ if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; print
 //=========================================================================
 calculateProperties local.actor:{
 //=========================================================================
-if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread aihandler/calculateProperties->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "aihandler/calculateProperties->"
 	if(local.actor == NULL || local.actor.classname != "Actor" ){
 		//error ("coop_mod/aihandler.scr::calculateProperties - never call this func from outside aihandler.scr")
 		end
@@ -228,7 +228,7 @@ if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; print
 //=========================================================================
 calculateAccuracy local.actor:{
 //=========================================================================
-if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread aihandler/calculateAccuracy->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "aihandler/calculateAccuracy->"
 	if(local.actor == NULL || local.actor.classname != "Actor"){
 		//error ("coop_mod/aihandler.scr::calculateAccuracy - never call this func from outside aihandler.scr")
 		end
@@ -261,7 +261,7 @@ if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; print
 //=========================================================================
 initialisePainVars:{
 //=========================================================================
-if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread aihandler/initialisePainVars->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "aihandler/initialisePainVars->"
 	if(!isAlive self || self.classname != "Actor"){
 		//error ("coop_mod/aihandler.scr::initialisePainVars - never call this func from outside aihandler.scr")
 		end
@@ -295,7 +295,7 @@ if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; print
 //=========================================================================
 actorPainHandler local.attacker local.damage local.inflictor local.position local.direction local.normal local.knockback local.dflags local.meansofdeath local.location:{
 //=========================================================================
-if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread aihandler/actorPainHandler->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "aihandler/actorPainHandler->"
 	if(!isAlive self || !local.attacker){ end }
 
 	if(self.fact){ self.fact delete } // optimised
@@ -344,7 +344,7 @@ if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; print
 //=========================================================================
 friendlyFireCheck:{
 //=========================================================================
-if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread aihandler/friendlyFireCheck->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "aihandler/friendlyFireCheck->"
 	if(!group.painHandlerThread){
 		error ("coop_mod/aihandler.scr::friendlyFireCheck - never call this func from outside aihandler.scr")
 		end
@@ -365,7 +365,7 @@ if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; print
 //=========================================================================
 handlePain:{
 //=========================================================================
-if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread aihandler/handlePain->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "aihandler/handlePain->"
 	if(!group.painHandlerThread){
 		error ("coop_mod/aihandler.scr::handlePain - never call this func from outside aihandler.scr")
 		end
@@ -394,7 +394,7 @@ if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; print
 //=========================================================================
 painHandlerMapExclusions:{
 //=========================================================================
-if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread aihandler/painHandlerMapExclusions->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "aihandler/painHandlerMapExclusions->"
 	level.coop_painHandlerExclusionInit = game.true
 
 	if (level.coop_painHandlerExclusions[1].size == 1){
@@ -431,7 +431,7 @@ if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; print
 //=========================================================================
 disguiseHandler:{
 //=========================================================================
-if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread aihandler/disguiseHandler->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "aihandler/disguiseHandler->"
 
 	level.coop_disguiseHandlerInit = game.true
 	wait 1 //[200] Smithy - fixes level.coop_enableDisguises not being set on time - should be after init var really
@@ -471,7 +471,7 @@ if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; print
 //=========================================================================
 attackPlayer local.player:{
 //=========================================================================
-if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread aihandler/attackPlayer->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "aihandler/attackPlayer->"
 	local.enemy = self
 	local.enemy say den_head_sighted_a //TODO: MAKE THIS COMPATIBLE WITH BT DIALOGUE
 	local.enemy.enablePain = 1
@@ -486,7 +486,7 @@ if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; print
 //=========================================================================
 sentientIsHeard local.sentient local.target:{
 //=========================================================================
-if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread aihandler/sentientIsHeard->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "aihandler/sentientIsHeard->"
 	local.enemies = level.coop_actorArray["german"]
 	for (local.i = 1; local.i <= local.enemies.size; local.i++){
 		local.enemy = local.enemies[local.i]
@@ -526,7 +526,7 @@ if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; print
 //=========================================================================
 sentientIsSeen local.sentient local.target local.fov:{
 //=========================================================================
-if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread aihandler/sentientIsSeen->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "aihandler/sentientIsSeen->"
 	local.enemies = level.coop_actorArray["german"]
 	for (local.i = 1; local.i <= local.enemies.size; local.i++){
 		local.enemy = local.enemies[local.i]
@@ -550,7 +550,7 @@ if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; print
 //=========================================================================
 canseeUndisguisedPlayers:{
 //=========================================================================
-if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread aihandler/canseeUndisguisedPlayers->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "aihandler/canseeUndisguisedPlayers->"
 	local.actor 	= self
 	local.cansee 	= game.false
 	if ($player){
@@ -567,7 +567,7 @@ if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; print
 //=========================================================================
 anyEnemiesInAttackState:{
 //=========================================================================
-if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread aihandler/anyEnemiesInAttackState->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "aihandler/anyEnemiesInAttackState->"
 	for (local.i = 1; local.i <= level.coop_actorArray["german"].size; local.i++){
 		local.enemy = level.coop_actorArray["german"][local.i]
 		if (local.enemy.thinkstate == "attack" || local.enemy.thinkstate == "pain"){
@@ -583,7 +583,7 @@ if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; print
 //=========================================================================
 resetEnemyThinkstates:{
 //=========================================================================
-if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread aihandler/resetEnemyThinkstates->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "aihandler/resetEnemyThinkstates->"
 	for (local.i = 1; local.i <= level.coop_actorArray["german"].size; local.i++){
 		local.enemy = level.coop_actorArray["german"][local.i]
 		if (local.enemy.thinkstate == "attack" || local.enemy.thinkstate == "pain"){
@@ -600,7 +600,7 @@ if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; print
 //=========================================================================
 setEnemyAttackStates:{
 //=========================================================================
-if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread aihandler/setEnemyAttackStates->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "aihandler/setEnemyAttackStates->"
 	for (local.i = 1; local.i <= level.coop_actorArray["german"].size; local.i++){
 		local.enemy = level.coop_actorArray["german"][local.i]
 		if (local.enemy.flags["coop_actorResetThinkstate"]){
@@ -620,7 +620,7 @@ if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; print
 //=========================================================================
 leaveTurretUnholstered:{
 //=========================================================================
-if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread aihandler/leaveTurretUnholstered->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "aihandler/leaveTurretUnholstered->"
 	//reclaimed this func to call on any AI that have a turret in their arsenal!
 	if (self.thread["leaveTurretUnholstered"]){ end } 	//[202][hotfix] Smithy 
 	self.thread["leaveTurretUnholstered"] = local 		//[202][hotfix] Smithy 
@@ -640,7 +640,7 @@ if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; print
 //=========================================================================
 isMachineGunner:{
 //=========================================================================
-if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread aihandler/isMachineGunner->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "aihandler/isMachineGunner->"
 	local.MG = game.true
 	local.MG = local.MG && self.type_attack 	== "machinegunner"
 	local.MG = local.MG && self.type_idle 		== "machinegunner"
@@ -654,10 +654,22 @@ if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; print
 //=========================================================================
 addKillToPlayer:
 //=========================================================================
-if(level.cMTE_coop_aihandler){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread aihandler/addKillToPlayer->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "aihandler/addKillToPlayer->"
 	waitframe
 	if (!self){ end }
 	if (self.fact && self.fact.attacker && self.fact.attacker.classname == "Player"){
 		self.fact.attacker addkills 1
 	}
 end
+
+//[204] cleanup - central debug print helper to reduce repeated preamble code
+//==========================================================================
+debugThread local.label:{
+//==========================================================================
+	if(level.cMTE_coop_aihandler){
+		if(!level.cMTE){ level.cMTE = 0 }
+		level.cMTE++
+		println( "-#-#- thread " + local.label + "->" + level.cMTE )
+	}
+}end
+

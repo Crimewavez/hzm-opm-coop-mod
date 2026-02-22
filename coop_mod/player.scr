@@ -9,7 +9,7 @@
 //=========================================================================
 main:{
 //=========================================================================
-if(level.cMTE_coop_player){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread player/main->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "player/main->"
 	//start manager for players
 	thread manage
 }end
@@ -18,7 +18,7 @@ if(level.cMTE_coop_player){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println(
 //=========================================================================
 manage:{
 //=========================================================================
-if(level.cMTE_coop_player){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread player/manage->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "player/manage->"
 	//wait for any player to join server
 	level waittill spawn
 	
@@ -178,7 +178,7 @@ if(level.cMTE_coop_player){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println(
 //=========================================================================
 manageSetup local.player:{
 //=========================================================================
-if(level.cMTE_coop_player){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread player/manageSetup->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "player/manageSetup->"
 //println("COOPDEBUG: player.scr::manageSetup "+local.player.entnum+" start")
 
 	if(local.player.flags["coop_isActive"] != NIL){
@@ -304,7 +304,7 @@ detectCoop local.player:{
 //=========================================================================
 manageNamechange local.player:{
 //=========================================================================
-if(level.cMTE_coop_player){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread player/manageNamechange->"+level.cMTE+"" )}
+thread debugThread "player/manageNamechange->"
 
 	if(local.player.flags["manageNamechange"] != NIL){ end }
 	local.player.flags["manageNamechange"] = 1
@@ -462,7 +462,7 @@ playerExtract local.playerName local.key:{
 //=========================================================================
 playerCleanName local.dirtyName:{
 //=========================================================================
-if(level.cMTE_coop_main){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread player/playerCleanName->"+level.cMTE+"" )}
+thread debugThread "player/playerCleanName->"
 	local.cleanName = ""
 	local.fullName = string(local.dirtyName);
 	
@@ -592,7 +592,7 @@ playerExtractedStuck local.player local.dataExtract:{
 //=========================================================================
 manageFovSet local.player local.fov:{
 //=========================================================================
-if(level.cMTE_coop_player){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread player/manageFovSet->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "player/manageFovSet->"
 	local.threadName = "coop_mod/main.scr::changePlayerFOV"
 	//[202] chrissstrahl - don't accept bad range
 	if(!local.fov || local.fov < 10){
@@ -626,7 +626,7 @@ if(level.cMTE_coop_player){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println(
 //=========================================================================
 manageSpectator local.player:{
 //=========================================================================
-if(level.cMTE_coop_player){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread player/manageSpectator->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "player/manageSpectator->"
 //SETUP when entering spectator
 	//run only once per spectator join
 	if(	local.player.flags["coop_isActive"] != -1 ){
@@ -673,7 +673,7 @@ if(level.cMTE_coop_player){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println(
 //=========================================================================
 manageNoSpectator local.player:{
 //=========================================================================
-if(level.cMTE_coop_player){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread player/manageNoSpectator->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "player/manageNoSpectator->"
 //PHYSICS
 if (level.coop_physicsOff){ local.player physics_off }
 }end
@@ -688,7 +688,7 @@ if (level.coop_physicsOff){ local.player physics_off }
 //=========================================================================
 manageAlive local.player:{
 //=========================================================================
-if(level.cMTE_coop_player){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread player/manageAlive->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "player/manageAlive->"
 //Code that is executed upon spawning is now in:
 //coop_mod/main.scr::playerSpawnEvent
 
@@ -702,7 +702,7 @@ if(level.cMTE_coop_player){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println(
 //=========================================================================
 manageAliveSpawning local.player:{
 //=========================================================================
-if(level.cMTE_coop_player){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread player/manageAliveSpawning->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "player/manageAliveSpawning->"
 //println("COOPDEBUG: manageAliveSpawning 0 for: "+local.player.targetname+" start")
 
 	/////////////////////////////////////////SETUP
@@ -844,7 +844,7 @@ preventSpawnStuck local.player:{
 //=========================================================================
 manageAliveRespawning local.player:{
 //=========================================================================
-if(level.cMTE_coop_player){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread player/manageAliveRespawning->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "player/manageAliveRespawning->"
 	//println("COOPDEBUG: manageAliveRespawning")
 	//respawn if allowed at last pos before death of player
 	//also do not respawn if coop_respawnOrigin flag is set to 0 0 0 or something very close
@@ -882,7 +882,7 @@ if(level.cMTE_coop_player){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println(
 //=========================================================================
 manageAliveSaveLocation local.player:{
 //=========================================================================
-if(level.cMTE_coop_player){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread player/manageAliveSaveLocation->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "player/manageAliveSaveLocation->"
 	if(	local.player.flags["coop_respawnTime"] == NIL || local.player.flags["coop_respawnTime"] < (level.time + 2) ){
 		local.player.flags["coop_respawnTime"]		= level.time
 		local.player.flags["coop_respawnOrigin"]	= local.player.origin
@@ -896,7 +896,7 @@ if(level.cMTE_coop_player){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println(
 //=========================================================================
 manageDead local.player:{
 //=========================================================================
-if(level.cMTE_coop_player){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread player/manageDead->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "player/manageDead->"
 	//println("manageDead")
 	local.player.flags["coop_iAmTruelyActive"] = 0
 	if(	local.player.flags["coop_isActive"] != -2 ){
@@ -954,7 +954,7 @@ if(level.cMTE_coop_player){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println(
 //=========================================================================
 removeFakePlayer:{
 //=========================================================================
-if(level.cMTE_coop_player){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread player/removeFakePlayer->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "player/removeFakePlayer->"
 	if (level.coop_dedicated){
 		if ($player && $player[1].netname == "*** Blank Name ***" && $player[1].entnum == 0){
 			$player[1] delete
@@ -966,7 +966,7 @@ if(level.cMTE_coop_player){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println(
 //=========================================================================
 resetPlayers:{
 //=========================================================================
-if(level.cMTE_coop_player){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread player/resetPlayers->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "player/resetPlayers->"
 	for (local.i = 1; local.i <= $player.size; local.i++){
 		$player[local.i].flags["coop_isActive"] = NIL
 	}
@@ -977,7 +977,7 @@ if(level.cMTE_coop_player){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println(
 //=========================================================================
 setupCmds local.player:{
 //=========================================================================
-if(level.cMTE_coop_player){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread player/setupCmds->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "player/setupCmds->"
 	if(local.player == NIL || local.player== NULL){
 		error ("coop_mod/main.scr::setupCmds Fatal - Invalid player") 1000
 		end
@@ -1022,7 +1022,7 @@ if(level.cMTE_coop_player){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println(
 //=========================================================================
 set3rdPerson local.player local.activate:{
 //=========================================================================
-if(level.cMTE_coop_player){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread player/set3rdPerson->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "player/set3rdPerson->"
 	local.prevCvar = getcvar "developer"
 	setcvar "developer" "1"
 	waitthread coop_mod/main.scr::changeGameType 0 0
@@ -1037,7 +1037,7 @@ if(level.cMTE_coop_player){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println(
 //=========================================================================
 checkClientZero:{
 //=========================================================================
-if(level.cMTE_coop_player){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread player/checkClientZero->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "player/checkClientZero->"
 	if ($player && !thread isClientZeroActive){
 		thread reconnectPlayer $player[1]
 	}
@@ -1046,7 +1046,7 @@ if(level.cMTE_coop_player){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println(
 //=========================================================================
 isClientZeroActive:{
 //=========================================================================
-if(level.cMTE_coop_player){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread player/isClientZeroActive->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "player/isClientZeroActive->"
 	end(level.coop_clientZero != NULL)
 }
 
@@ -1056,7 +1056,7 @@ if(level.cMTE_coop_player){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println(
 //=========================================================================
 reconnectPlayer local.player:{
 //=========================================================================
-if(level.cMTE_coop_player){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread player/reconnectPlayer->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "player/reconnectPlayer->"
 	if (level.coop_reconnectingPlayerZero){ end }
 	level.coop_reconnectingPlayerZero = game.true
 
@@ -1132,3 +1132,15 @@ reinitialiseData local.player:{
 		}
 	}
 }end
+
+//[204] cleanup - central debug print helper to reduce repeated preamble code
+//==========================================================================
+debugThread local.label:{
+//==========================================================================
+	if(level.cMTE_coop_player){
+		if(!level.cMTE){ level.cMTE = 0 }
+		level.cMTE++
+		println( "-#-#- thread " + local.label + "->" + level.cMTE )
+	}
+}end
+

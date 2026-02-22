@@ -1,7 +1,7 @@
 //=========================================================================
 main:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/main->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/main->"
 	if( level.gametype == 0 ){ end }	//don't in sp
 	
 	if(level.coop_debugSpawn == 1){
@@ -25,7 +25,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 spawnlocationsUpdated local.name:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/spawnlocationsUpdated->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/spawnlocationsUpdated->"
 	//chrissstrahl - this does to much disrupt the game flow - disable before release
 	if(level.coop_debugSpawn){
 		if(local.name==NIL){
@@ -39,7 +39,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 spawnDebugAll:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/spawnDebugAll->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/spawnDebugAll->"
 	for( local.i = 1;local.i<=8;local.i++){
 		thread spawnDebug level.flags["coop_spawn"+local.i+"origin"]
 	}
@@ -49,7 +49,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 spawnDebug local.origin:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/spawnDebug->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/spawnDebug->"
 	if!( level.coop_debugSpawn ){ end }
 	if(level.coop_spawnDebugNum == NIL || level.coop_spawnDebugNum>8){
 		level.coop_spawnDebugNum=1
@@ -67,7 +67,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 placeSpawn local.origin local.angle:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/placeSpawn->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/placeSpawn->"
 	if( level.coopSpawnLocationCurrentNumber == NIL){
 		level.coopSpawnLocationCurrentNumber = 0
 	}
@@ -87,7 +87,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 updateSpawn local.origin local.angle:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/updateSpawn->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/updateSpawn->"
 	if( level.coopSpawnLocationCurrentNumber > 7){
 		level.coopSpawnLocationCurrentNumber = 0
 	}
@@ -100,7 +100,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 training:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/training->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/training->"
 	/*//spawn at pistol for debuggin 
 	for(local.i=1;local.i<9;local.i++){
 		level.flags["coop_spawn"+local.i+"origin"] = ( 2444.00 -2944.00 -300.00 )
@@ -111,14 +111,14 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m1l1:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m1l1->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m1l1->"
  /* NONE, PLAYER IS GLUED AT THIS TIME*/
 }end
 
 //=========================================================================
 m1l1_update1:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m1l1_update1->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m1l1_update1->"
 //spawn inside the first truck player 1 to 6
 //spawn next to second truck player 7-8
 	if( level.gametype == 0 ){ end }	//don't in sp
@@ -148,7 +148,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m1l1_update2:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m1l1_update2->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m1l1_update2->"
 	if( level.gametype == 0 ){ end }	//don't in sp
 
 	local.vec = ( -4415 -671 400 )
@@ -164,7 +164,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m1l1_update3:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m1l1_update3->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m1l1_update3->"
 	if( level.gametype == 0 ){ end }	//don't in sp
 
 	level.coop_disableSpawnWarper = game.true
@@ -183,7 +183,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m1l2a:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m1l2a->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m1l2a->"
 	local.vec = ( 6900 -5327 26 )
 	for( local.i = 1;local.i<=8;local.i++){		
 		thread spawnDebug local.vec
@@ -197,7 +197,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m1l2a_update1:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m1l2a_update1->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m1l2a_update1->"
 	if( level.gametype == 0 ){ end }	//don't in sp
 	
 	local.vec = ( 5200 -3200 0 )
@@ -218,7 +218,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m1l2a_update2:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m1l2a_update2->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m1l2a_update2->"
 	if( level.gametype == 0 ){ end }	//don't in sp
 	
 	local.vec = ( 4770 200 -70 )
@@ -238,7 +238,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m1l2a_update3:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m1l2a_update3->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m1l2a_update3->"
 	if( level.gametype == 0 ){ end }	//don't in sp
 	
 	level.flags["coop_spawn1origin"] = ( 3017 -744 -144)
@@ -272,7 +272,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m1l2a_update4:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m1l2a_update4->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m1l2a_update4->"
 	if( level.gametype == 0 ){ end }	//don't in sp
 	
 	local.vec = ( 1448 2264 -222 )
@@ -293,7 +293,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m1l2b:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m1l2b->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m1l2b->"
 //spawn near singleplayer spawn at the first repair hall
 	local.vec = ( -4024 2168 -272 )
 	for( local.i = 1;local.i<=8;local.i++){		
@@ -314,7 +314,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m1l2b_update1:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m1l2b_update1->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m1l2b_update1->"
 	if( level.gametype == 0 ){ end }	//don't in sp
 //outside the secound repair hall
 	local.vec = ( -1622 2411 -257 )
@@ -330,7 +330,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m1l2b_update2:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m1l2b_update2->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m1l2b_update2->"
 	if( level.gametype == 0 ){ end }	//don't in sp
 //inside the storage hall
 	local.vec = ( 873 514 -257 )
@@ -345,7 +345,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m1l2b_update3:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m1l2b_update3->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m1l2b_update3->"
 	if( level.gametype == 0 ){ end }	//don't in sp
 //behind the fence before the building
 	local.vec = ( 2020 -2130 -257 )
@@ -365,7 +365,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m1l3c:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m1l3c->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m1l3c->"
 	level.flags["coop_spawn2origin"] = ( -4597 -6394 871)
 	level.flags["coop_spawn2angles"] = (0 88 0)
 	level.flags["coop_spawn1origin"] = ( -4671 -6344 853)
@@ -386,7 +386,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m1l3c_update1:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m1l3c_update1->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m1l3c_update1->"
 	if( level.gametype == 0 ){ end }	//don't in sp
 	
 	level.flags["coop_spawn1origin"] = ( -5808 -5731 -23)
@@ -406,7 +406,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m1l3c_update2:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m1l3c_update2->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m1l3c_update2->"
 	if( level.gametype == 0 ){ end }	//don't in sp
 	
 	level.flags["coop_spawn1origin"] = ( -6553 -1780 161)
@@ -432,7 +432,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m1l3c_update3:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m1l3c_update3->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m1l3c_update3->"
 	if( level.gametype == 0 ){ end }	//don't in sp
 	
 	local.vec = ( -772 -2490 289)//z374
@@ -454,7 +454,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m2l1:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m2l1->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m2l1->"
 	local.vec = ( -6519 -3558 495 )
 	for( local.i = 1;local.i<=8;local.i++){
 		thread spawnDebug local.vec
@@ -477,7 +477,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m2l1_update1:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m2l1_update1->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m2l1_update1->"
 	if( level.gametype == 0 ){ end }	//don't in sp
 	
 	local.vec = ( -2156 -2928 500 )
@@ -494,7 +494,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m2l1_update2:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m2l1_update2->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m2l1_update2->"
 	if( level.gametype == 0 ){ end }	//don't in sp
 	
 	local.vec = ( -100 1136 470 )
@@ -512,7 +512,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m2l1_update3:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m2l1_update3->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m2l1_update3->"
 	if( level.gametype == 0 ){ end }	//don't in sp
 	
 	local.vec = ( 1570 2736 480 )
@@ -529,7 +529,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m2l1_update4:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m2l1_update4->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m2l1_update4->"
 	if( level.gametype == 0 ){ end }	//don't in sp
 	
 	local.vec = ( 3720 -1064 456 )
@@ -547,7 +547,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m2l1_update5:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m2l1_update5->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m2l1_update5->"
 	if( level.gametype == 0 ){ end }	//don't in sp
 	
 	local.vec = ( 2936 6344 -70 )
@@ -563,7 +563,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m2l2a:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m2l2a->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m2l2a->"
 	local.vec = ( -4816 -3880 -36 )
 	for( local.i = 1;local.i<=8;local.i++){
 		thread spawnDebug local.vec
@@ -576,13 +576,13 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m2l2b:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m2l2b->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m2l2b->"
 }end
 
 //=========================================================================
 m2l2b_update1:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m2l2b_update1->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m2l2b_update1->"
 	if( level.gametype == 0 ){ end }	//don't in sp
 	
 	local.vec = ( -2688 -3996 -508 )
@@ -599,7 +599,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m2l2c:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m2l2c->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m2l2c->"
 	if( level.gametype == 0 ){ end }	//don't in sp
 	
 	local.vec = ( -1365 -6240 -508 )
@@ -614,7 +614,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m2l2c_update1:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m2l2c_update1->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m2l2c_update1->"
 	if( level.gametype == 0 ){ end }	//don't in sp
 	
 	local.vec = ( 2400 -6888 -508 )
@@ -630,14 +630,14 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m3l1b:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m3l1b->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m3l1b->"
 
 }end
 
 //=========================================================================
 m3l2:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m3l2->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m3l2->"
 	local.vec = ( -3950 2160 0 )
 	for( local.i = 1;local.i<=8;local.i++){
 		local.vec[0] += 40
@@ -650,7 +650,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m2l3_update1:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m2l3_update1->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m2l3_update1->"
 	if( level.gametype == 0 ){ end }	//don't in sp
 	
 	local.vec = ( 289 5260 -256 )
@@ -666,7 +666,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m2l3_update2:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m2l3_update2->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m2l3_update2->"
 	if( level.gametype == 0 ){ end }	//don't in sp
 	
 	local.vec = ( -1000 6109 -256 )
@@ -683,7 +683,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m2l3_update3:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m2l3_update3->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m2l3_update3->"
 	if( level.gametype == 0 ){ end }	//don't in sp
 	
 	local.vec = ( -396 2991 -508 )
@@ -699,7 +699,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m3l2_update1:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m3l2_update1->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m3l2_update1->"
 	if( level.gametype == 0 ){ end }	//don't in sp
 	
 	level.flags["coop_spawn1origin"] = ( -2455 2888 28 )
@@ -730,7 +730,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m3l1a:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m3l1a->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m3l1a->"
 	local.vec = ( 367 -2655 -550 )
 	for( local.i = 1;local.i<=8;local.i++){
 		thread spawnDebug local.vec
@@ -745,7 +745,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m3l1a_update1:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m3l1a_update1->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m3l1a_update1->"
 	if( level.gametype == 0 ){ end }	//don't in sp
 	
 	local.vec = ( 384 -2432 -504 )
@@ -760,7 +760,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m3l3:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m3l3->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m3l3->"
 	level.flags["coop_spawn1origin"] = ( -6617 3611 20 )
 	level.flags["coop_spawn1angles"] = (0 -129 0)
 	level.flags["coop_spawn2origin"] = ( -6681 3647 19 )
@@ -787,7 +787,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m3l3_update1:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m3l3_update1->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m3l3_update1->"
 	if( level.gametype == 0 ){ end }	//don't in sp
 	
 	level.flags["coop_spawn1origin"] = ( -3236 4026 -105 )
@@ -817,7 +817,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m3l3_update2:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m3l3_update2->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m3l3_update2->"
 	if( level.gametype == 0 ){ end }	//don't in sp
 	
 	local.vec	= ( 1248 4367 -220 )
@@ -838,7 +838,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m3l3_update3:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m3l3_update3->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m3l3_update3->"
 	if( level.gametype == 0 ){ end }	//don't in sp
 	
 	local.vec = ( 4448 1791 -274 )
@@ -855,7 +855,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m3l3_update4:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m3l3_update4->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m3l3_update4->"
 	if( level.gametype == 0 ){ end }	//don't in sp
 	
 	level.flags["coop_spawn1origin"] = ( 5287 -873 -404 )
@@ -889,7 +889,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m3l3_update5:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m3l3_update5->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m3l3_update5->"
 	if( level.gametype == 0 ){ end }	//don't in sp
 	
 	level.flags["coop_spawn1origin"] = ( -1320 -1155 -220 )
@@ -911,7 +911,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m4l1:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m4l1->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m4l1->"
 	local.vec = ( -3993 -5881 -506 )
 	for( local.i = 1;local.i<=8;local.i++){
 		thread spawnDebug local.vec
@@ -926,7 +926,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m4l1_update1:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m4l1_update1->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m4l1_update1->"
 	if( level.gametype == 0 ){ end }	//don't in sp
 
 	local.vec = ( 4297 -3057 30 )
@@ -944,7 +944,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m4l1_update2:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m4l1_update2->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m4l1_update2->"
 	if( level.gametype == 0 ){ end }	//don't in sp
 
 	local.vec = ( 1527 2210 -65 )
@@ -965,7 +965,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m4l1_update3:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m4l1_update3->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m4l1_update3->"
 	if( level.gametype == 0 ){ end }	//don't in sp
 
 	local.vec = ( 2930 4608 610 )
@@ -986,7 +986,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m4l2:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m4l2->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m4l2->"
 	local.vec = ( 5760 -529 355 )
 	for( local.i = 1;local.i<=8;local.i++){
 		thread spawnDebug local.vec
@@ -1002,7 +1002,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m4l2_update0:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m4l2_update0->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m4l2_update0->"
 	if( level.gametype == 0 ){ end }	//don't in sp
 
 	local.vec = ( 4538 4650 450 )
@@ -1024,7 +1024,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m4l2_update1:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m4l2_update1->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m4l2_update1->"
 	if( level.gametype == 0 ){ end }	//don't in sp
 
 	local.vec = (3202 1995 150)
@@ -1041,7 +1041,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m4l2_update2:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m4l2_update2->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m4l2_update2->"
 	if( level.gametype == 0 ){ end }	//don't in sp
 
 	local.vec = ( -3131 3778 2 )
@@ -1059,7 +1059,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m4l2_update3:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m4l2_update3->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m4l2_update3->"
 	if( level.gametype == 0 ){ end }	//don't in sp
 
 	local.vec = ( -3888 -1072 0 )
@@ -1077,7 +1077,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m4l2_update4:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m4l2_update4->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m4l2_update4->"
 	if( level.gametype == 0 ){ end }	//don't in sp
 
 	local.vec = ( -5184 3808 0 )
@@ -1095,7 +1095,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m4l3:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m4l3->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m4l3->"
 	local.vec = ( -3823 -4090 -200 )
 	for( local.i = 1;local.i<=8;local.i++){
 		thread spawnDebug local.vec
@@ -1109,7 +1109,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m4l3_update1:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m4l3_update1->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m4l3_update1->"
 	local.vec = ( -3347 -3997 -300 )
 	for( local.i = 1;local.i<=8;local.i++){
 		thread spawnDebug local.vec
@@ -1124,7 +1124,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m4l3_update2:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m4l3_update2->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m4l3_update2->"
 	local.vec = ( -3555 -870 160 )
 	for( local.i = 1;local.i<=8;local.i++){
 		thread spawnDebug local.vec
@@ -1138,7 +1138,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m4l3_update3:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m4l3_update3->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m4l3_update3->"
 	local.vec = ( -5986 1086 -9 )
 	for( local.i = 1;local.i<=8;local.i++){
 		thread spawnDebug local.vec
@@ -1152,7 +1152,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m5l1a:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m5l1a->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m5l1a->"
 	level.flags["coop_spawn1origin"] = ( 4989 -5289 6 )
 	level.flags["coop_spawn1angles"] = (0 119 0)
 	
@@ -1185,7 +1185,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m5l1a_update1:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m5l1a_update1->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m5l1a_update1->"
 	if( level.gametype == 0 ){ end }	//don't in sp
 	
 	local.origin = ( 3530 -4346 140 )
@@ -1206,7 +1206,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m5l1a_update2:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m5l1a_update2->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m5l1a_update2->"
 	if( level.gametype == 0 ){ end }	//don't in sp
 	
 	local.origin = ( 2260 -2888 140 )
@@ -1222,7 +1222,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m5l1b:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m5l1b->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m5l1b->"
 	local.origin = ( -371 -5337 220 )
 	for( local.i = 1;local.i<=8;local.i++){
 		level.flags["coop_spawn"+local.i+"angles"] = (0 -80 0)
@@ -1236,7 +1236,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m5l1b_update1:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m5l1b_update1->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m5l1b_update1->"
 	if( level.gametype == 0 ){ end }	//don't in sp
 	
 	local.origin = ( -2604 -2816 500 )
@@ -1252,7 +1252,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m5l1b_update2:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m5l1b_update2->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m5l1b_update2->"
 	if( level.gametype == 0 ){ end }	//don't in sp
 	
 	local.origin = ( -1936 -454 452 )
@@ -1270,7 +1270,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m5l1b_update3:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m5l1b_update3->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m5l1b_update3->"
 	if( level.gametype == 0 ){ end }	//don't in sp
 	
 	local.origin = ( 3057 268 626 )
@@ -1286,7 +1286,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m5l2a:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m5l2a->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop 
+thread debugThread "spawnlocations/m5l2a->"
 	level.flags[coop_spawn1angles] = ( 0 -28 0 )
 	level.flags[coop_spawn1origin] = ( 3428 -3771 208 )
 	level.flags[coop_spawn2origin] = ( 3428 -3731 208 )
@@ -1378,7 +1378,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m5l2b:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m5l2b->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod 
+thread debugThread "spawnlocations/m5l2b->"
 	level.flags[coop_spawn1angles] = ( 0 -121 0 )
 	level.flags[coop_spawn1origin] = ( 7720 -2639 200 )
 	level.flags[coop_spawn2origin] = ( 7760 -2639 200 )
@@ -1463,7 +1463,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m5l3:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m5l3->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod 
+thread debugThread "spawnlocations/m5l3->"
 	level.flags[coop_spawn1origin] = ( 3718 5883 168 )
 	level.flags[coop_spawn1angles] = ( 0.000000 178.665146 0.000000)
 	level.flags[coop_spawn2angles] = ( 0.000000 178.665146 0.000000)
@@ -1479,7 +1479,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m6l1a:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m6l1a->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop 
+thread debugThread "spawnlocations/m6l1a->"
 	level.flags[coop_spawn1angles] = ( 0 141.438 0 )
 	level.flags[coop_spawn1origin] = ( 6198 -6559 5419 )
 	level.flags[coop_spawn2origin] = ( 6238 -6579 5419 )
@@ -1495,7 +1495,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m6l1b:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m6l1b->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m6l1b->"
 	level.flags[coop_spawn1angles] = ( 0 188.817 0 )
 	level.flags[coop_spawn1origin] = ( 1360 2952 1776 )
 	level.flags[coop_spawn2origin] = ( 1360 2992 1776 )
@@ -1511,7 +1511,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m6l1c:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m6l1c->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m6l1c->"
 	level.flags[coop_spawn1angles] = ( 0 59.881 0 )
 	level.flags[coop_spawn1origin] = ( -3903 455 9 )
 	level.flags[coop_spawn2origin] = ( -3863 455 9 )
@@ -1527,7 +1527,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m6l2a:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m6l2a->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m6l2a->"
 	level.flags[coop_spawn1angles] = ( 0 128.458 0 )
 	level.flags[coop_spawn1origin] = ( -4363 -4832 40 )
 	level.flags[coop_spawn2origin] = ( -4323 -4792 40 )
@@ -1543,7 +1543,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m6l2b:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m6l2b->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m6l2b->"
 	level.flags[coop_spawn1angles] = ( 0 170.848 0 )
 	level.flags[coop_spawn1origin] = ( 607 -7134 112 )
 	level.flags[coop_spawn2origin] = ( 647 -7154 112 )
@@ -1559,7 +1559,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m6l3a:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m6l3a->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m6l3a->"
 	//moving train
 }end
 
@@ -1567,7 +1567,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m6l3b:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m6l3b->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m6l3b->"
 	//inside lift
 	level.flags["coop_spawn1origin"] = ( -2524 -2764 -126 )
 	level.flags["coop_spawn2origin"] = ( -2468 -2764 -126 )
@@ -1589,7 +1589,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m6l3d:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m6l3d->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m6l3d->"
 	//inside lift
 	level.flags["coop_spawn1origin"] = ( -1988 644 -1464 )
 	level.flags["coop_spawn2origin"] = ( -1988 700 -1464 )
@@ -1615,7 +1615,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m6l3c:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m6l3c->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m6l3c->"
 	//inside lift
 	level.flags["coop_spawn1origin"] = ( -1988 644 -1024 )
 	level.flags["coop_spawn2origin"] = ( -1988 700 -1024 )
@@ -1636,7 +1636,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m6l3c_update1:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m6l3c_update1->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m6l3c_update1->"
 	//iprintlnbold_noloc("m6l3c_update1");
 	
 	local.switcher = 0
@@ -1658,7 +1658,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m6l3c_update2:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m6l3c_update2->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m6l3c_update2->"
 	//iprintlnbold_noloc("m6l3c_update2");
 
 	local.switcher = 0
@@ -1682,7 +1682,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m6l3c_update3:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m6l3c_update3->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m6l3c_update3->"
 	//iprintlnbold_noloc("m6l3c_update3");
 
 	local.switcher = 0
@@ -1707,7 +1707,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m6l3c_update4:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m6l3c_update4->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m6l3c_update4->"
 	//iprintlnbold_noloc("m6l3c_update4");
 	
 	local.switcher = 0
@@ -1731,7 +1731,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m6l3c_update5:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m6l3c_update5->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m6l3c_update5->"
 	//iprintlnbold_noloc("m6l3c_update5");
 	
 	local.switcher = 0
@@ -1755,7 +1755,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m6l3c_update6:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m6l3c_update6->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m6l3c_update6->"
 	//iprintlnbold_noloc("m6l3c_update6");
 	
 	for( local.i = 1;local.i<=8;local.i++){
@@ -1770,7 +1770,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m6l3c_update7:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m6l3c_update7->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m6l3c_update7->"
 	//iprintlnbold_noloc("m6l3c_update7");
 	
 	local.switcher = 0
@@ -1794,7 +1794,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m6l3c_update8:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m6l3c_update8->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m6l3c_update8->"
 	//iprintlnbold_noloc("m6l3c_update8");
 	
 	local.switcher = 0
@@ -1818,7 +1818,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m6l3e:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m6l3d->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m6l3d->"
 	level.flags["coop_spawn1origin"] = ( -4640 -1352 -568 )
 	level.flags["coop_spawn2origin"] = ( -4664 -1328 -568 )
 	level.flags["coop_spawn3origin"] = ( -4688 -1304 -568 )
@@ -1846,7 +1846,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m4l0:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m4l0->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m4l0->"
 	//level.flags["coop_spawn1origin"] = ( -5816 -5824 -170 )
 	level.flags["coop_spawn4origin"] = ( -5946 -5500 -160 )
 	level.flags["coop_spawn2origin"] = ( -5900 -5500 -170 )
@@ -1867,7 +1867,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m4l0_update1:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m4l0_update1->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m4l0_update1->"
 	//[202] chrissstrahl - changed so it checks if there is a player, also reduced checkinterval
 	while(!$player || !waitexec coop_mod/replace.scr::withinDistance ( 1177 -4615 0 ) 2222 ){
 		wait 0.2
@@ -1889,7 +1889,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m4l0_update2:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m4l0_update2->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m4l0_update2->"
 	//[202] chrissstrahl - changed so it checks if there is a player, also reduced checkinterval
 	while(!$player || !waitexec coop_mod/replace.scr::withinDistance ( 4747 680 545 ) 300){
 		wait 0.2
@@ -1911,7 +1911,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 m4l0_update3:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/m4l0_update3->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/m4l0_update3->"
 	//[202] chrissstrahl - changed so it checks if there is a player, also reduced checkinterval
 	while(!$player || !waitexec coop_mod/replace.scr::withinDistance ( 231 1584 417 ) 1222){
 		wait 0.2
@@ -1937,7 +1937,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e1l1:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e1l1->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e1l1->"
 	/*
 	level.flags["coop_spawn1origin"] = ( -1988 644 -1464 )
 	level.flags["coop_spawn2origin"] = ( -1988 700 -1464 )
@@ -1960,7 +1960,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e1l1_update1:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e1l1_update1->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e1l1_update1->"
 	local.vec = ( -1736 4120 240 )
 	for( local.i = 1;local.i<=8;local.i++){
 		level.flags["coop_spawn"+local.i+"angles"] = (0 1 0)
@@ -1973,7 +1973,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e1l1_update2:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e1l1_update2->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e1l1_update2->"
 	level.flags["coop_spawn1origin"] = ( 280 2152 272 )
 	level.flags["coop_spawn2origin"] = ( 232 2112 272 )
 	level.flags["coop_spawn3origin"] = ( 184 2080 272 )
@@ -1992,7 +1992,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e1l1_update3:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e1l1_update3->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e1l1_update3->"
 	local.vec = ( 1200 8 248 )
 	for( local.i = 1;local.i<=8;local.i++){
 		level.flags["coop_spawn"+local.i+"angles"] = (0 250 0)
@@ -2005,7 +2005,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e1l1_update4:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e1l1_update4->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e1l1_update4->"
 	level.flags["coop_spawn1origin"] = ( -1328 -1480 256 )
 	level.flags["coop_spawn2origin"] = ( -1376 -1504 256 )
 	level.flags["coop_spawn3origin"] = ( -1424 -1480 256 )
@@ -2025,7 +2025,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e1l1_update5:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e1l1_update5->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e1l1_update5->"
 //need to play the mission again to find the right spot inside the bunker
 }end
 
@@ -2033,7 +2033,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e1l1_update6:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e1l1_update6->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e1l1_update6->"
 	level.flags["coop_spawn1origin"] = ( -3144 -1632 432 )
 	level.flags["coop_spawn2origin"] = ( -3096 -1632 432 )
 	level.flags["coop_spawn3origin"] = ( -2888 -1632 432 )
@@ -2053,7 +2053,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e1l1_update7:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e1l1_update7->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e1l1_update7->"
 	level.flags["coop_spawn1origin"] = ( 56 -3280 272 )
 	level.flags["coop_spawn2origin"] = ( 112 -3280 272 )
 	level.flags["coop_spawn3origin"] = ( 320 -3288 272 )
@@ -2073,7 +2073,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e1l1_update8_prepare local.trigger:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e1l1_update8_prepare->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e1l1_update8_prepare->"
 	//if( local.trigger == NULL || local.trigger == NIL ){
 	//end
 	//}
@@ -2085,7 +2085,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e1l1_update8:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e1l1_update8->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e1l1_update8->"
 	/*
 	level.flags["coop_spawn1origin"] = (  )
 	level.flags["coop_spawn2origin"] = (  )
@@ -2110,7 +2110,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e1l1_update9:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e1l1_update9->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e1l1_update9->"
 	level.flags["coop_spawn1origin"] = ( 3376 -592 180 )
 	level.flags["coop_spawn2origin"] = ( 3328 -592 180 )
 	level.flags["coop_spawn3origin"] = ( 3328 -552 180 )
@@ -2131,7 +2131,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e1l1_update10:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e1l1_update10->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e1l1_update10->"
 //need to play the mission again to find the right spot inside the bunker
 }end
 
@@ -2139,7 +2139,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e1l1_update11:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e1l1_update11->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e1l1_update11->"
 //need to play the mission again to find the right spot inside the bunker
 }end
 
@@ -2147,7 +2147,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e1l2:{
 //=========================================================================	
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e1l2->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e1l2->"
 	level.flags["coop_spawn1origin"] = ( -5528 2160 352 )
 	level.flags["coop_spawn2origin"] = ( -5472 2184 352 )
 	level.flags["coop_spawn3origin"] = ( -5472 2184 352 )
@@ -2167,7 +2167,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e1l2_update1:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e1l2_update1->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e1l2_update1->"
 	for( local.i = 1;local.i<=8;local.i++){
 		level.flags["coop_spawn"+local.i+"angles"] = (0 225 0)
 		//level.flags["coop_spawn"+local.i+"origin"] = ( -2272 -296 352 )
@@ -2180,7 +2180,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e1l2_update2:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e1l2_update2->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e1l2_update2->"
 	level.flags["coop_spawn1origin"] = ( -5592 -6440 832 )
 	level.flags["coop_spawn2origin"] = ( -5640 -6464 832 )
 	level.flags["coop_spawn3origin"] = ( -5688 -6488 832 )
@@ -2200,7 +2200,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e1l2_update3:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e1l2_update3->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e1l2_update3->"
 	local.vec = ( -3464 -6128 1184 )
 	for( local.i = 1;local.i<=8;local.i++){
 		level.flags["coop_spawn"+local.i+"angles"] = (0 315 0)
@@ -2214,7 +2214,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e1l2_update4:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e1l2_update4->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e1l2_update4->"
 	local.vec = ( -3464 -6128 1184 )
 	for( local.i = 1;local.i<=8;local.i++){
 		level.flags["coop_spawn"+local.i+"angles"] = (0 180 0)
@@ -2228,7 +2228,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e1l2_update5:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e1l2_update5->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e1l2_update5->"
 	//test - spawn directly on tank
 	while($coop_tank2PlayerSpawn != NULL && $tank2 != NULL){
 		local.ang = $tank2.angles
@@ -2251,7 +2251,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e1l2_update6:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e1l2_update6->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e1l2_update6->"
 	level.coop_disableSpawnWarper = game.false
 	//spawn near hideout
 	//new/teamchange players spawn next to minesweeper tank, we are keeping this
@@ -2262,7 +2262,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e1l3:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e1l3->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e1l3->"
 	level.flags["coop_spawn1origin"] = ( 1388 -6049 300 ) //regular
 }end
 
@@ -2271,7 +2271,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e1l3_sneakers:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e1l3_sneakers->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e1l3_sneakers->"
 	//level.flags["coop_spawn1origin"] = ( 3518 -1909 112 ) //claus
 	//level.flags["coop_spawn1angles"] = ( 0 90 0) //claus	
 	local.origin = ( 3480 -1912 112 )
@@ -2292,14 +2292,14 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e1l3_lockPicking:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e1l3_lockPicking->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e1l3_lockPicking->"
 	waitthread e1l3_update9
 }end
 
 //=========================================================================
 e1l3_finalEscape:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e1l3_finalEscape->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e1l3_finalEscape->"
 	waitthread e1l3_update11
 }end
 
@@ -2308,7 +2308,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e1l3_update1:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e1l3_update1->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e1l3_update1->"
 	for( local.i = 1;local.i<=8;local.i++){
 		level.flags["coop_spawn"+local.i+"origin"] = ( 1320 -6035 128 )
 		//level.flags["coop_spawn"+local.i+"angles"] = (0 1 0)
@@ -2320,7 +2320,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e1l3_update2:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e1l3_update2->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e1l3_update2->"
 	level.flags["coop_spawn1origin"] = ( -1736 -2744 100 )
 	level.flags["coop_spawn2origin"] = ( -1832 -2744 100 )
 	level.flags["coop_spawn3origin"] = ( -1688 -2744 100 )
@@ -2339,7 +2339,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e1l3_update3:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e1l3_update3->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e1l3_update3->"
 	level.flags["coop_spawn1origin"] = ( 728 -2232 112 )
 	level.flags["coop_spawn2origin"] = ( 680 -2200 112 )
 	level.flags["coop_spawn3origin"] = ( 784 -2216 112 )
@@ -2358,7 +2358,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e1l3_update4:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e1l3_update4->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e1l3_update4->"
 	//[202] chrissstrahl - changed so it checks if there is a player
 	while(!$player || !waitexec coop_mod/replace.scr::withinDistance ( -160 -1360 504 ) 128){
 		waitframe
@@ -2375,7 +2375,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e1l3_update5:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e1l3_update5->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e1l3_update5->"
 	//[202] chrissstrahl - changed so it checks if there is a player, also reduced checkinterval
 	while(!$player || !waitexec coop_mod/replace.scr::withinDistance ( -230 -2393 512 ) 256){
 		wait 0.1
@@ -2406,7 +2406,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e1l3_update6:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e1l3_update6->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e1l3_update6->"
 	local.origin = ( 3296 -744 120 )
 	for( local.i = 1;local.i<4;local.i++){
 		level.flags["coop_spawn"+local.i+"origin"] = local.origin
@@ -2425,7 +2425,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e1l3_update7:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e1l3_update7->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e1l3_update7->"
 	local.origin = ( 40 2200 112 )
 	for( local.i = 1;local.i<=8;local.i++){
 		level.flags["coop_spawn"+local.i+"origin"] = local.origin
@@ -2438,7 +2438,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e1l3_update8:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e1l3_update8->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e1l3_update8->"
 	level.flags["coop_spawn1origin"] = ( -488 2400 496 )
 	level.flags["coop_spawn2origin"] = ( -488 2352 496 )
 	level.flags["coop_spawn3origin"] = ( -536 2448 496  )
@@ -2463,7 +2463,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e1l3_update9:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e1l3_update9->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e1l3_update9->"
 	local.origin = ( -2008 3176 592 )
 	for( local.i = 1;local.i<=4;local.i++){
 		level.flags["coop_spawn"+local.i+"origin"] = local.origin
@@ -2486,7 +2486,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e1l3_update10:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e1l3_update10->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e1l3_update10->"
 	level.flags["coop_spawn1origin"] = ( -1503 2847 594 )
 	level.flags["coop_spawn2origin"] = ( -1502 2915 594 )
 	level.flags["coop_spawn3origin"] = ( -1407 2846 593 )
@@ -2506,7 +2506,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e1l3_update11:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e1l3_update11->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e1l3_update11->"
 	local.origin = ( -872 3544 300 )
 	for( local.i = 1;local.i<=4;local.i++){
 		level.flags["coop_spawn"+local.i+"origin"] = local.origin
@@ -2532,7 +2532,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e1l4:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e1l4->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e1l4->"
 	//spawn loacations at ((-4822 5184 300)) for Dock
 	level.flags["coop_spawn1origin"] = ( -4822 5184 300)
 	level.flags["coop_spawn1angles"] = ( 0 -4 0)
@@ -2557,7 +2557,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e1l4_update1:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e1l4_update1->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e1l4_update1->"
 	//[202] chrissstrahl - changed so it checks if there is a player
 	while(!$player || !waitexec coop_mod/replace.scr::withinDistance ( -3413 5192 96 ) 128){
 		waitframe
@@ -2587,7 +2587,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e1l4_update2:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e1l4_update2->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e1l4_update2->"
 	//[202] chrissstrahl - changed so it checks if there is a player, also reduced checkinterval
 	while(!$player || !waitexec coop_mod/replace.scr::withinDistance ( -3472 3424 -88 ) 100){
 		waitframe
@@ -2618,7 +2618,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e1l4_update3:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e1l4_update3->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e1l4_update3->"
 	//[202] chrissstrahl - changed so it checks if there is a player, also reduced checkinterval
 	while(!$player || !waitexec coop_mod/replace.scr::withinDistance ( -3472 3424 -88 ) 100){
 		waitframe
@@ -2649,7 +2649,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e1l4_update4:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e1l4_update4->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e1l4_update4->"
 	//[202] chrissstrahl - changed so it checks if there is a player, also reduced checkinterval
 	while(!$player || !waitexec coop_mod/replace.scr::withinDistance ( -3596 5134 -270 ) 100){
 		waitframe
@@ -2679,7 +2679,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e1l4_update5:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e1l4_update5->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e1l4_update5->"
 //spawn loacations at ((-3440 3200 -368)) for Ship Escape 2	
 	thread spawnlocationsUpdated "ESCAPE 2 NEAR ENGINE ROOM"
 	level.flags["coop_spawn1origin"] = ( -3304 2976 -304 )
@@ -2702,7 +2702,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e1l4_update6:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e1l4_update6->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e1l4_update6->"
 	thread spawnlocationsUpdated "ESCAPE 1 TILTED SHIP"
 	level.flags["coop_spawn1origin"] = ( 2800 336 -536 )
 	level.flags["coop_spawn2origin"] = ( 2800 288 -528 )
@@ -2728,7 +2728,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e1l4_update7:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e1l4_update7->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e1l4_update7->"
 	//[202] chrissstrahl - changed so it checks if there is a player
 	while(!$player || !waitexec coop_mod/replace.scr::withinDistance ( 3232 -216 -456 ) 64){
 		waitframe
@@ -2754,7 +2754,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e1l4_update8:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e1l4_update8->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e1l4_update8->"
 	$CompassTargetKlausTrigger waittill trigger
 	//2824 680 40 //2640 1216 96 //2824 1216 96
 	thread spawnlocationsUpdated "ESCAPE 3 TILTED SHIP HULL"
@@ -2782,7 +2782,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e1l4_update9:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e1l4_update9->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e1l4_update9->"
 	$guyManDudeMG42_Trigger waittill trigger
 	thread spawnlocationsUpdated "ESCAPE 4 MACHINE GUNNER"
 	//spawn loacations at ((969.080688 1565.661743 32.125000)) for MG
@@ -2811,7 +2811,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e1l4_update10:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e1l4_update10->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e1l4_update10->"
 	//[202] chrissstrahl - changed so it checks if there is a player, also reduced checkinterval
 	while(!$player || !waitexec coop_mod/replace.scr::withinDistance ( 2608 -2864 96 ) 210){
 		wait 0.1
@@ -2843,7 +2843,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e2l1:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e2l1->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e2l1->"
 	level.flags["coop_spawn1origin"] = ( 4454 6070 544 )
 	level.flags["coop_spawn1angles"] = ( 0 270 0 )
 	level.flags["coop_spawn2origin"] = ( 4542 6070 576 )
@@ -2868,7 +2868,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e2l1_update1:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e2l1_update1->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e2l1_update1->"
 	level.flags["coop_spawn1origin"] = ( 1342 2550 368 )
 	level.flags["coop_spawn2origin"] = ( 1246 2598 368 )
 	level.flags["coop_spawn3origin"] = ( 1350 2646 368 )
@@ -2889,7 +2889,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e2l1_update2:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e2l1_update2->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e2l1_update2->"
 	level.flags["coop_spawn1origin"] = ( 4622 -1850 520 )
 	level.flags["coop_spawn2origin"] = ( 4694 -1850 520 )
 	level.flags["coop_spawn3origin"] = ( 4550 -1794 520 )
@@ -2910,7 +2910,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e2l1_update3:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e2l1_update3->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e2l1_update3->"
 	level.flags["coop_spawn1origin"] = ( 1718 -4194 160 )
 	level.flags["coop_spawn2origin"] = ( 1718 -4130 160 )
 	level.flags["coop_spawn3origin"] = ( 1782 -4226 160 )
@@ -2931,7 +2931,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e2l1_update4:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e2l1_update4->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "spawnlocations/e2l1_update4->"
 	level.flags["coop_spawn1origin"] = ( -3714 -3642 160 )
 	level.flags["coop_spawn2origin"] = ( -3762 -3698 160 )
 	level.flags["coop_spawn3origin"] = ( -3818 -3754 160 )
@@ -2951,7 +2951,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e2l2:{ //level start
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e2l2->"+level.cMTE+"" )}
+thread debugThread "spawnlocations/e2l2->"
 	level.flags[coop_spawn1angles] = ( 0 257.349 0 ) 
 	level.flags[coop_spawn1origin] = ( 6456 -5251 2470 ) 
 	level.flags[coop_spawn2origin] = ( 6417 -5242 2470 ) 
@@ -2971,7 +2971,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e2l2_update1:{ //at the small Shack
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e2l2_update1->"+level.cMTE+"" )}
+thread debugThread "spawnlocations/e2l2_update1->"
 	while(!$player || !waitexec coop_mod/replace.scr::withinDistance ( 2795 -6319 2585 ) 500){
 		wait 0.1
 	}
@@ -3000,7 +3000,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e2l2_update2:{ //before assault on jeep Guard Post outside fence behind stones uphill
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e2l2_update2->"+level.cMTE+"" )}
+thread debugThread "spawnlocations/e2l2_update2->"
 	while(!$player || !waitexec coop_mod/replace.scr::withinDistance ( -1526 -5410 2654 ) 500){
 		wait 0.1
 	}
@@ -3022,7 +3022,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e2l2_update3:{ //radio tower respawn area - before jeep goes
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e2l2_update3->"+level.cMTE+"" )}
+thread debugThread "spawnlocations/e2l2_update3->"
 	level.flags[coop_spawn1angles] = ( 0 199.830 0 ) 
 	level.flags[coop_spawn1origin] = ( -2791 -3505 2557 ) 
 	level.flags[coop_spawn2origin] = ( -2751 -3505 2557 ) 
@@ -3040,7 +3040,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e2l2_update10:{ //new spawns before airfield inside post
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e2l2_update10->"+level.cMTE+"" )}
+thread debugThread "spawnlocations/e2l2_update10->"
 	level.flags[coop_spawn1angles] = ( 0 14.738 0 ) 
 	level.flags[coop_spawn1origin] = ( 2727 -2058 2568 ) 
 	level.flags[coop_spawn2origin] = ( 2767 -2058 2568 ) 
@@ -3062,7 +3062,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e2l2_update11:{ //new spawns inside airfield patrol area - not on the actual field
 //=========================================================================
-	if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e2l2_update11->"+level.cMTE+"" )}
+	thread debugThread "spawnlocations/e2l2_update11->"
 	
 	thread spawnlocationsUpdated "11 waiting"
 	
@@ -3093,7 +3093,7 @@ e2l2_update11:{ //new spawns inside airfield patrol area - not on the actual fie
 //=========================================================================
 e2l2_update12:{ //new spawns inside airfield patrol area - not on the actual field
 //=========================================================================
-	if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e2l2_update12->"+level.cMTE+"" )}
+	thread debugThread "spawnlocations/e2l2_update12->"
 	
 	while(!$player || !waitexec coop_mod/replace.scr::withinDistance ( 4295 5895 2550 ) 350){
 		wait 0.1
@@ -3109,7 +3109,7 @@ e2l2_update12:{ //new spawns inside airfield patrol area - not on the actual fie
 //=========================================================================
 e2l3:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e2l3->"+level.cMTE+"" )}
+thread debugThread "spawnlocations/e2l3->"
 
 	if(level.skipintrohouse){ end }
 	
@@ -3131,7 +3131,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e2l3_update1:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e2l3_update1->"+level.cMTE+"" )}
+thread debugThread "spawnlocations/e2l3_update1->"
 		
 	while(!$player || !waitexec coop_mod/replace.scr::withinDistance ( 819 3631 28 ) 350 ){
 		if(level.warpTo){ end } //do not update if the player/mission is warped/reloaded
@@ -3159,7 +3159,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e2l3_update2:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e2l3_update2->"+level.cMTE+"" )}
+thread debugThread "spawnlocations/e2l3_update2->"
 	
 	if(level.skipglider){ end }
 	
@@ -3187,7 +3187,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e2l3_update3:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e2l3_update3->"+level.cMTE+"" )}
+thread debugThread "spawnlocations/e2l3_update3->"
 	
 	if(level.skipvineyard || level.skiptown ){ end }
 	
@@ -3216,7 +3216,7 @@ end
 //=========================================================================
 e2l3_update4:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e2l3_update4->"+level.cMTE+"" )}
+thread debugThread "spawnlocations/e2l3_update4->"
 	
 	while(!$player || !waitexec coop_mod/replace.scr::withinDistance ( -680 400 -354 ) 150 ){
 		wait 0.1
@@ -3242,7 +3242,7 @@ if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; 
 //=========================================================================
 e2l3_update5:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e2l3_update5->"+level.cMTE+"" )}
+thread debugThread "spawnlocations/e2l3_update5->"
 	while(!$player || !waitexec coop_mod/replace.scr::withinDistance ( 5888 -2208 -256 ) 75 ){
 		wait 0.1
 	}
@@ -3277,7 +3277,7 @@ level.flags[coop_spawn8origin] = ( 5818 -2537 -257 )
 //=========================================================================
 e3l1:{
 //=========================================================================
-if(level.cMTE_coop_spawnlocations){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread spawnlocations/e3l1->"+level.cMTE+"" )}
+thread debugThread "spawnlocations/e3l1->"
 	level.flags[coop_spawn1angles] = ( 0 319.092 0 )
 	level.flags[coop_spawn1origin] = ( -1009 -4684 200 )
 	level.flags[coop_spawn2origin] = ( -1009 -4644 200 )
@@ -3326,3 +3326,15 @@ for( local.i = 1;local.i<=8;local.i++){
 }
 */
 	
+
+//[204] cleanup - central debug print helper to reduce repeated preamble code
+//==========================================================================
+debugThread local.label:{
+//==========================================================================
+	if(level.cMTE_coop_spawnlocations){
+		if(!level.cMTE){ level.cMTE = 0 }
+		level.cMTE++
+		println( "-#-#- thread " + local.label + "->" + level.cMTE )
+	}
+}end
+

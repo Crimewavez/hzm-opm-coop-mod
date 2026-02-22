@@ -4,7 +4,7 @@
 //=========================================================================
 main local.nextlevel local.bsp local.skipFade:{
 //=========================================================================
-if(level.cMTE_coop_missioncomplete){if(!level.cMTE){level.cMTE=0}; level.cMTE++; println( "-#-#- thread missioncomplete/main->"+level.cMTE+"" )} //[202] chrissstrahl - this is to debug the coop mod thread handling
+thread debugThread "missioncomplete/main->"
 	//[200] Smithy - store the thread name
 	local.threadName = "coop_mod/missioncomplete.scr::main"
 	
@@ -38,3 +38,15 @@ if(level.cMTE_coop_missioncomplete){if(!level.cMTE){level.cMTE=0}; level.cMTE++;
 	
 	setcvar "g_gametype" local.gametype
 }end
+
+//[204] cleanup - central debug print helper to reduce repeated preamble code
+//==========================================================================
+debugThread local.label:{
+//==========================================================================
+	if(level.cMTE_coop_missioncomplete){
+		if(!level.cMTE){ level.cMTE = 0 }
+		level.cMTE++
+		println( "-#-#- thread " + local.label + "->" + level.cMTE )
+	}
+}end
+
