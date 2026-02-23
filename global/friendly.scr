@@ -899,17 +899,12 @@ friendlythinkstart:{
 											if (!(self exec coop_mod/replace.scr::cansee) && (local.set > level.playernodeset + local.offset) ){
 												local.break = 0
 											}else{
-												// [OPM] .VWZ - Fix strange timing hiccups?
-												if(!self || !local.player || self.origin == NIL || local.player.origin == NIL){
+												//[205] chrissstrahl - fixed
+												local.playerToSelfDistance = vector_length (self.origin - local.player.origin)
+												if ((local.playerToSelfDistance > 200) && (level.friendlyused[local.nodenum] == 1) && (local.set > level.playernodeset + local.offset)){
+													local.break = 0					
+												}else if ((local.playerToSelfDistance > 200 ) && (local.set > level.playernodeset + local.offset) &&	!(exec coop_mod/replace.scr::sighttrace (0 0 0) level.friendlynode[local.nodenum].origin 1)){
 													local.break = 0
-												}else{
-													//[205] chrissstrahl - fixed
-													local.playerToSelfDistance = vector_length (self.origin - local.player.origin)
-													if ((local.playerToSelfDistance > 200) && (level.friendlyused[local.nodenum] == 1) && (local.set > level.playernodeset + local.offset)){
-														local.break = 0					
-													}else if ((local.playerToSelfDistance > 200 ) && (local.set > level.playernodeset + local.offset) &&	!(exec coop_mod/replace.scr::sighttrace (0 0 0) level.friendlynode[local.nodenum].origin 1)){
-														local.break = 0
-													}
 												}
 											}
 									
@@ -929,11 +924,7 @@ friendlythinkstart:{
 										
 												//[202] chrissstrahl - grab cloeset player
 												local.player = waitthread coop_mod/replace.scr::player_closestTo self
-												if(!self || !local.player || self.origin == NIL || local.player.origin == NIL){
-													local.length = 999999
-												}else{
-													local.length = vector_length (self.origin - local.player.origin)
-												}
+												local.length = vector_length (self.origin - local.player.origin)
 												if (local.length > 200){
 													println ("Vector length " + local.length + " was greater than 200")
 												}else{
@@ -981,13 +972,9 @@ friendlythinkstart:{
 											local.break = 1
 										}else{
 											local.player = waitthread coop_mod/replace.scr::player_closestTo self
-											if(!self || !local.player || self.origin == NIL || local.player.origin == NIL){
+											local.length = vector_length (self.origin - local.player.origin)			
+											if ((local.length > self.distance) &&  (level.friendlyused[local.nodenum] == 1) && (local.set > level.playernodeset + local.tempnodenum)){
 												local.break = -1
-											}else{
-												local.length = vector_length (self.origin - local.player.origin)			
-												if ((local.length > self.distance) &&  (level.friendlyused[local.nodenum] == 1) && (local.set > level.playernodeset + local.tempnodenum)){
-													local.break = -1
-												}
 											}
 										}
 
