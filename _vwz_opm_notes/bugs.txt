@@ -1,0 +1,18 @@
+m1l2a - grillo is fucked
+m1l3aa / m1l3b - second player doesnt get glued to the jeep
+airport opel got stuck at the beginning of driving
+spotlights aint working
+
+briefing mission 2 / 3 is broken
+
+m2l2c: ai is ducked if you load map manually
+
+m3l1
+
+spawn logic needs fixing, it teleports you ahead
+ m4l2 - wrong wattil server crash
+ m5l1a - no bazooka team
+ m5l3 - letting bridge blow is not restarting the level - stuck at end screen
+ m6l2 - train can drag plaeyr out of the bounds, player stuck in spawn loop
+m6l3a - fix spawner
+e1l1 - you can get killed while manning the artillery, causing you to be spawn stuck in it	
