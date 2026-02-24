@@ -1151,7 +1151,7 @@ restartai:{
 	self.friendtype = 4
 	println "RESTARTED THE AI"
 	self exec global/enable_ai.scr
-}end*/
+}end
 
 //=========================================================================
 gethealth local.string local.amount:{
