@@ -125,7 +125,9 @@ thread debugThread "player/manage->"
 			waitthread coop_mod/main.scr::playerCountChanged local.prevPlayerCount local.playerCount
 			//[206] chrissstrahl - execute thread when player left server: coop_playerJustLeft
 			if(local.prevPlayerCount < local.playerCount){
-				thread game.main::startThread ("maps/"+level.coop_mapname+".scr::"+"coop_playerJustLeft") $world
+				if (thread coop_mod/main.scr::hasMapPlayerHook "coop_playerJustLeft"){
+					thread game.main::startThread ("maps/"+level.coop_mapname+".scr::"+"coop_playerJustLeft") $world
+				}
 			}
 		}
 
@@ -730,10 +732,14 @@ thread debugThread "player/manageAliveSpawning->"
 	//place at spawn or respawn, this needs to be done regardless of glueing
 	if(local.player.flags["coop_respawning"] == TRUE){
 		waitthread coop_mod/player.scr::manageAliveRespawning local.player
-		thread coop_mod/main.scr::startThread ( "maps/"+level.coop_mapname+".scr::coop_playerJustRespawned" ) (local.player)
+		if (thread coop_mod/main.scr::hasMapPlayerHook "coop_playerJustRespawned"){
+			thread coop_mod/main.scr::startThread ( "maps/"+level.coop_mapname+".scr::coop_playerJustRespawned" ) (local.player)
+		}
 	}else{	
 		waitthread coop_mod/main.scr::playerPlaceAtSpawn local.player
-		thread coop_mod/main.scr::startThread ( "maps/"+level.coop_mapname+".scr::coop_playerJustSpawned" ) (local.player)
+		if (thread coop_mod/main.scr::hasMapPlayerHook "coop_playerJustSpawned"){
+			thread coop_mod/main.scr::startThread ( "maps/"+level.coop_mapname+".scr::coop_playerJustSpawned" ) (local.player)
+		}
 	}
 	
 	//INVENTORY
@@ -942,7 +948,9 @@ thread debugThread "player/manageDead->"
 		//- EACH RESPAWN:	coop_playerJustRespawned
 		//- EACH DEATH:		coop_playerJustDied
 		//- Else Where if player disconnects:	coop_playerJustLeft"
-		thread coop_mod/main.scr::startThread ( "maps/"+level.coop_mapname+".scr::coop_playerJustDied" ) (local.player)
+		if (thread coop_mod/main.scr::hasMapPlayerHook "coop_playerJustDied"){
+			thread coop_mod/main.scr::startThread ( "maps/"+level.coop_mapname+".scr::coop_playerJustDied" ) (local.player)
+		}
 	}
 }end
 
