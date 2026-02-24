@@ -1322,7 +1322,10 @@ changeGameType local.gType local.wait:{
 	if (level.gametype == 0){ end }
 
 	local.threadName 		= "coop_mod/main.scr::changeGameType"
-	local.prevThreadName 	= parm.previousthread.threadName
+	local.prevThreadName 	= "unknown location"
+	if (parm.previousthread){
+		local.prevThreadName = parm.previousthread.threadName
+	}
 	if (local.prevThreadName == NIL){
 		local.prevThreadName = "unknown location"
 	}
@@ -1388,8 +1391,12 @@ waitForMainScript:{
 
 
 	local.threadName 		= "coop_mod/main.scr::waitForMainScript"
-	local.prevThreadName 	= parm.previousthread.threadName
-	local.prevSelf 			= parm.previousthread.self 	//grab the self object the previous thread is processing for
+	local.prevThreadName 	= "UNKNOWN"
+	local.prevSelf 			= NIL
+	if (parm.previousthread){
+		local.prevThreadName = parm.previousthread.threadName
+		local.prevSelf = parm.previousthread.self 	//grab the self object the previous thread is processing for
+	}
 	if (local.prevSelf){ 							 	//better reporting
 		local.prevSelf = (" with object " + local.prevSelf.classname)
 	}
