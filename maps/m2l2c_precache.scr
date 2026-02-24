@@ -79,3 +79,10 @@ cache models/items/item_50_healthbox.tik
 cache models/items/item_grenade_ammobox.tik
 cache models/weapons/kar98sniper.tik
 cache models/gear/german_helmet.tik
+
+cache models/weapons/m2frag_grenade.tik
+cache models/weapons/m18_smoke_grenade.tik
+cache models/weapons/colt45.tik
+cache models/weapons/g43.tik
+cache models/weapons/nebelhandgranate.tik
+cache models/weapons/p38.tik
