@@ -1127,12 +1127,12 @@ spawnguy local.start local.path:
 					$("spawnedguy" + local.num) patrolpath local.path
 end
 
-/* [OPM].VWZ: end at line 1135 causes script error, causing map script to not load.
+
 //=========================================================================
 restartai:{
 //=========================================================================
 	iprintlnbold_noloc ( "this was disabled by chrissstrahl" ) //chrissstrahl - reason: because!
-	end//chrissstrahl
+	end //chrissstrahl
 	
 	local.health = self.health
 	local.playerhealth = $player.health
