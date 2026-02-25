@@ -1127,12 +1127,12 @@ spawnguy local.start local.path:
 					$("spawnedguy" + local.num) patrolpath local.path
 end
 
-/* [OPM].VWZ: end at line 1135 causes script error, causing map script to not load.
+
 //=========================================================================
 restartai:{
 //=========================================================================
 	iprintlnbold_noloc ( "this was disabled by chrissstrahl" ) //chrissstrahl - reason: because!
-	end//chrissstrahl
+	end //chrissstrahl
 	
 	local.health = self.health
 	local.playerhealth = $player.health
@@ -1151,7 +1151,7 @@ restartai:{
 	self.friendtype = 4
 	println "RESTARTED THE AI"
 	self exec global/enable_ai.scr
-}end*/
+}end
 
 //=========================================================================
 gethealth local.string local.amount:{
@@ -1799,6 +1799,9 @@ flagthread9:{
 	println "***************************** level.flags[flak] == 0"
 
 	wait 0.5
+	if (level.flags[friendlyflak] == 2){
+		end
+	}
 	local.ent = spawn script_origin
 	waitframe //[200] chrissstrahl - added to wait for the entity to be spawned in multiplayer
 	local.ent thread explosives 102
@@ -2408,11 +2411,14 @@ friendchoice:{
 //=========================================================================
 coop_forceGrilloToFollow local.object local.tries:{
 //=========================================================================
-	if (level.thread["coop_forceGrilloToFollow"]){ end }
+	if (level.thread["coop_forceGrilloToFollow"]){
+		level.thread["coop_forceGrilloToFollow"] delete
+	}
 	level.thread["coop_forceGrilloToFollow"] = local
 	
 	if (!local.object){
 		println "coop_forceGrilloToFollow object was " local.object
+		level.thread["coop_forceGrilloToFollow"] = NIL
 		end
 	}
 	
@@ -2453,6 +2459,7 @@ coop_forceGrilloToFollow local.object local.tries:{
 	}
 	level.friendly1.movedoneradius = local.movedoneradius
 	level.friendly1.friendtype = local.friendtype
+	level.thread["coop_forceGrilloToFollow"] = NIL
 }end
 
 //[202][hotfix] Smithy - only check for the player that is being followed
@@ -2988,20 +2995,27 @@ explosives local.set:{
 }end
 
 //[202][hotfix] Smithy
-//FORCE THE SCENE. WE WILL END THIS LEVEL!!!!!!!!!!!!
+//Ending failsafe: nudge Grillo to complete second flak scene if it stalls.
 //=========================================================================
 coop_endingFailsafe:{
 //=========================================================================
 	println "********** WAITING IN coop_endingFailsafe"
-	for (local.i = 1; !level.flags["flagthread9"] && local.i <= 30; local.i++){
+	for (local.i = 1; level.flags[friendlyflak] != 2 && local.i <= 30; local.i++){
 		wait 1
 	}
 	println "********** FINISHED WAITING IN coop_endingFailsafe"
-	if (!level.flags["flagthread9"]){		 
+	if (level.flags[friendlyflak] != 2){
 		println "********** GRILLO RUNNING TO FLAK coop_endingFailsafe"
 		waitthread coop_forceGrilloToFollow (waitthread coop_findFriendlyNode 760) //find node next to Grillo's flak
 		println "********** FINISHED RUNNING TO FLAK coop_endingFailsafe"
-		thread flagthread9 //FORCE THIS FUCKING SCENE. I hate Mackey.		
+
+		if (level.flags["flagthread9"] && level.flags[friendlyflak] != 2){
+			level.flags["flagthread9"] = NIL
+		}
+
+		if (isalive level.friendly1){
+			level.friendly1 thread flagthread9
+		}
 	}
 }end
 

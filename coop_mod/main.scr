@@ -1541,6 +1541,39 @@ inCoopMode:{
 	local.isCoopMap = waitthread coop_mod/main.scr::isCoopEnabledMap (getcvar "mapname")
 
 }end(local.isCoopMap && level.gametype)
+
+//=========================================================================
+hasMapPlayerHook local.hook:{
+//=========================================================================
+	thread debugThread "main/hasMapPlayerHook"
+	if (level.coop_mapname == NIL){ end game.false }
+
+	local.map = level.coop_mapname
+
+	switch (local.hook){
+		case "coop_playerJustDied":
+			end (	local.map == "m1l2b" || local.map == "M1L2B" ||
+					local.map == "m1l3a" || local.map == "M1L3a" ||
+					local.map == "m1l3b" || local.map == "M1L3B" ||
+					local.map == "m5l2a" || local.map == "M5L2A" )
+
+		case "coop_playerJustRespawned":
+			end (	local.map == "m1l3a" || local.map == "M1L3a" ||
+					local.map == "m1l3b" || local.map == "M1L3B" )
+
+		case "coop_playerJustSpawned":
+			end (	local.map == "e1l1" || local.map == "E1L1" ||
+					local.map == "m1l1" || local.map == "M1L1" ||
+					local.map == "m2l3" || local.map == "M2L3" ||
+					local.map == "m3l1a" || local.map == "M3L1A" ||
+					local.map == "m4l3" || local.map == "M4L3" ||
+					local.map == "m6l3d" || local.map == "M6L3D" )
+
+		case "coop_playerJustLeft":
+			end (	local.map == "m1l3a" || local.map == "M1L3a" ||
+					local.map == "m1l3b" || local.map == "M1L3B" )
+	}
+}end(game.false)
 	
 
 //[200] Smithy - check that the map is one that supports coop mod.
