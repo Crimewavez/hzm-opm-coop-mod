@@ -1,7 +1,7 @@
 //chrissstrahl - modified for coop on 2019.08.25
 main local.music:
 
-	level.debug = getcvar("debug")
+	
 
 	if ( level.ambient_script_run == 1 ){
 		//[202] chrissstrahl - added this to make sure we do not get a: ERROR: Command overflow.  Possible infinite loop in thread.
