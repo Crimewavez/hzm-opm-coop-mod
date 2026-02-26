@@ -31,11 +31,9 @@
 
 main:
 
-	level.debug = getcvar("debug")
+	
 	level.exploderrepeat = 0
 
-	if (level.debug == NIL)
-		level.debug = 0
 
 	if ($explodersmashed == NULL)
 		level.explodersmasheds = 0
