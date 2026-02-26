@@ -2,7 +2,7 @@
 ## Scope and Platform
 We test primarily on **OpenMoHAA (OPM)** because it's open-source, actively developed, and runs on modern systems. When we find issues on OPM that don't occur on vanilla, we report them upstream to the OPM project so that OPM becomes fully backwards-compatible with existing vanilla mods, including this one.
 
-- **Envirnoment:** OpenMoHAA, development builds, not release.
+- **Environment:** OpenMoHAA, development builds, not release.
 - Bugs found on OPM that don't reproduce on vanilla are fixed by pushing PRs upstream to OPM, not by adding OPM-specific workarounds to this mod.
 - **Future direction:** Once the codebase is stabilized and cleaned up, the mod will adopt OPM-specific functions, events, and features (bots, cleaner APIs). At that point, vanilla compatibility will be dropped. Until then, the mod must work on vanilla MOHAA.
 
