@@ -169,7 +169,7 @@ local.dummy = $explosive_barrel_launch_dummy[local.self.dummy_index]
 //*** check to see if a dummy barrel exists for this launcher, if not, turn it into a normal exploder
 if (local.dummy == NULL)
 {
-	level.debug = getcvar("debug")
+	
 
 	if(level.debug == "1")
 	{
@@ -331,8 +331,6 @@ if (local.self.max_height != NIL)
 	local.fly_max_height ++
 	if (local.fly_max_height < 0)
         {
-
-        	level.debug = getcvar("debug")
 
         	if(level.debug == "1")
         	{
