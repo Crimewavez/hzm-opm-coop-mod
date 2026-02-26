@@ -58,7 +58,7 @@ Transform local.arguments:
 			noticeme:
 				self threatbias 0; break
 			default:
-				println "*** unrecognised transform command: " local.arguments[local.i]; break
+				if(level.debug == "1") { println "*** unrecognised transform command: " local.arguments[local.i]; break }
 		}
 	}
 end

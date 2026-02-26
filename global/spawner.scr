@@ -10,7 +10,7 @@ spawner_create local.dude:{
 //=========================================================================
 	//*** check to make sure the person exists
 	if (!local.dude){
-		println "^~^~^ SPAWNER CREATE ERROR:  person does not exist in the level, aborting conversion to spawner!!!"
+		if(level.debug == "1") { println "^~^~^ SPAWNER CREATE ERROR:  person does not exist in the level, aborting conversion to spawner!!!" }
 		end
 	}
 
@@ -114,7 +114,7 @@ spawner_create local.dude:{
 spawner_activate local.spawner:{
 //=========================================================================
 	if (!local.spawner){
-		println "^~^~^ SPAWNER ACTIVATE ERROR:  spawner does not exist in the level, aborting activation!!!"
+		if(level.debug == "1") { println "^~^~^ SPAWNER ACTIVATE ERROR:  spawner does not exist in the level, aborting activation!!!" }
 		end
 	}
 
@@ -251,7 +251,7 @@ spawner_create_targetname local.dude:{
 //=========================================================================
 	//*** check to make sure the person exists
 	if (!local.dude){
-		println "^~^~^ SPAWNER CREATE ERROR:  person does not exist in the level, aborting conversion to spawner!!!"
+		if(level.debug == "1") { println "^~^~^ SPAWNER CREATE ERROR:  person does not exist in the level, aborting conversion to spawner!!!" }
 		end
 	}
 
@@ -269,7 +269,7 @@ spawner_create_targetname local.dude:{
 spawner_activate_targetname local.spawner:{
 //=========================================================================
 	if (!local.spawner){
-		println "^~^~^ SPAWNER ACTIVATE ERROR:  spawner does not exist in the level, aborting activation!!!"
+		if(level.debug == "1") { println "^~^~^ SPAWNER ACTIVATE ERROR:  spawner does not exist in the level, aborting activation!!!" }
 		end
 	}
 

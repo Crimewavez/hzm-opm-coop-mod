@@ -6,7 +6,7 @@ PlaySong local.song local.volume:
 
 	if( local.song == NIL && local.song == NULL )
 	{			
-		println "PlaySong <songname>"
+		if(level.debug == "1") { println "PlaySong <songname>" }
 		end
 	}
 
@@ -36,7 +36,7 @@ PlaySongLoop local.song local.volume:
 
 	if( local.song == NIL && local.song == NULL )
 	{			
-		println "PlaySongLoop <songname>"		
+		if(level.debug == "1") { println "PlaySongLoop <songname>" }
 		end
 	}
 	
@@ -103,7 +103,7 @@ SetVolume local.volume:
 	
 	if( local.volume == NIL && local.volume == NULL )
 	{
-		println "SetVolume <volume>"
+		if(level.debug == "1") { println "SetVolume <volume>" }
 		end
 	}
 

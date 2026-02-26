@@ -14,14 +14,14 @@ main:{
 	
 	if ( level.loadout_script_run == 1 )
 	{
-		iprintln "Loadout called more then once"
+		if(level.debug == "1") { iprintln "Loadout called more then once" }
 		end
 	}
 	level.loadout_script_run = 1 //chrissstrahl - moved here, as this is the right place
 
 	if ( level.script == NIL )
 	{
-		iprintln "level.script is undefined, doing giveall"
+		if(level.debug == "1") { iprintln "level.script is undefined, doing giveall" }
 		$player wuss
 		end
 	}
@@ -229,7 +229,7 @@ main:{
 	else
 	{
 		if( level.gametype == 0 ){ //[200] Smithy - stop message on start of every map that isn't a BT map
-			iprintlnbold ("No loadout defined for " + level.script)
+			if(level.debug == "1") { iprintlnbold ("No loadout defined for " + level.script) }
 		}
 	}
 }end

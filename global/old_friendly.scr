@@ -184,7 +184,7 @@ end
 
 friendlythinkstart:
 	if (level.frienddebug == NIL)
-	println (self + " did friendlythink")
+	if(level.debug == "1") { println (self + " did friendlythink") }
 
 		level.entref++
 		self.entref = "friendly" + level.entref
@@ -348,7 +348,7 @@ friendlythinkstart:
 
 					//chrissstrahl - this is debug stuff, so we can leave this
 					if (level.frienddebug == 1){
-						println ("best choice was " + (vector_length($player.origin - level.friendlynode[local.i].origin)) + " away from player")
+						if(level.debug == "1") { println ("best choice was " + (vector_length($player.origin - level.friendlynode[local.i].origin)) + " away from player") }
 					}
 
 					local.i = level.friendlynodes + 5
@@ -363,7 +363,7 @@ friendlythinkstart:
 					self runto self.destination
 
 				if (level.frienddebug == 1)
-					println (self + " is running to " + self.destinationnum)
+					if(level.debug == "1") { println (self + " is running to " + self.destinationnum) }
 
 					wait 1
 
@@ -396,7 +396,7 @@ friendlythinkstart:
 
 					//chrissstrahl - debug for president
 					if (level.frienddebug == 1){
-						println ("best choice was " + (vector_length($player.origin - level.friendlynode[local.i].origin)) + " away from player")
+						if(level.debug == "1") { println ("best choice was " + (vector_length($player.origin - level.friendlynode[local.i].origin)) + " away from player") }
 					}
 
 					local.i = level.friendlynodes + 5
@@ -411,7 +411,7 @@ friendlythinkstart:
 					self runto self.destination
 
 				if (level.frienddebug == 1)
-					println (self + " is running to " + self.destinationnum)
+					if(level.debug == "1") { println (self + " is running to " + self.destinationnum) }
 
 					wait 1
 
@@ -478,14 +478,14 @@ friendlythinkstart:
 					//wait for valid player 
 					while(level.coop_player==NULL){
 						wait 1
-						println ( "#waiting for player..." )
+						if(level.debug == "1") { println ( "#waiting for player..." ) }
 					}
 					self.destination = level.coop_player
 					self.tether = level.coop_player
 					
 					//chrissstrahl - debug
 					if(level.coop_player.targetname != "player"){
-						iprintlnbold_noloc("DEV: shiet friendly nullish")
+						if(level.debug == "1") { iprintlnbold_noloc("DEV: shiet friendly nullish") }
 					}
 				}
 				//end chrissstrahl
@@ -719,13 +719,13 @@ friendlythinkstart:
 					{
 						if (level.friendlynode[self.destinationnum])
 						if (level.friendlynode[self.destinationnum].set)
-						println (self.entref + " gave up node " + level.friendlynode[self.destinationnum].set)
+						if(level.debug == "1") { println (self.entref + " gave up node " + level.friendlynode[self.destinationnum].set) }
 
 						if (level.friendlyused[self.destinationnum] == 1)
 							level.friendlyused[self.destinationnum] = 0
 
 						self.destinationnum = local.wanted_node
-						println (self.entref + " took node " + level.friendlynode[local.wanted_node].set)
+						if(level.debug == "1") { println (self.entref + " took node " + level.friendlynode[local.wanted_node].set) }
 						thread friendlyused self.destinationnum
 						self.destination = level.friendlynode[local.wanted_node]
 						self.destinationset = level.friendlynode[local.wanted_node].set
@@ -851,35 +851,38 @@ local.break = 1 //[200] chrissstrahl INFO - set abbort on default - use checks b
 					//chrissstrahl - this is used for debug, so we can leave it that way
 					if (getcvar(sas) == "1")
 					{
-						println "------------------------"
-						println ("Break was " + local.break)
+						if(level.debug == "1")
+						{
+							println "------------------------"
+							println ("Break was " + local.break)
 
-						if (self cansee $player)
-							println "SAS could see the player"
-						else
-							println "SAS could NOT see the player"
-
-						if (local.set > level.playernodeset + local.offset)
-							println ("Friendlynode set " + local.set + " was greater than playernode set " + level.playernodeset + " + offset")
-						else
-							println ("Friendlynode set " + local.set + " was NOT greater than playernode set " + level.playernodeset + " + offset")
-				
-						local.length = vector_length (self.origin - $player.origin)
-						if (local.length > 200)
-							println ("Vector length " + local.length + " was greater than 200")
-						else
-							println ("Vector length " + local.length + " was NOT greater than 200")
-
-						if (sighttrace $player.origin level.friendlynode[local.nodenum].origin 1)
-							println ("Sight trace from player origin to SAS origin was true")
+							if (self cansee $player)
+								println "SAS could see the player"
 							else
-							println ("Sight trace from player origin to SAS origin was false")
-						println "------------------------"
+								println "SAS could NOT see the player"
+
+							if (local.set > level.playernodeset + local.offset)
+								println ("Friendlynode set " + local.set + " was greater than playernode set " + level.playernodeset + " + offset")
+							else
+								println ("Friendlynode set " + local.set + " was NOT greater than playernode set " + level.playernodeset + " + offset")
+
+							local.length = vector_length (self.origin - $player.origin)
+							if (local.length > 200)
+								println ("Vector length " + local.length + " was greater than 200")
+							else
+								println ("Vector length " + local.length + " was NOT greater than 200")
+
+							if (sighttrace $player.origin level.friendlynode[local.nodenum].origin 1)
+								println ("Sight trace from player origin to SAS origin was true")
+								else
+								println ("Sight trace from player origin to SAS origin was false")
+							println "------------------------"
+						}
 					}
 					wait 0.1
 
 					if (getcvar(hangin) == "1")
-						println (self.entref + " is hangin out at 0 " + local.set)
+						if(level.debug == "1") { println (self.entref + " is hangin out at 0 " + local.set) }
 
 					if (level.friendlyused[local.nodenum] != 1)
 					{
@@ -1019,7 +1022,7 @@ local.break = 1 //[200] chrissstrahl INFO - set abbort on default - use checks b
 						
 						while (vector_length (self.origin - level.friendlynode[local.nodenum].origin) > 100){
 								if (getcvar(hangin) == "1")
-								println (self.entref + " is hangin out at 4 " + local.set)
+								if(level.debug == "1") { println (self.entref + " is hangin out at 4 " + local.set) }
 
 								if (getcvar(debug) == "1")
 								println ("======================== local.set is " + local.set + " and playerset is " + level.playernodeset)
@@ -1036,7 +1039,7 @@ local.break = 1 //[200] chrissstrahl INFO - set abbort on default - use checks b
 //println ( self.targetname+" going to node with flag set but still > 100 units away from node origin")
 
 								if (getcvar(hangin) == "1")
-								println (self.entref + " is hangin out at 3 " + local.set)
+									if(level.debug == "1") { println (self.entref + " is hangin out at 3 " + local.set) }
 						}
 
 						if (level.friendlynode[local.nodenum].flag != NIL)
@@ -1336,7 +1339,7 @@ friendlyrepulse:
 			if ((isalive level.friendly[local.i]) && (self != level.friendly[local.i]))
 			{
 				local.newrange = vector_length (self.origin - level.friendly[local.i].origin)
-				println local.newrange
+				if(level.debug == "1") { println local.newrange }
 				if (local.newrange < local.range)
 				{
 					local.repulse = level.friendly[local.i]
@@ -1478,7 +1481,7 @@ ailookstand:
 
 	while (isalive self)
 	{	
-		println "WTF"
+		if(level.debug == "1") { println "WTF" }
 		local.random = randomint(100)
 		if (local.random > 50)
 		{
@@ -1671,7 +1674,7 @@ playernode:
 
 	level.playernodenum = 1
 	level.playernodeset = 1
-	println ("playernodeset is " + level.playernodeset)
+	if( level.debug == "1") { println ("playernodeset is " + level.playernodeset) }
 
 	level waittill spawn
 	thread nodeprint
@@ -1684,7 +1687,7 @@ playernode:
 	local.setnum = 0
 	level.playernode = level.friendlynode[1]
 	
-	println("DEV: playernode 0-friendlyPlayerOrigin")
+	if(level.debug == "1") { println("DEV: playernode 0-friendlyPlayerOrigin") }
 	//[202] - chrissstrahl - this func is called unssearly often, reduce this
 	local.fpo = (exec coop_mod/main.scr::friendlyPlayerOrigin)
 	level.playernoderadius = vector_length (level.friendlynode[level.playernodenum].origin - local.fpo)//chrissstrahl - made coop mod compatible
@@ -1739,7 +1742,7 @@ playernode:
 			}
 		}
 		*/
-		println("DEV: playernode 1-friendlyPlayerOrigin")
+		if(level.debug == "1") { println("DEV: playernode 1-friendlyPlayerOrigin") }
 		//[202] - chrissstrahl - this func is called unssearly often, reduce this
 		local.fpo = (exec coop_mod/main.scr::friendlyPlayerOrigin)
 		level.playernoderadius = vector_length (level.friendlynode[level.playernodenum].origin - local.fpo)//chrissstrahl - made coop mod compatible
@@ -1757,12 +1760,12 @@ playernode:
 			local.highset = level.friendlynodes
 
 		if (getcvar(playerset) == "1")
-			println ("highset is " + local.highset + " with set " + level.friendlynode[local.highset].set)
+			if(level.debug == "1") { println ("highset is " + local.highset + " with set " + level.friendlynode[local.highset].set) }
 
 		if (local.setnum != level.playernodenum)
 		{
 		if (getcvar(playerset) == "1")
-				println ("lowest = " + local.lowset + " and highest = " + local.highset + " and playernum = " + level.playernodenum)
+				if(level.debug == "1") { println ("lowest = " + local.lowset + " and highest = " + local.highset + " and playernum = " + level.playernodenum) }
 
 			local.setnum = level.playernodenum
 		}
@@ -1783,7 +1786,7 @@ playernode:
 		}
 
 		if (getcvar(playerset) == "1")
-			println ("node 1 " + local.newnum)
+			if(level.debug == "1") { println ("node 1 " + local.newnum) }
 
 		if (level.playernoderadius > 600)
 			local.newnum = -1
@@ -1805,7 +1808,7 @@ playernode:
 		}
 
 		if (getcvar(playerset) == "1")
-			println ("node 2 " + local.newnum)
+			if(level.debug == "1") { println ("node 2 " + local.newnum) }
 	
 		if ((local.newnum != -1) && (level.friendlynode[local.newnum].set != -1))
 		{
@@ -1818,7 +1821,7 @@ playernode:
 
 			level.playernodenum = local.newnum
 			level.playernodeset = level.friendlynode[local.newnum].set
-			println("DEV: playernode 4-friendlyPlayerOrigin")
+			if(level.debug == "1") { println("DEV: playernode 4-friendlyPlayerOrigin") }
 			level.playernoderadius = vector_length (level.friendlynode[level.playernodenum].origin - local.fpo) //chrissstrahl - made coop mod compatible
 		}
 
@@ -1910,11 +1913,14 @@ friendlygen:
 		{
 			if (getcvar(debug) == "1")
 				println ("friendly gen " + local.i)
-	
-			if (level.friendly[local.i].fnum == NIL)
-				println ("Warning, friendly at origin " + level.friendly[local.i].origin + "has no #fnum") 1
-				else
-				println ("Spawned friendly " + level.friendly[local.i].fnum)
+
+			if(level.debug == "1")
+			{
+				if (level.friendly[local.i].fnum == NIL)
+					println ("Warning, friendly at origin " + level.friendly[local.i].origin + "has no #fnum") 1
+					else
+					println ("Spawned friendly " + level.friendly[local.i].fnum)
+			}
 
 			
 
@@ -1999,14 +2005,14 @@ friendlygen:
 
 			if (level.friendlynode[local.i].set == NIL)
 			{
-				println ("Warning, friendlynode at origin " + level.friendlynode[local.i].origin + "has no #set")
+				if(level.debug == "1") { println ("Warning, friendlynode at origin " + level.friendlynode[local.i].origin + "has no #set") }
 				level.friendlynode[local.i].set = -1
 			}
 		}
 
 	// fwap
 
-		println ("Spawned " + level.friendlynodes + " friendlynodes")
+		if(level.debug == "1") { println ("Spawned " + level.friendlynodes + " friendlynodes") }
 
 		for (local.i=1;local.i<level.friendlynodes+1;local.i++)
 			local.used[local.i] = 0
@@ -2027,7 +2033,7 @@ friendlygen:
 			}
 
 			if (local.node == -1000)
-				println ("ERROR No node found  __ " + local.count)
+				if(level.debug == "1") { println ("ERROR No node found  __ " + local.count) }
 
 				level.friendlynodetemp[local.count] = level.friendlynode[local.node]
 				local.used[local.node] = 1
@@ -2052,7 +2058,7 @@ friendlygen:
 		else
 		level.enemys = $enemy.size
 
-		println ("There are " + level.enemys + " enemies")
+		if(level.debug == "1") { println ("There are " + level.enemys + " enemies") }
 
 	if (level.enemys > 0)
 	{
@@ -2060,7 +2066,7 @@ friendlygen:
 
 		for (local.i=1;local.i<level.enemys+1;local.i++)
 		{
-				println ("Spawned enemy " + local.i)
+				if(level.debug == "1") { println ("Spawned enemy " + local.i) }
 
 			if (level.enemy[local.i].area == NIL)
 				level.enemy[local.i].area = -1
@@ -2250,7 +2256,7 @@ settrigger:
 	self waittill death
 
 	level.enemyset[self.group]--
-	println ("*******set**** " + level.enemyset[self.group] + " left in " + self.group)
+	if(level.debug == "1") { println ("*******set**** " + level.enemyset[self.group] + " left in " + self.group) }
 
 	if (level.enemyset[self.group] < 1)
 		thread level.script::("enemythread" + self.group)
@@ -2286,7 +2292,7 @@ areatrigger local.waitspawn:
 //	println self.health
 
 	level.enemyarea[self.area]--
-	println ("*******area**** " + level.enemyarea[self.area] + " left in " + self.area)
+	if(level.debug == "1") { println ("*******area**** " + level.enemyarea[self.area] + " left in " + self.area) }
 
 	if (level.enemyarea[self.area] < 1)
 	{
@@ -2304,7 +2310,7 @@ friendlydeath:
 	level waittill spawn
 	//[200] chrissstrahl - make sure we don't spam console if entity is missing
 	if(self == NULL){
-		println( "WARNING: global/friendly.scr::friendlydeath self was NULL" )
+		if(level.debug == "1") { println( "WARNING: global/friendly.scr::friendlydeath self was NULL" ) }
 		end
 	}
 	

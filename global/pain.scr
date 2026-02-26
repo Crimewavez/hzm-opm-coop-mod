@@ -2,7 +2,7 @@
 start local.attacker local.damage local.inflictor local.position local.direction local.normal local.knockback local.dflags local.meansofdeath local.location:
 
 	if (self.flags["coop_painThread"]){
-		println "*=*=*=*=*=*=*=*=*=*global/pain.scr: killing thread for " self " as previous has not terminated yet...*=*=*=*=*=*=*=*=*=*"
+		if(level.debug == "1") { println "*=*=*=*=*=*=*=*=*=*global/pain.scr: killing thread for " self " as previous has not terminated yet...*=*=*=*=*=*=*=*=*=*" }
 		end
 	}
 
@@ -17,7 +17,7 @@ start local.attacker local.damage local.inflictor local.position local.direction
 			local.var2 = self.flags["coop_actorStopPainHandler"]
 			local.var3 = self.flags["coop_actorHandledPain"]
 			local.var4 = level.coop_actorPainHandler
-			println "(pain.scr) " self " gametype: " local.var1 " actorStopPainHandler: " local.var2 " coop_actorHandledPain: " local.var3 " coop_actorPainHandler: " local.var4
+			if(level.debug == "1") { println "(pain.scr) " self " gametype: " local.var1 " actorStopPainHandler: " local.var2 " coop_actorHandledPain: " local.var3 " coop_actorPainHandler: " local.var4 }
 		}	
 		self thread coop_mod/aihandler.scr::actorPainHandler local.attacker local.damage local.inflictor local.position local.direction local.normal local.knockback local.dflags local.meansofdeath local.location
 		end

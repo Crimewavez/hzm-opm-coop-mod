@@ -337,7 +337,7 @@ start local.name:
 		//self weapon_internal models/weapons/kar98.tik
 		//*************************************************
 		//local.name = "" //[200] Smithy - ok, dumb to clear name before reporting it
-		println "^~^~^ weapon '" local.name "' is not handled in weapon.scr... setting to none!!"
+		if(level.debug == "1") { println "^~^~^ weapon '" local.name "' is not handled in weapon.scr... setting to none!!" }
 		local.name = "" //[200] Smithy
 		break
 	}

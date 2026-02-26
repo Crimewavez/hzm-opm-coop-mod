@@ -12,6 +12,7 @@
 //=========================================================================
 main:{
 //=========================================================================
+
 	level.alarm_always_on = 0
 	level.alarm_always_on_base = 14
 	level.alarm_always_on_random = 7
@@ -413,11 +414,14 @@ create_alarmguy:{
 		//if(level.gametype != 0){
 			//iprintlnbold_noloc("DEV: create_alarmguy - failed") //chrissstrahl
 		//}
-		println "-------------------"
-		println local.range
-		println local.lastnum
-		println local.entnum
-		println "-------------------"
+		if(level.debug == "1")
+		{
+			println "-------------------"
+			println local.range
+			println local.lastnum
+			println local.entnum
+			println "-------------------"
+		}
 	}
 }end
 
@@ -461,7 +465,10 @@ spawnerthink:{
 	self forceactivate
 	wait 1
 	if (self.thinkstate == "idle"){
-		println ("spawned guy is running to the player from " + self.origin)
+		if(level.debug == "1")
+		{
+			println ("spawned guy is running to the player from " + self.origin)
+		}
 		self thread runcheck
 		//self runto $player//chrissstrahl
 		self exec coop_mod/replace.scr::runtoClosest //chrissstrahl - coop

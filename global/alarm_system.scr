@@ -29,7 +29,7 @@ alarm_system_setup:{
 	//because obviously in mp/coop you don't have the player, you have or don't have multiple
 	//versions of players, so we thought it best to use a level wide variable
 	level.playerZone_index = NIL //chrissstrahl - default starts off with NIL
-	
+
 	//[200] chrissstrahl - this makes sure we have the correct zone set
 	thread maintainZoneTracking
 	
@@ -37,49 +37,73 @@ alarm_system_setup:{
 
 	//*** check for zone_triggers
 	if ($zone_trigger == NULL){
-		println "^~^~^ ALARM SYSTEM ERROR:  There are no zone_trigger's in the level, aborting alarm system"
+
+		if(level.debug == "1")
+		{
+			println "^~^~^ ALARM SYSTEM ERROR:  There are no zone_trigger's in the level, aborting alarm system"
+		}
 		//goto alarm_system_setup_end //chrissstrahl
 		end //chrissstrahl - do it right
 	}
 
 	//*** check for alarm switch triggers
 	if ($alarm_switch_trigger == NULL){
-		println "^~^~^ ALARM SYSTEM ERROR:  There are no $alarm_switch_trigger's in the level, aborting alarm system"
+		if(level.debug == "1")
+		{
+			println "^~^~^ ALARM SYSTEM ERROR:  There are no $alarm_switch_trigger's in the level, aborting alarm system"
+		}
 		//goto alarm_system_setup_end //chrissstrahl
 		end //chrissstrahl - do it right
 	}
 
 	//*** check for ai alarm pullers
 	if ($ai_alarm == NULL){
-		println "^~^~^ ALARM SYSTEM ERROR:  There are no $ai_alarm guys in the level, aborting alarm system!!!"
+
+		if(level.debug == "1")
+		{
+			println "^~^~^ ALARM SYSTEM ERROR:  There are no $ai_alarm guys in the level, aborting alarm system!!!"
+		}
 		//goto alarm_system_setup_end //chrissstrahl
 		end //chrissstrahl - do it right
 	}
 
 	//*** check for ai sounding alarm waittrigger
 	if ($waittrigger_gofor_alarm == NULL){
-		println "^~^~^ ALARM SYSTEM ERROR:  There is no $waittrigger_gofor_alarm in the level, aborting alarm system!!!"
+
+		if(level.debug == "1")
+		{
+			println "^~^~^ ALARM SYSTEM ERROR:  There is no $waittrigger_gofor_alarm in the level, aborting alarm system!!!"
+		}
 		//goto alarm_system_setup_end //chrissstrahl
 		end //chrissstrahl - do it right
 	}
 
 	//*** check for ai sounding alarm waittrigger
 	if ($waittrigger_alarm_master == NULL){
-		println "^~^~^ ALARM SYSTEM ERROR:  There is no $waittrigger_alarm_master in the level, aborting alarm system!!!"
+		if(level.debug == "1")
+		{
+			println "^~^~^ ALARM SYSTEM ERROR:  There is no $waittrigger_alarm_master in the level, aborting alarm system!!!"
+		}
 		//goto alarm_system_setup_end //chrissstrahl
 		end //chrissstrahl - do it right
 	}
 
 	//*** check for ai sounding alarm waittrigger
 	if ($waittrigger_alarm_backup_spawning == NULL){
-		println "^~^~^ ALARM SYSTEM ERROR:  There is no $waittrigger_alarm_backup_spawning in the level, aborting alarm system!!!"
+		if(level.debug == "1")
+		{
+			println "^~^~^ ALARM SYSTEM ERROR:  There is no $waittrigger_alarm_backup_spawning in the level, aborting alarm system!!!"
+		}
 		//goto alarm_system_setup_end //chrissstrahl
 		end //chrissstrahl - do it right
 	}
 
 	//*** check for ai sounding alarm waittrigger
 	if ($waittrigger_alarm_sound == NULL){
-		println "^~^~^ ALARM SYSTEM ERROR:  There is no $waittrigger_alarm_sound in the level, aborting alarm system!!!"
+		if(level.debug == "1")
+		{
+			println "^~^~^ ALARM SYSTEM ERROR:  There is no $waittrigger_alarm_sound in the level, aborting alarm system!!!"
+		}
 		//goto alarm_system_setup_end //chrissstrahl
 		end //chrissstrahl - do it right
 	}
@@ -101,19 +125,30 @@ alarm_system_setup:{
 
 	//*** check the maximum allowed number of spawned guys, default it to 5 if nothing was set
 	if (level.ai_alarm_backup_max == NIL){
-		println "^~^~^ ALARM SYSTEM:  level.ai_alarm_backup_max was not set, defaulting to a maximum of 4 backup guys!!!"
+		if(level.debug == "1")
+		{
+			println "^~^~^ ALARM SYSTEM:  level.ai_alarm_backup_max was not set, defaulting to a maximum of 4 backup guys!!!"
+		}
+
 		level.ai_alarm_backup_max = 4
 	}
 
 	//*** check the cycle time for spawning backup guys
 	if (level.ai_alarm_backup_time == NIL){
-		println "^~^~^ ALARM SYSTEM:  level.ai_alarm_backup_time was not set, defaulting to 15 seconds!!!"
+		if(level.debug == "1")
+		{
+			println "^~^~^ ALARM SYSTEM:  level.ai_alarm_backup_time was not set, defaulting to 15 seconds!!!"
+		}
 		level.ai_alarm_backup_time = 15
 	}
 
 	//*** check for a default sound
 	if (level.alarm_sound == NIL){
-		println "^~^~^ ALARM SYSTEM:  level.alarm_sound was not set, there is no default sound!  Some sounds may not play!!!"
+
+		if(level.debug == "1")
+		{
+			println "^~^~^ ALARM SYSTEM:  level.alarm_sound was not set, there is no default sound!  Some sounds may not play!!!"
+		}
 	}
 
 	//*** check for a default removal distance for backup guys
@@ -132,7 +167,10 @@ alarm_system_setup:{
 	for (local.i = 1; local.i <= $zone_trigger.size ; local.i ++){
 		//*** check to see if the zone has a name, if not abort the alarm system
 		if ($zone_trigger[local.i].zone == NIL){
-			println "^~^~^ ALARM SYSTEM ERROR:  $zone_trigger without a .zone property at coordinates:  " $zone_trigger[local.i].origin "  :Aborting alarm system!!!"
+			if(level.debug == "1")
+			{
+				println "^~^~^ ALARM SYSTEM ERROR:  $zone_trigger without a .zone property at coordinates:  " $zone_trigger[local.i].origin "  :Aborting alarm system!!!"
+			}
 			//goto alarm_system_setup_end //chrissstrahl
 			end //chrissstrahl - do it right
 		}
@@ -239,12 +277,18 @@ alarm_system_setup:{
 				}
 			}
 			
-			println "^~^~^ ALARM SYSTEM ERROR:  $zone_trigger with no associated alarm switch for zone: " $zone_trigger[local.i].zone " : at coordinates: " $zone_trigger[local.i]origin " :Aborting alarm system!!!"
+			if(level.debug == "1")
+			{
+				println "^~^~^ ALARM SYSTEM ERROR:  $zone_trigger with no associated alarm switch for zone: " $zone_trigger[local.i].zone " : at coordinates: " $zone_trigger[local.i]origin " :Aborting alarm system!!!"
+			}
 			//goto alarm_system_setup_end //chrissstrahl
 			end //chrissstrahl - do it right
 		}
 		else{
-			println "^~^~^ ALARM SYSTEM ERROR:  $zone_trigger with no associated alarm switch for zone: " $zone_trigger[local.i].zone " : at coordinates: " $zone_trigger[local.i]origin " :Aborting alarm system!!!"
+			if(level.debug == "1")
+			{
+				println "^~^~^ ALARM SYSTEM ERROR:  $zone_trigger with no associated alarm switch for zone: " $zone_trigger[local.i].zone " : at coordinates: " $zone_trigger[local.i]origin " :Aborting alarm system!!!"
+			}
 			//goto alarm_system_setup_end //chrissstrahl
 			end //chrissstrahl - do it right
 		}
@@ -322,7 +366,11 @@ ai_alarm_setup:
 //*** check to make sure the AI is targeting the zone center, if not, remove him from the world
 if (self.target == NIL || self.target == "")
 {
-	println "^~^~^ ALARM SYSTEM ERROR:  $ai_alarm guy at coordinates: " self.origin " :has no target!  Removing him from the alarm system!!!"
+	if(level.debug == "1")
+	{
+		println "^~^~^ ALARM SYSTEM ERROR:  $ai_alarm guy at coordinates: " self.origin " :has no target!  Removing him from the alarm system!!!"
+	}
+
 	self remove	
 	goto ai_alarm_setup_end
 }

@@ -20,7 +20,7 @@ main:
 
 	level waittill spawn
 
-
+	
 	if ($cardgame == NULL)
 		level.cardgames = 0
 		else
@@ -54,7 +54,10 @@ main:
 
 		}
 
-		println ("Spawned " + level.cardgames + " cardgames")
+		if(level.debug == "1")
+		{
+			println ("Spawned " + level.cardgames + " cardgames")
+		}
 	}
 
 	for (local.i=1;local.i<$sit.size+1;local.i++)
@@ -81,11 +84,19 @@ chairdeath:
 			local.chair notsolid
 
 		waitframe
-		println ("Chair is playing animation " + self.chairdeath)
+
+		if(level.debug == "1")
+		{
+			println ("Chair is playing animation " + self.chairdeath)
+		}
+
 		local.chair anim self.chairdeath
 		wait 3
 		local.chair anim (self.chairdeath + "_end")
-		println ("Chair is playing animation " + (self.chairdeath + "_end"))
+		if(level.debug == "1")
+		{
+			println ("Chair is playing animation " + (self.chairdeath + "_end"))
+		}
 		waitframe
 	}
 
@@ -863,3 +874,4 @@ end
 		}
 	}
 end
+

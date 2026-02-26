@@ -23,7 +23,7 @@ add_item local.passed_item local.nomessage:
 	//*** check to see if there are already 6 items in the inventory
 	if (level.item_total >= 6)
 	{
-		println "^~^~^ Can't have more than 6 items in player's inventory!!"
+		if(level.debug == "1") { println "^~^~^ Can't have more than 6 items in player's inventory!!" }
 		goto add_item_end
 	}
 
@@ -428,7 +428,7 @@ remove_item local.item:
 	//*** if the inventory is already empty, exit
 	if (level.item_total <= 0)
 	{
-		println "^~^~^ There are no items currently in the players inventory!!"
+		if(level.debug == "1") { println "^~^~^ There are no items currently in the players inventory!!" }
 		goto remove_item_end
 	}
 
@@ -442,7 +442,7 @@ remove_item local.item:
 	}
 
 	//*** if the item isn't in the players inventory tell the scripter
-	println "^~^~^ " local.item " can not be removed, it is not in the players inventory!!"
+	if(level.debug == "1") { println "^~^~^ " local.item " can not be removed, it is not in the players inventory!!" }
 	goto remove_item_end
 
 //*** remove the item and shuffle the remaining inventory down a slot

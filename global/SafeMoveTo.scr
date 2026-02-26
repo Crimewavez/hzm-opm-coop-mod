@@ -123,7 +123,7 @@ SafeRunTo_WaitMoveThread:
 
 		//[200] chrissstrahl - make sure we know whats going on
 		if(self == NULL){
-			println("safeMoveTo.scr::SafeRunTo_WaitMoveThread self was NULL - ended")
+			if(level.debug == "1") { println("safeMoveTo.scr::SafeRunTo_WaitMoveThread self was NULL - ended") }
 			end
 		}
 		self.safemoveto_gotmovedoneevent = 1
@@ -150,7 +150,7 @@ WaitMoveDone:
 	}
 	//[200] chrissstrahl - make sure we know whats going on
 	if(self == NULL){
-		println("safeMoveTo.scr::WaitMoveDone self was NULL - ended")
+		if(level.debug == "1") { println("safeMoveTo.scr::WaitMoveDone self was NULL - ended") }
 		end
 	}
 end
@@ -179,7 +179,7 @@ reach_loop:
 	//[200] chrissstrahl - fixed null entity issue
 	if(self == NULL){
 		//[200] chrissstrahl - make sure we know whats going on
-		println("safeMoveTo.scr::reach_loop self was NULL - ended")
+		if(level.debug == "1") { println("safeMoveTo.scr::reach_loop self was NULL - ended") }
 		end
 	}
 	

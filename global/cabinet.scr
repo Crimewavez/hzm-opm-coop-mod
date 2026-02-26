@@ -22,6 +22,8 @@
 //=========================================================================
 main:{
 //=========================================================================
+
+
 	if ($cabinettrigger == NULL){
 		level.cabinettriggers = 0
 	}
@@ -41,7 +43,12 @@ main:{
 			}
 		}
 
+		if(level.debug == "1")
+		{
+
 		println ("Spawned " + level.cabinettriggers + " cabinettriggers")
+
+		}
 	}
 
 

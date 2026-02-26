@@ -46,7 +46,7 @@ init:
 
 	if ( $searchlight )
 	{
-		println "There are " $searchlight.size " searchlight(s) in this level."
+		if(level.debug == "1") { println "There are " $searchlight.size " searchlight(s) in this level." }
 		if ( $searchlightpath )
 			$searchlightpath waitthread InitSearchlightPath
 
@@ -73,13 +73,13 @@ InitSearchlight:
 
 	if ( self.searchlightpath==NIL )
 	{
-		dprintln "searchlight without a searchlight path at origin:" self.origin[0] " " self.origin[1] " " self.origin[2]
+		if(level.debug == "1") { dprintln "searchlight without a searchlight path at origin:" self.origin[0] " " self.origin[1] " " self.origin[2] }
 		end
 	}
 	
 	if ( self.target==NIL )
 	{
-		dprintln "searchlight without an operator at origin: " self.origin[0] " " self.origin[1] " " self.origin[2]
+		if(level.debug == "1") { dprintln "searchlight without an operator at origin: " self.origin[0] " " self.origin[1] " " self.origin[2] }
 	}
 	else
 	{
@@ -99,7 +99,7 @@ InitSearchlightPath:
 
 	if ( self.set==NIL )
 	{
-		dprintln "searchlight path with no set #!!"
+		if(level.debug == "1") { dprintln "searchlight path with no set #!!" }
 		end
 	}
 
@@ -117,7 +117,7 @@ InitSearchlightPath:
 		}
 	}
 
-	dprintln "searchlightpath didn't find the searchlight for set#" self.set
+	if(level.deubg == "1") { dprintln "searchlightpath didn't find the searchlight for set#" self.set }
 
 end
 
@@ -127,7 +127,7 @@ InitSearchlightAlertPath:
 // ----------------------------------------------------------------
 	if ( self.set==NIL )
 	{
-		dprintln "searchlight path with no set #!!"
+		if(level.debug == "1") { dprintln "searchlight path with no set #!!" }
 		end
 	}
 
@@ -145,7 +145,7 @@ InitSearchlightAlertPath:
 		}
 	}
 
-	dprintln "alert searchlightpath didn't find the searchlight for set#" self.set
+	if(level.debug == "1") { dprintln "alert searchlightpath didn't find the searchlight for set#" self.set }
 
 
 end
@@ -303,8 +303,8 @@ DoSearchlight:
 		{
 			//[202] chrissstrahl - sort of fix this and let us know if that is a real issue
 			if(self.spotlight == NULL){
-				println("global/searchlight.scr::DoSearchlight - self.spotlight was null" )
-				println("This NULL issue Spotlight location is: "+self.origin )
+				if(level.debug == "1") { println("global/searchlight.scr::DoSearchlight - self.spotlight was null" ) }
+				if(level.debug == "1") { println("This NULL issue Spotlight location is: "+self.origin ) }
 				wait 3
 				if ( self.damaged==1 ){
 					local.done = 1

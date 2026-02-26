@@ -189,18 +189,18 @@ player_tank_health:
 
 	if(level.gametype == 0){ //chrissstrahl - do this only in sp
 		local.skill = getcvar (skill)
-		println "z:       local.skill = getcvar (skill) = " local.skill   
+		if(level.debug == "1") { println "z:       local.skill = getcvar (skill) = " local.skill }
 
 		if (local.skill == "2"){
-			println "z:         skill = 2 health = 1000"
+			if(level.debug == "1") { println "z:         skill = 2 health = 1000" }
 			self.health = 1000
 		}
 		if (local.skill == "1"){
-			println "z:         skill = 1 health = 3000"
+			if(level.debug == "1") { println "z:         skill = 1 health = 3000" }
 			self.health = 3000
 		}
 		if ( (local.skill != "1") && (local.skill != "2") ){
-			println "z:         skill != 2 and skill != 1 health = 5000"
+			if(level.debug == "1") { println "z:         skill != 2 and skill != 1 health = 5000" }
 			self.health = 5000
 		}
 	}
@@ -221,9 +221,9 @@ player_tank_health:
 	
 	//chrissstrahl - make sure we handle this according to the missions
 	if(level.coop_aaMap){
-		iprintlnbold "The King Tiger Tank has been lost, you have failed."
+		if(level.debug == "1") { iprintlnbold "The King Tiger Tank has been lost, you have failed." }
 	}else{
-		iprintlnbold "The T34 tank has been lost, you have failed."
+		if( level.debug == "1") { iprintlnbold "The T34 tank has been lost, you have failed." }
 	}
 	
 	wait 3

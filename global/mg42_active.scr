@@ -20,7 +20,7 @@ mg42 local.range:{
 //=========================================================================
 	//*** check to see if the gun exists
 	if (self == NULL){
-		println "^~^~^ MG42 turret does not exist!"
+		if(level.debug == "1") { println "^~^~^ MG42 turret does not exist!" }
 		end
 	}	
 
