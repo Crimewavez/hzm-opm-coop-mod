@@ -20,7 +20,7 @@ main:
 
 	level waittill spawn
 
-	level.debug = getcvar("debug")
+	
 	if ($cardgame == NULL)
 		level.cardgames = 0
 		else
@@ -874,3 +874,4 @@ end
 		}
 	}
 end
+
