@@ -38,7 +38,7 @@ SurpriseAttack local.time local.delay local.accuracy:
 	self.no_idle = 1
 	local.originalaim = self.accuracy
 	
-	println self " IS STARTING A SURPRISE ATTACK"
+	if(level.debug == "1") { println self " IS STARTING A SURPRISE ATTACK" }
 	
 	if (group.waypoint) 
 	{		
@@ -65,7 +65,7 @@ SurpriseAttack local.time local.delay local.accuracy:
 
 	waitthread GetTimings	// *!* get the gun timings (stored in group object)
 			
-	println self " STARTING TO SHOOT WITH GUN " self.gun
+	if(level.debug == "1") { println self " STARTING TO SHOOT WITH GUN " self.gun }
 	
 	local.decrement = float (group.aim_time + group.interbullet_time)
 	while (local.time > 0 && self cansee $player)
@@ -84,7 +84,7 @@ SurpriseAttack local.time local.delay local.accuracy:
 	self exec global/TransformActor.scr enable
 	self attackplayer
 
-	println self " FINISHED SURPRISE ATTACK"
+	if(level.debug == "1") { println self " FINISHED SURPRISE ATTACK" }
 end
 
 // *!* kill the thread if the guy dies.
@@ -96,7 +96,7 @@ DeathHandler:
 
 	if (group.thread[SurpriseAttack])
 	{
-		println self " DIED WHILE PERFORMING SURPRISE ATTACK"
+		if(level.debug == "1") { println self " DIED WHILE PERFORMING SURPRISE ATTACK" }
 		group.thread[SurpriseAttack] delete
 	}
 
@@ -137,5 +137,5 @@ Debug local.threadgroup:
 	while (local.threadgroup)
 		waitframe
 
-	println "threads have finished!"
+	if(level.debug == "1") { println "threads have finished!" }
 end

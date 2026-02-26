@@ -169,7 +169,12 @@ local.dummy = $explosive_barrel_launch_dummy[local.self.dummy_index]
 //*** check to see if a dummy barrel exists for this launcher, if not, turn it into a normal exploder
 if (local.dummy == NULL)
 {
-	println "^~^~^ No dummy barrel for launcher barrel with set number: "  local.self.set "  - converting to normal exploder!!" //[202] chrissstrahl - changed to print only to console instead of debugprint
+	level.debug = getcvar("debug")
+
+	if(level.debug == "1")
+	{
+		println "^~^~^ No dummy barrel for launcher barrel with set number: "  local.self.set "  - converting to normal exploder!!" //[202] chrissstrahl - changed to print only to console instead of debugprint
+	}
 	local.self thread explosive_barrel_spawn local.i
 	goto explosive_barrel_launch_spawn_end
 }
@@ -326,7 +331,14 @@ if (local.self.max_height != NIL)
 	local.fly_max_height ++
 	if (local.fly_max_height < 0)
         {
-        	println "^~^~^ Maximum desired height is lower than minimum desired height!!!  Setting to 0"  //[202] chrissstrahl - changed to print only to console instead of debugprint
+
+        	level.debug = getcvar("debug")
+
+        	if(level.debug == "1")
+        	{
+        		println "^~^~^ Maximum desired height is lower than minimum desired height!!!  Setting to 0"  //[202] chrissstrahl - changed to print only to console instead of debugprint
+			}
+
 		local.fly_max_height = 1
         }
 }

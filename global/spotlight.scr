@@ -79,12 +79,12 @@ main:{
 		for (local.i=1;local.i<level.spotdamages+1;local.i++){
 
 			if (level.spotdamage[local.i].set == NIL){
-				println ("Warning, spotdamage at " + level.spotdamage[local.i].origin + " has no #set, setting to 1")
+				if(level.debug == "1") { println ("Warning, spotdamage at " + level.spotdamage[local.i].origin + " has no #set, setting to 1") }
 				level.spotdamage[local.i].set = 1
 			}
 
 			if (level.spotdamage[local.i].group == NIL){
-				println ("Error, spotdamage at " + level.spotdamage[local.i].origin + " has no #group")
+				if(level.debug == "1") { println ("Error, spotdamage at " + level.spotdamage[local.i].origin + " has no #group") }
 			}
 			//[202] chrissstrahl - reduce console spam
 			//else{
@@ -107,12 +107,12 @@ main:{
 			level.spotlight[local.i] thread spotwatch
 
 			if (level.spotlight[local.i].set == NIL){
-				println ("Warning, spotlight at " + level.spotlight[local.i].origin + " has no #set, setting to 1")
+				if(level.debug == "1") { println ("Warning, spotlight at " + level.spotlight[local.i].origin + " has no #set, setting to 1") }
 				level.spotlight[local.i].set = 1
 			}
 
 			if (level.spotlight[local.i].group == NIL){
-				println ("Error, spotlight at " + level.spotlight[local.i].origin + " has no #group")
+				if(level.debug == "1") { println ("Error, spotlight at " + level.spotlight[local.i].origin + " has no #group") }
 			}
 			//[202] chrissstrahl - reduce console spam
 			//else{
@@ -149,12 +149,12 @@ main:{
 			level.spotsearch[local.i] notsolid
 
 			if (level.spotsearch[local.i].set == NIL){
-				println ("Warning, spotsearch at " + level.spotsearch[local.i].origin + " has no #set, setting to 1")
+				if(level.debug == "1") { println ("Warning, spotsearch at " + level.spotsearch[local.i].origin + " has no #set, setting to 1") }
 				level.spotsearch[local.i].set = 1
 			}
 
 			if (level.spotsearch[local.i].group == NIL){
-				println ("Error, spotsearch at " + level.spotsearch[local.i].origin + " has no #group")
+				if(level.debug == "1") { println ("Error, spotsearch at " + level.spotsearch[local.i].origin + " has no #group") }
 			}
 			//[202] chrissstrahl - reduce console spam
 			//else{
@@ -189,7 +189,8 @@ main:{
 		if (level.spottarget != NIL && isalive level.spottarget){
 			wait 1
 			continue
-			println "----------level.spottarget exists----continue----------"
+
+			if(level.debug == "1") { println "----------level.spottarget exists----continue----------" }
 		}
 		//[200] chrissstrahl - grab player if target (Teammate-AI) is dead
 		if(level.gametype == 0){
@@ -281,7 +282,7 @@ spotowner:{
 			//[200] chrissstrahl - don't fire if there is no target
 			if(level.spottarget != NULL){
 				//[200] chrissstrahl - fixed level.spottarget
-println "::spotowner targeting 1: level.spottarget"
+if(level.debug == "1") { println "::spotowner targeting 1: level.spottarget" }
 				self.gun setAimTarget level.spottarget
 				self.gun burstFireSettings level.spot_burstmin level.spot_burstmax level.spot_burstdownmin level.spot_burstdownmax
 				self.gun startFiring
@@ -294,7 +295,7 @@ println "::spotowner targeting 1: level.spottarget"
 				self.gun clearAimTarget
 				self.gun stopFiring
 				self.gun setAimTarget local.ent2
-println "::spotowner clearaimtarget 1"
+if(level.debug == "1") { println "::spotowner clearaimtarget 1" }
 				local.shooting = 0
 			}
 		}
@@ -308,7 +309,7 @@ println "::spotowner clearaimtarget 1"
 		if (self.visible == 1){
 			//[200] chrissstrahl - fixed level.spottarget
 			if (level.spottarget != NULL && self cansee level.spottarget){
-println "::spotowner targeting 2: level.spottarget"
+if(level.debug == "1") { println "::spotowner targeting 2: level.spottarget" }
 				self.gun setAimTarget level.spottarget
 				self.gun burstFireSettings level.spot_burstmin level.spot_burstmax level.spot_burstdownmin level.spot_burstdownmax
 				self.gun startFiring
@@ -320,13 +321,13 @@ println "::spotowner targeting 2: level.spottarget"
 					self.gun clearAimTarget
 					self.gun stopFiring
 					self.gun setAimTarget local.ent2
-println "::spotowner clearaimtarget 2"
+if(level.debug == "1") { println "::spotowner clearaimtarget 2" }
 					local.shooting = 0
 				}
 			}
 		}
 		else{
-println "::spotowner clearaimtarget 2 b"
+if(level.debug == "1") { println "::spotowner clearaimtarget 2 b" }
 			self.gun clearAimTarget
 			self.gun stopFiring
 		}
@@ -371,7 +372,7 @@ seepath:{
 spotwatch:{
 //============================================================================
 	level waittill spawn
-	println("::spotwatch start") //[200] chrissstrahl - debug
+	if(level.debug == "1") { println("::spotwatch start") } //[200] chrissstrahl - debug
 	
 	if (self.target){
 		self.spotter = $(self.target)
@@ -382,15 +383,15 @@ spotwatch:{
 			self.spotter type_grenade "machinegunner"
 			self.spotter gun "MG42"
 			self.spotter.turret = self.spotter.target
-			println (self.spotter.turret + " and the target " + self.spotter.target)
+			if(level.debug == "1") { println (self.spotter.turret + " and the target " + self.spotter.target) }
 			self.spotter.gun = self.spotter.target
 		}
 		else{
-			println ("Error, spotlight at " + level.spotlight[local.i].origin + " has no mg42 targetted to its gunner")
+			if(level.debug == "1") { println ("Error, spotlight at " + level.spotlight[local.i].origin + " has no mg42 targetted to its gunner") }
 		}
 	}
 	else{
-		println ("Error, spotlight at " + level.spotlight[local.i].origin + " has no gunner targetted")
+		if(level.debug == "1") { println ("Error, spotlight at " + level.spotlight[local.i].origin + " has no gunner targetted") }
 	}
 
 	self.health = 1
@@ -474,10 +475,10 @@ spotwatch:{
 	while ((self.checkdeath == 0) && (isalive $(self.spotter))){		
 		if (getcvar(spotlight) == "1"){
 			if (self.on_target == 1){
-				println ("Spotlight" + self.set + "/" + self.group + " is ON target")
+				if(level.debug == "1") { println ("Spotlight" + self.set + "/" + self.group + " is ON target") }
 			}
 			else{
-				println ("Spotlight" + self.set + "/" + self.group + " is OFFarget")
+				if(level.debug == "1") { println ("Spotlight" + self.set + "/" + self.group + " is OFFarget") }
 			}
 		}
 
@@ -1085,19 +1086,19 @@ coop_debugRemove:{
 	for(local.i=1;local.i<$spotdamage.size;local.i++){
 		if($spotdamage[local.i].set != NIL && int( $spotdamage[local.i].set ) > 1){
 			$spotdamage[local.i] delete
-			println("Removed SPOTLIGHTDAMAGE "+$spotdamage[local.i].set)
+			if(level.debug == "1") { println("Removed SPOTLIGHTDAMAGE "+$spotdamage[local.i].set) }
 		}
 	}
 	for(local.i=1;local.i<$spotlight.size;local.i++){
 		if($spotlight[local.i].set != NIL && int( $spotlight[local.i].set ) > 1){
 			$spotlight[local.i] delete
-			println("Removed SPOTLIGHT "+$spotlight[local.i].set)
+			if(level.debug == "1") { println("Removed SPOTLIGHT "+$spotlight[local.i].set) }
 		}
 	}
 	for(local.i=1;local.i<$spotsearch.size;local.i++){
 		if($spotsearch[local.i].set != NIL && int( $spotsearch[local.i].set ) > 1){
 			$spotsearch[local.i] delete
-			println("Removed SPOTSEARCH "+$spotsearch[local.i].set)
+			if(level.debug == "1") { println("Removed SPOTSEARCH "+$spotsearch[local.i].set) }
 		}
 	}
 }end

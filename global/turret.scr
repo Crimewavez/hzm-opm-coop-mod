@@ -61,7 +61,7 @@ mg42_start local.type:
 	}
 	else
 	{
-		println ("Error, MG42 at " + self.origin + " had no target gunner.")
+		if(level.debug == "1") { println ("Error, MG42 at " + self.origin + " had no target gunner.") }
 		end
 	}
 end
@@ -96,10 +96,10 @@ gunner_think:
 	if (local.mg.thread)
 	{
 		thread level.script::local.mg.thread
-		println ("ran thread " + local.mg.thread)
+		if(level.debug == "1") { println ("ran thread " + local.mg.thread) }
 	}
 	else
-		println ("no thread to ran thread")
+		if(level.debug == "1") { println ("no thread to ran thread") }
 
 	local.spawn_org = spawn script_origin
 	local.spawn_org.origin = local.org
@@ -157,7 +157,7 @@ trigger_start local.type:
 		local.aim = $(self.target)
 		if (local.aim.target)
 		{
-			println ("turret trigger at origin " + self.origin + " has target " + local.aim.target)
+			if(level.debug == "1") { println ("turret trigger at origin " + self.origin + " has target " + local.aim.target) }
 			local.turret = $(local.aim.target)
 			self.turret = local.turret
 			local.trigger = self
@@ -169,25 +169,25 @@ trigger_start local.type:
 				if (local.bombtrigger.target)
 				{
 					local.bomb = $(local.bombtrigger.target)
-					println ("Error, Turret at " + local.turret.origin + " has a bomb.")
+					if(level.debug == "1") { println ("Error, Turret at " + local.turret.origin + " has a bomb.") }
 				}
 				else
 				{
 					local.bomb = -1
-					println ("Error, Turret at " + local.turret.origin + " has a bomb trigger but no bomb.")
+					if(level.debug == "1") { println ("Error, Turret at " + local.turret.origin + " has a bomb trigger but no bomb.") }
 				}
 			}
-			println ("Created turret at " + local.turret.origin);
+			if(level.debug == "1") { println ("Created turret at " + local.turret.origin); }
 		}
 		else
 		{
-			println ("Error, Turret Trigger at " + self.origin + " had no Turret to set off.")
+			if(level.debug == "1") { println ("Error, Turret Trigger at " + self.origin + " had no Turret to set off.") }
 			end
 		}
 	}
 	else
 	{
-		println ("Error, Turret Trigger at " + self.origin + " had no target to aim at.")
+		if(level.debug == "1") { println ("Error, Turret Trigger at " + self.origin + " had no target to aim at.") }
 		end
 	}
 
@@ -506,20 +506,20 @@ turret_start local.type:
 				else
 				{
 					local.bomb = -1
-					println ("Error, Turret at " + self.origin + " has a bomb trigger but no bomb.")
+					if(level.debug == "1") { println ("Error, Turret at " + self.origin + " has a bomb trigger but no bomb.") }
 				}
 			}
-			println ("Created turret at " + self.origin);
+			if(level.debug == "1") { println ("Created turret at " + self.origin); }
 		}
 		else
 		{
-			println ("Error, Turret at " + self.origin + " had no trigger to set it off.")
+			if(level.debug == "1") { println ("Error, Turret at " + self.origin + " had no trigger to set it off.") }
 			end
 		}
 	}
 	else
 	{
-		println ("Error, Turret at " + self.origin + " had no target to aim at.")
+		if(level.debug == "1") { println ("Error, Turret at " + self.origin + " had no target to aim at.") }
 		end
 	}
 
@@ -534,7 +534,7 @@ bombtrigger local.bomb local.bombtrigger:
 		//[204] chrissstrahl - grab activatorZ
 		local.player = parm.other
 		
-		println ("trying the trigger")
+		if(level.debug == "1") { println ("trying the trigger") }
 		if (level.bombs > 0)
 		{
 			local.bombtrigger delete
@@ -548,7 +548,7 @@ bombtrigger local.bomb local.bombtrigger:
 			local.bomb playsound plantbomb
 			local.bomb loopsound bombtick
 			wait 5
-			println ("KABOOM")
+			if(level.debug == "1") { println ("KABOOM") }
 			exec global/model.scr local.bomb.origin "emitters/mortar_higgins.tik"
 			local.bomb playsound explode_flak88
 			radiusdamage local.bomb.origin 300 300
@@ -558,13 +558,13 @@ bombtrigger local.bomb local.bombtrigger:
 			if (self.thread)
 			{
 				self thread level.script::self.thread
-				println ("TURRET THREADED " + self.thread)
+				if(level.debug == "1") { println ("TURRET THREADED " + self.thread) }
 			}
 			else
-				println "TURRET THREADED NONE"
+				if(level.debug == "1") { println "TURRET THREADED NONE" }
 		}
 		else
-		iprintlnbold "You have no explosives."
+		if(level.debug == "1") { iprintlnbold "You have no explosives." }
 	}
 	
 end
@@ -584,7 +584,7 @@ fire_turret local.aim:
 	local.ent.origin += (( randomint (self.radius) - (self.radius *0.5)) ( randomint (self.radius) - (self.radius *0.5)) 300)
 	if (local.first == true)
 	{
-		println "FIRST SHOT"
+		if(level.debug == "1") { println "FIRST SHOT" }
 		
 		//[204] chrissstrahl - grab new player each round
 		local.player = NULL
@@ -609,7 +609,7 @@ fire_turret local.aim:
 	}
 
 	local.ent droptofloor
-	println ("Player origin " + local.player.origin + " and dest origin " + local.ent.origin + " and total dif " + vector_length (local.player.origin - local.ent.origin)) //[204] chrissstrahl
+	if(level.debug == "1") { println ("Player origin " + local.player.origin + " and dest origin " + local.ent.origin + " and total dif " + vector_length (local.player.origin - local.ent.origin)) } //[204] chrissstrahl
 	local.target = local.ent.origin
 	local.ent delete
 
@@ -715,12 +715,12 @@ end
 playerturret_throbbox_think local.throbbox:
 	self.health = 450
 	local.throbbox.health = 1
-	dprintln "Turret waiting for death"
+	if(level.debug == "1") { dprintln "Turret waiting for death" }
 	self waittill death
-	dprintln "Turret dead"
+	if(level.debug == "1") { dprintln "Turret dead" }
     if (isAlive local.throbbox)
     {
-		dprintln "Turret throbbox blowup"
+		if(level.debug == "1") { dprintln "Turret throbbox blowup" }
         local.throbbox blowup
     }
 end

@@ -6,13 +6,17 @@
 
 //////////////////////////////////
 main local.target local.path local.first_trigger local.second_trigger local.gunner local.accuracy:
-	println local.target " " local.path " " local.first_trigger " " local.second_trigger " " local.gunner " " local.fire_time
-	if (local.first_trigger == NULL) 
-		println self  " local.trigger1  is nil"
-	if (local.second_trigger == NULL) 
-		println self  " local.trigger2  is nil"
-	if (local.gunner == NULL) 
-		println self  " local.gunner  is nil"
+
+	if(level.debug == "1")
+	{
+		println local.target " " local.path " " local.first_trigger " " local.second_trigger " " local.gunner " " local.fire_time
+		if (local.first_trigger == NULL)
+			println self  " local.trigger1  is nil"
+		if (local.second_trigger == NULL)
+			println self  " local.trigger2  is nil"
+		if (local.gunner == NULL)
+			println self  " local.gunner  is nil"
+	}
 
 	waitthread INIT local.gunner
 	if (local.accuracy)
@@ -74,12 +78,12 @@ end
 /////////////
 multi_trigger local.target local.path local.first_trigger local.second_trigger local.gunner:
 	if (local.first_trigger == NULL) 
-		println self  " local.trigger1  is nil "
+		if(level.debug == "1") { println self  " local.trigger1  is nil " }
 	if (local.second_trigger == NULL) 
-		println self  " local.trigger2  is nil"
+		if(level.debug == "1") { println self  " local.trigger2  is nil" }
 	if (local.gunner == NULL) 
-		println self  " local.gunner  is nil"
-	println local.target " " local.path " " local.first_trigger " " local.second_trigger " " local.gunner
+		if(level.debug == "1") { println self  " local.gunner  is nil" }
+	if(level.debug == "1") { println local.target " " local.path " " local.first_trigger " " local.second_trigger " " local.gunner }
 
 	//spawn script_model model models/furniture/simplechair "targetname" (local.target + "_test")
 	//(local.target + "_test") glue local.target
@@ -104,7 +108,7 @@ end
 extra_trigger local.target local.path local.first_trigger:
 	println local.first_trigger " " local.target " " local.path 
 	if (local.first_trigger == NULL) 
-		println self  " local.trigger1  is null for "  local.target local.path 
+		if(level.debug == "1") { println self  " local.trigger1  is null for "  local.target local.path  }
 
 	local.target thread turret_target local.path
 	//spawn script_model model models/furniture/simplechair "targetname" (local.target + "_test")
@@ -126,7 +130,7 @@ turret_second_trigger_loop local.second_trigger:
 
 while (1)
 {
-	println local.second_trigger
+	if(level.debug == "1") { println local.second_trigger }
 	local.second_trigger waittill trigger
 	if(level.gametype != 0){//chrissstrahl - inform us of issues
 		iprintlnbold_noloc("DEV: mg42.scr::turret_second_trigger_loop using $player")
@@ -143,15 +147,19 @@ end
 /////////////////
 JEEP_SETUP local.trigger1 local.trigger2 local.gunner local.target:
 //$mg42_1 thread global/mg42.scr::JEEP_SETUP $mg42_1_trigger1 $mg42_1_trigger2 $mg42_1_gunner level.playertanktarget
-	println local.trigger1 " " local.trigger2 " " local.gunner " " local.target
-	if (local.trigger1 == NULL) 
-		println self  " local.trigger1 is NULL"
-	if (local.trigger2 == NULL) 
-		println self  " local.trigger2 is NULL"
-	if (local.gunner == NULL) 
-		println self  " local.gunner is NULL"
-	if (local.target == NULL) 
-		println self " local.target is NULL"
+
+	if(level.debug == "1")
+	{
+		println local.trigger1 " " local.trigger2 " " local.gunner " " local.target
+		if (local.trigger1 == NULL)
+			println self  " local.trigger1 is NULL"
+		if (local.trigger2 == NULL)
+			println self  " local.trigger2 is NULL"
+		if (local.gunner == NULL)
+			println self  " local.gunner is NULL"
+		if (local.target == NULL)
+			println self " local.target is NULL"
+	}
 
 	local.gunner accuracy 100
 	self TurnSpeed 45

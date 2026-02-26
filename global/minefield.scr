@@ -119,7 +119,7 @@ minefield_single:{
 minefield_setup:
 	if ($minefield == NULL)
 	{
-		println "^~^~^ There are no minefields in the map!!!"
+		if(level.debug == "1") { println "^~^~^ There are no minefields in the map!!!" }
 		goto minefield_setup_end
 	}
 

@@ -45,6 +45,8 @@ main:{
 	}
 	level.coop_mainScriptLoaded = 0
 
+	level.debug = getcvar("debug")
+
 	//[202] chrissstrahl - enable thread debug/printouts here - 0, NULL or NIL = OFF / every other value enables it
 	//basename of var is always level.cMTE_coop_ then the actual filename of the coop mod scriptfile
 	//is attached without extension, for coop_mod/main.scr that would be level.cMTE_coop_main

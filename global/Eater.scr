@@ -15,9 +15,14 @@ main:
 			}
 			level.eater_trigger[local.i] thread EaterTrigger
 		}
-		println "**********************************"
-		println "there are " level.eater_triggers " eater triggers in the level"
-		println "**********************************"
+		level.debug = getcvar("debug")
+
+		if(level.debug == "1")
+		{
+			println "**********************************"
+			println "there are " level.eater_triggers " eater triggers in the level"
+			println "**********************************"
+		}
 	}
 	else
 		end
@@ -39,9 +44,13 @@ main:
 
 			level.eater[local.i] = waitthread TransformEater level.eater[local.i]
 		}
-		println "**********************************"
-		println "there are " level.eaters " eaters in the level"
-		println "**********************************"
+
+		if(level.debug == "1")
+		{
+			println "**********************************"
+			println "there are " level.eaters " eaters in the level"
+			println "**********************************"
+		}
 	}
 end
 
@@ -126,7 +135,10 @@ ActivateEater local.set:
 			local.eater forceactivate
 			local.eater thread Eating
 
-			println "spawned eater " local.eater.targetname 
+			if(level.debug == "1")
+			{
+				println "spawned eater " local.eater.targetname
+			}
 		}
 	}
 end

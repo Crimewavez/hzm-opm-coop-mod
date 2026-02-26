@@ -17,12 +17,12 @@ movecrate local.cratetomove local.cratetomoveto:
 	local.o = local.cratetomove gettagposition "box"
 	self exec global/turnto.scr local.o
 	local.distance = vector_length (self.origin - local.o)
-	println "distance to pickup crate '" local.o "' is " local.distance
+	if(level.debug == "1") { println "distance to pickup crate '" local.o "' is " local.distance }
 	if(local.distance > 45 )
 	{
-		println "crate guy " self.targetname " failed to get to " local.o
+		if(level.debug == "1") { println "crate guy " self.targetname " failed to get to " local.o }
 		if(self.thinkstate == "curious")
-			println "cause of failure: curious"
+			if(level.debug == "1") { println "cause of failure: curious" }
 		self waitthread dropthecrate
 		end
 	}
@@ -38,11 +38,11 @@ movecrate local.cratetomove local.cratetomoveto:
 		self waittill movedone
 		local.o = local.cratetomoveto gettagposition "box"
 		local.distance = vector_length (self.origin - local.o)
-		println "distance to putdown crate '" local.o "' is " local.distance
+		if(level.debug == "1") { println "distance to putdown crate '" local.o "' is " local.distance }
 		if(local.distance > 45){
-     		println "crate guy " self.targetname " cannot find his way to box drop location at " local.o
+     		if(level.debug == "1") { println "crate guy " self.targetname " cannot find his way to box drop location at " local.o }
      		if(self.thinkstate == "curious")
-     			println "cause of failure: curious"
+     			if(level.debug == "1") { println "cause of failure: curious" }
 			self waitthread dropthecrate
      		end
      	}

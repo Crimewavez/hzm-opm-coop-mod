@@ -21,7 +21,16 @@ ambience:{
 	
 	//chrissstrahl
 	if(level.script == NIL){
-		dprintln "********************** ambience.scr, level.script was NIL"
+
+		if(level.debug == NIL)
+		{
+			level.debug = getcvar("debug")
+		}
+
+		if(level.debug == "1")
+		{
+			dprintln "********************** ambience.scr, level.script was NIL"
+		}
 		end
 	}
 

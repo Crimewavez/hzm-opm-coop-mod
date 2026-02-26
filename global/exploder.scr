@@ -30,6 +30,8 @@
 
 
 main:
+
+	level.debug = getcvar("debug")
 	level.exploderrepeat = 0
 
 	if (level.debug == NIL)
@@ -65,7 +67,12 @@ main:
 
 		for (local.i=1;local.i<level.exploderchunks+1;local.i++){
 			if (level.exploderchunk[local.i].target == NIL)
-				println "Error, ExploderChunk has no Target!!!"
+			{
+				if(level.debug == "1")
+				{
+					println "Error, ExploderChunk has no Target!!!"
+				}
+			}
 
 			level.exploderchunk[local.i] hide
 			level.exploderchunk[local.i] notsolid

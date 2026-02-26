@@ -9,7 +9,7 @@ Init local.name:
 
 	if (!$(local.name))
 	{
-		println ("ManSpawnNamed::Init - no guys of name " + local.name)
+		if(level.debug == "1") { println ("ManSpawnNamed::Init - no guys of name " + local.name) }
 		end
 	}
 
@@ -36,7 +36,7 @@ Spawn local.name:
 
 	if (!$(local.sname))
 	{
-		println ("ManSpawnNamed::Spawn - no guys of name " + local.name)
+		if(level.debug == "1") { println ("ManSpawnNamed::Spawn - no guys of name " + local.name) }
 		end
 	}
 

@@ -46,16 +46,18 @@ mg42_start local.type local.auto_reattach:
 	}
 	else
 	{
-		println ("Error, MG42 at " + self.origin + " had no target gunner.")
+		if(level.debug == "1") { println ("Error, MG42 at " + self.origin + " had no target gunner.") }
 		end
 	}
 end
 
 gunner_think local.auto_reattach:
 	//[200] chrissstrahl - added printout info
-	if(self == NIL){ println("Warning: global/mg42init.scr::gunner_think "+local.auto_reattach+" - self was NIL");end }
-	if(self == NULL){ println("Warning: global/mg42init.scr::gunner_think "+local.auto_reattach+" - self was NULL");end }
-
+	if(level.debug == "1")
+	{
+		if(self == NIL){ println("Warning: global/mg42init.scr::gunner_think "+local.auto_reattach+" - self was NIL");end }
+		if(self == NULL){ println("Warning: global/mg42init.scr::gunner_think "+local.auto_reattach+" - self was NULL");end }
+	}
 	//[205] chrissstrahl - fixx NULL spam
 	if(self.mg){ self.mg targettype "auto" }
 	
@@ -96,7 +98,7 @@ gunner_think local.auto_reattach:
 	if (local.mg && local.mg.thread) //[205] chrissstrahl - fix NULL spam
 	{
 		thread level.script::local.mg.thread
-		println ("ran thread " + local.mg.thread)
+		if(level.debug == "1") { println ("ran thread " + local.mg.thread) }
 	}
 	//else
 	//	println ("no thread to ran thread") //[202][hotfix] Smithy - disable this useless msg once and for all lol. it isn't relevant to anything.

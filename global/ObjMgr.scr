@@ -397,13 +397,13 @@ CompleteObj local.name local.thing_num:		// thing_num is optional, and only used
 				{
 					if ((local.thing_num < 1) || (local.thing_num > level.obj_total_num_things[local.num]))
 					{
-						println "***** CompleteObj:  invalid thing_num for numbered objective"
+						if(level.debug == "1") { println "***** CompleteObj:  invalid thing_num for numbered objective" }
 						end
 					}
 
 					if (level.obj_num_compass_targs[local.num] != level.obj_total_num_things[local.num])
 					{
-						println "***** CompleteObj:  number of compass targs does not match total number of things"
+						if(level.debug == "1") { println "***** CompleteObj:  number of compass targs does not match total number of things" }
 						end
 					}
 
@@ -528,7 +528,7 @@ priv_GetObjNumForName local.name:		// 0 = nonexistent
 
 	if (local.num == 0)
 	{
-		println ("**** ObjMgr Warning:  There is no objective called " + local.name)
+		if(level.debug == "1") { println ("**** ObjMgr Warning:  There is no objective called " + local.name) }
 	}
 
 end local.num

@@ -88,7 +88,7 @@ end
 //----------------------------------
 prepForDetonation local.triggerer: 
 //----------------------------------
-	println "DEBUG: turning on mines" //[202] chrissstrahl - changed to print only to console instead of debugprint
+	if(level.debug == "1") { println "DEBUG: turning on mines" } //[202] chrissstrahl - changed to print only to console instead of debugprint
 
 	if (local.triggerer.targetname == level.detonator)
 	{

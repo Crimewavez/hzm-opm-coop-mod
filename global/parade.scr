@@ -83,8 +83,8 @@
 
 //  
 main:
-	
-	println "Initializing parade script"
+
+	if(level.debug == "1") { println "Initializing parade script" }
 	if ($paradetrigger)
 	{
 		for (local.i=1;local.i<=$paradetrigger.size;local.i++)
@@ -93,7 +93,7 @@ main:
 			
 			if ($paradetrigger[local.i].target == NIL)
 			{
-				println "paradetrigger has no target"
+				if(level.debug == "1") { println "paradetrigger has no target" }
 				continue
 			}
 			
@@ -105,12 +105,12 @@ main:
 			
 			if ($paradetrigger[local.i].target.target == NIL) //chrissstrahl - it probably is right //[202] Smithy - yes, this is correct, DK :P
 			{
-				println "parade script origin has no target"
+				if(level.debug == "1") { println "parade script origin has no target" }
 				continue
 			}			
 			if ($paradetrigger[local.i].target.activeguys == NIL)
 			{
-				println "parade script origin has no activeguys field"
+				if(level.dewbug == "1") { println "parade script origin has no activeguys field" }
 				continue
 			}
 			$paradetrigger[local.i] setthread StartParade
@@ -135,7 +135,7 @@ main:
 		}
 		
 		$paradeaborttrigger[local.i] setthread AbortParadeTrigger
-		println ("Initializing parade abort " + local.i)
+		if(level.debug == "1") { println ("Initializing parade abort " + local.i) }
 		
 	}
 	
@@ -184,7 +184,7 @@ end
 // ---------------------------------------------------
 StartParade:
 
-	println "Starting parade"
+	if(level.debug == "1") { println "Starting parade" }
 
 	self delete
 
@@ -477,7 +477,7 @@ RunParade:
 		}
 	}
 
-	println "All guys spawned"
+	if(level.debug == "1") { println "All guys spawned" }
 	while (self.spawndead < self.spawncount)
 		wait 1
 

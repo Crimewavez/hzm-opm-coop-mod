@@ -289,7 +289,10 @@ healthcheck:
 						if (local.sit == TRUE)
 							self exec global/crouch.scr // was stand
 
-						println ("Grabbed health, my origin " + self.origin + " health origin " + local.healthitem.origin)
+						if(level.debug == "1")
+						{
+							println ("Grabbed health, my origin " + self.origin + " health origin " + local.healthitem.origin)
+						}
 						self turnto local.healthitem
 						wait 0.5
 						self upperanim pickup_obj
@@ -303,7 +306,10 @@ healthcheck:
 								self playsound med_canteen
 	
 							self heal (local.healthitem.amount * 0.02)
-							println ("Friendly got health " + local.healthitem.amount)
+							if(level.debug == "1")
+							{
+								println ("Friendly got health " + local.healthitem.amount)
+							}
 							wait 0.3
 			
 							if (local.sit == TRUE)
@@ -311,10 +317,24 @@ healthcheck:
 						}
 					}
 					if (self.fnum)
-						println ("2fnum is " + self.fnum + " and friendtype is " + self.friendtype)
-					else
-						println ("2no fnum and friendtype is " + self.friendtype)
-					println ("made friendtype be " + local.oldfriendtype)
+					{
+						if(level.debug == "1")
+						{
+							println ("2fnum is " + self.fnum + " and friendtype is " + self.friendtype)
+						}
+					}
+					else{
+						if(level.debug == "1")
+						{
+							println ("2no fnum and friendtype is " + self.friendtype)
+						}
+					}
+
+					if(level.debug == "1")
+					{
+						println ("made friendtype be " + local.oldfriendtype)
+					}
+
 					self.friendtype = local.oldfriendtype
 					wait 2
 				}
@@ -331,7 +351,13 @@ end
 friendlythinkstart:{
 //=======================================================
 	if (level.frienddebug == NIL)
-	println (self + " did friendlythink")
+	{
+		if(level.debug == "1")
+		{
+			println (self + " did friendlythink")
+		}
+	}
+
 
 //println("COOPDEBUG friendly.scr::friendlythinkstart - start for "+self.targetname+" $"+self.entnum)
 
@@ -492,7 +518,11 @@ friendlythinkstart:{
 								//[202] chrissstrahl - made coop compatible
 								local.player = $player
 								if(level.gametype!=0){ local.player = level.coop_player }
-								println ("best choice was " + (vector_length(local.player.origin - level.friendlynode[local.i].origin)) + " away from player")
+
+								if(level.debug == "1")
+								{
+									println ("best choice was " + (vector_length(local.player.origin - level.friendlynode[local.i].origin)) + " away from player")
+								}
 							}
 
 							local.i = level.friendlynodes + 5
@@ -504,7 +534,12 @@ friendlythinkstart:{
 					if (self.destination != self.lastdestination){
 						self thread ailookrun
 						self runto self.destination
-						if (level.frienddebug == 1){ println (self + " is running to " + self.destinationnum) }
+						if (level.frienddebug == 1){
+							if(level.debug == "1")
+							{
+								println (self + " is running to " + self.destinationnum)
+							}
+						}
 						wait 1
 						if (level.friendlyused[self.olddestinationnum] == 1){ level.friendlyused[self.olddestinationnum] = 0 }
 						self waittill movedone
@@ -528,7 +563,11 @@ friendlythinkstart:{
 									//[202] chrissstrahl - made coop compatible
 									local.player = $player
 									if(level.gametype!=0){ local.player = level.coop_player }
-									println ("best choice was " + (vector_length(local.player.origin - level.friendlynode[local.i].origin)) + " away from player")
+
+									if(level.debug == "1")
+									{
+										println ("best choice was " + (vector_length(local.player.origin - level.friendlynode[local.i].origin)) + " away from player")
+									}
 								}
 
 								local.i = level.friendlynodes + 5
@@ -540,7 +579,12 @@ friendlythinkstart:{
 						if (self.destination != self.lastdestination){
 							self thread ailookrun
 							self runto self.destination
-							if (level.frienddebug == 1){ println (self + " is running to " + self.destinationnum) }
+							if (level.frienddebug == 1){
+								if(level.debug == "1")
+								{
+									println (self + " is running to " + self.destinationnum)
+								}
+							}
 							wait 1
 							if (level.friendlyused[self.olddestinationnum] == 1){ level.friendlyused[self.olddestinationnum] = 0 }
 							self waittill movedone
@@ -560,8 +604,21 @@ friendlythinkstart:{
 									
 										//[204]chrissstrahl - disabled this, because it spams in muliplayer
 										if(level.gametype == 0){
-											if !(isalive self.destination){ println ("1made destination player, destination was " + self.destination) }
-											if !(self.destination){ println "3made destination player" }
+											if !(isalive self.destination)
+											{
+												if(level.debug == "1")
+												{
+													println ("1made destination player, destination was " + self.destination)
+												}
+
+											}
+											if !(self.destination)
+											{
+												if(level.debug == "1")
+												{
+													println "3made destination player"
+												}
+											}
 										}
 
 										//[202]chrissstrahl - coop compatibility
@@ -619,10 +676,17 @@ friendlythinkstart:{
 								//[202] chrissstrahl - coop compatible
 								//self.destination = $player
 								self.destination = level.coop_player
-								println "2made destination player"
+
+								if(level.debug == "1")
+								{
+									println "2made destination player"
+								}
 							}
 
-							if (getcvar(debug) == "1"){ println "Ending the run" }
+							if (getcvar(debug) == "1")
+							{
+								println "Ending the run"
+							}
 								
 							//[202] chrissstrahl - fixed console spam if there is no player on the server but ai is already going (!self.destination)
 							if (!self.destination || vector_length (self.destination.origin - self.origin) < self.distance + local.friendrange){
@@ -913,17 +977,26 @@ friendlythinkstart:{
 											}
 									
 											if (getcvar(sas) == "1"){
-												println "------------------------"
-												println ("Break was " + local.break)
+												if(level.debug == "1")
+												{
+													println "------------------------"
+													println ("Break was " + local.break)
+												}
 
 												//[202] chrissstrahl - compatibility
-												if (self exec coop_mod/replace.scr::cansee){ println "SAS could see the player" }
-												else{ println "SAS could NOT see the player" }
+												if (self exec coop_mod/replace.scr::cansee)
+												{
+													if(level.debug == "1")
+													{
+														println "SAS could see the player"
+													}
+												}
+												else{ if(level.debug == "1"){ println "SAS could NOT see the player"} }
 
 												if (local.set > level.playernodeset + local.offset){
-													println ("Friendlynode set " + local.set + " was greater than playernode set " + level.playernodeset + " + offset")
+													if(level.debug == "1"){ println ("Friendlynode set " + local.set + " was greater than playernode set " + level.playernodeset + " + offset" } )
 												}else{
-													println ("Friendlynode set " + local.set + " was NOT greater than playernode set " + level.playernodeset + " + offset")
+													if(level.debug == "1") { println ("Friendlynode set " + local.set + " was NOT greater than playernode set " + level.playernodeset + " + offset" } )
 												}
 										
 												//[202] chrissstrahl - grab cloeset player
@@ -931,20 +1004,21 @@ friendlythinkstart:{
 												if (local.player && local.player.origin != NIL){
 													local.length = vector_length (self.origin - local.player.origin)
 													if (local.length > 200){
-														println ("Vector length " + local.length + " was greater than 200")
+														if(level.debug == "1") { println ("Vector length " + local.length + " was greater than 200") }
 													}else{
-														println ("Vector length " + local.length + " was NOT greater than 200")
+														if(level.debug == "1") { println ("Vector length " + local.length + " was NOT greater than 200") }
 													}
 												}
 												
 												//[202] chrissstrahl - compatibility
 												//if ($player canseenoents (level.friendlynode[local.nodenum].origin + (0 0 50)))
 												if (exec coop_mod/replace.scr::sighttrace (0 0 0) (level.friendlynode[local.nodenum].origin + (0 0 50)) 1){
-													println ("Sight trace from player origin to SAS origin was true")
+													if(level.debug == "1") { println ("Sight trace from player origin to SAS origin was true") }
 												}else{
-													println ("Sight trace from player origin to SAS origin was false")
+													if(level.debug == "1") { println ("Sight trace from player origin to SAS origin was false") }
 												}
-												println "------------------------"
+
+												if(level.debug == "1") { println "------------------------" }
 											}
 											wait 0.1
 
@@ -1019,7 +1093,7 @@ friendlythinkstart:{
 
 													while ((self.checkmovedone == 0) && ( level.friendlyused[local.nodenum] == 1)){
 														if (getcvar(hangin) == "1"){
-															println (self.entref + " is hangin out at 1 " + local.set)
+															if(level.debug == "1"){ println (self.entref + " is hangin out at 1 " + local.set) }
 														}
 														wait self.waittime
 													}
@@ -1052,7 +1126,7 @@ friendlythinkstart:{
 													self.movedoneradius = 0					
 													while (vector_length (self.origin - level.friendlynode[local.nodenum].origin) > 100){
 														if (getcvar(hangin) == "1"){
-															println (self.entref + " is hangin out at 4 " + local.set)
+															if(level.debug == "1") { println (self.entref + " is hangin out at 4 " + local.set) }
 														}
 
 														if (getcvar(debug) == "1"){
@@ -1066,7 +1140,7 @@ friendlythinkstart:{
 														waitframe
 
 														if (getcvar(hangin) == "1"){
-															println (self.entref + " is hangin out at 3 " + local.set)
+															if(level.debug == "1") { println (self.entref + " is hangin out at 3 " + local.set) }
 														}
 
 													}
@@ -1527,7 +1601,7 @@ seekdestination local.friendrange local.runtime:
 	//			println ("self destination's node/set is " + self.destination. 
 
 			}
-			println "2seeking destination"
+			if(level.debug == "1") { println "2seeking destination" }
 		}
 		
 		self.movedoneradius = 90 // self.distance - local.friendrange
@@ -1939,12 +2013,12 @@ playernode:
 			local.highset = level.friendlynodes
 
 		if (getcvar(playerset) == "1")
-			println ("highset is " + local.highset + " with set " + level.friendlynode[local.highset].set)
+			if(level.debug == "1") { println ("highset is " + local.highset + " with set " + level.friendlynode[local.highset].set) }
 
 		if (local.setnum != level.playernodenum)
 		{
 		if (getcvar(playerset) == "1")
-				println ("lowest = " + local.lowset + " and highest = " + local.highset + " and playernum = " + level.playernodenum)
+				if(level.debug == "1") { println ("lowest = " + local.lowset + " and highest = " + local.highset + " and playernum = " + level.playernodenum) }
 
 			local.setnum = level.playernodenum
 		}
@@ -1958,8 +2032,11 @@ playernode:
 				local.newnum = local.i
 				if (getcvar(playerset) == "1")
 				{
-					println ("Local radius is " + local.radius + " and level.playernoderadius is " + level.playernoderadius)
-					println ("The playernoderadius is " + level.playernoderadius + " and the node was " + level.playernodeset + " at distance " + vector_length (local.fpo - level.friendlynode[level.playernodenum].origin) + " but is now node with set " + level.friendlynode[local.newnum].set + " at distance of " + vector_length (local.fpo - level.friendlynode[local.newnum].origin)) //[202] chrissstrahl
+					if(level.debug == "1")
+					{
+						println ("Local radius is " + local.radius + " and level.playernoderadius is " + level.playernoderadius)
+						println ("The playernoderadius is " + level.playernoderadius + " and the node was " + level.playernodeset + " at distance " + vector_length (local.fpo - level.friendlynode[level.playernodenum].origin) + " but is now node with set " + level.friendlynode[local.newnum].set + " at distance of " + vector_length (local.fpo - level.friendlynode[local.newnum].origin)) //[202] chrissstrahl
+					}
 				}
 				level.playernoderadius = local.radius
 			}
@@ -2000,7 +2077,7 @@ playernode_evaluate:
 	while( 1 )
 	{
 		if (getcvar(playerset) == "1")
-			println ("node 1 " + local.newnum)
+			if(level.debug == "1") { println ("node 1 " + local.newnum) }
 
 		if (level.playernoderadius > 300) // was 600
 			local.newnum = -1
@@ -2033,7 +2110,7 @@ playernode_evaluate:
 		}
 
 		if (getcvar(playerset) == "1")
-			println ("node 2 " + local.newnum)
+			if(level.debug == "1") { println ("node 2 " + local.newnum) }
 	
 		if ((local.newnum != -1) && (level.friendlynode[local.newnum].set != -1))
 		{
@@ -2053,10 +2130,10 @@ playernode_evaluate:
 		}
 
 		if (getcvar(playerset) == "1")
-			println ("node 3 " + local.newnum)
+			if(level.debug == "1") { println ("node 3 " + local.newnum) }
 
 		if (getcvar(cnode) == "1")
-			println ("Player's distance to his current node is " + level.playernoderadius + " and that node set is " + level.friendlynode[local.newnum].set + " and the node num is " + level.playernodenum)
+			if(level.debug == "1") { println ("Player's distance to his current node is " + level.playernoderadius + " and that node set is " + level.friendlynode[local.newnum].set + " and the node num is " + level.playernodenum) }
 
 //		if (local.num != level.playernodeset)
 //		{
@@ -2135,9 +2212,9 @@ friendlygen:
 				println ("friendly gen " + local.i)
 	
 			if (level.friendly[local.i].fnum == NIL)
-				println ("Warning, friendly at origin " + level.friendly[local.i].origin + "has no #fnum") 1
+				if(level.debug == "1") { println ("Warning, friendly at origin " + level.friendly[local.i].origin + "has no #fnum") 1 }
 				else
-				println ("Spawned friendly " + level.friendly[local.i].fnum)
+				 if(level.debug == "1") { println ("Spawned friendly " + level.friendly[local.i].fnum) }
 
 			
 
@@ -2264,12 +2341,12 @@ friendlygen:
 
 			if (level.friendlynode[local.i].set == NIL)
 			{
-				println ("Warning, friendlynode at origin " + level.friendlynode[local.i].origin + "has no #set")
+				if(level.debug == "1") { println ("Warning, friendlynode at origin " + level.friendlynode[local.i].origin + "has no #set") }
 				level.friendlynode[local.i].set = -1
 			}
 		}
 
-		println ("Spawned " + level.friendlynodes + " friendlynodes")
+		if(level.debug == "1") { println ("Spawned " + level.friendlynodes + " friendlynodes") }
 
 		for (local.i=1;local.i<level.friendlynodes+1;local.i++)
 			local.used[local.i] = 0
@@ -2289,7 +2366,7 @@ friendlygen:
 			}
 
 			if (local.node == -1000)
-				println ("ERROR No node found  __ " + local.count)
+				if(level.debug == "1") { println ("ERROR No node found  __ " + local.count) }
 
 			level.friendlynodetemp[local.count] = level.friendlynode[local.node]
 			local.used[local.node] = 1
@@ -2553,7 +2630,7 @@ areatrigger local.waitspawn:
 //	println self.health
 
 	level.enemyarea[self.area]--
-	println ("*******area**** " + level.enemyarea[self.area] + " left in " + self.area)
+	if(level.debug == "1") { println ("*******area**** " + level.enemyarea[self.area] + " left in " + self.area) }
 
 	if (level.enemyarea[self.area] < 1)
 	{

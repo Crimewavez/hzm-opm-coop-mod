@@ -4,7 +4,7 @@
 main local.alias local.listener local.distance local.movecloser local.animated:{
 //======================================================
 	if (self == NULL){
-		println "Z:        null speaker: " self " " local.alias
+		if(level.debug == "1") { println "Z:        null speaker: " self " " local.alias }
 		end
 	}
 	
@@ -18,7 +18,7 @@ main local.alias local.listener local.distance local.movecloser local.animated:{
 	//end chrissstrahl
 	
 	if (local.listener == NULL){
-		println "Z:        null listener: " local.listener " " local.alias
+		if(level.debug == "1") { println "Z:        null listener: " local.listener " " local.alias }
 		end
 	}
 	
