@@ -29,7 +29,7 @@ alarm_system_setup:{
 	//because obviously in mp/coop you don't have the player, you have or don't have multiple
 	//versions of players, so we thought it best to use a level wide variable
 	level.playerZone_index = NIL //chrissstrahl - default starts off with NIL
-	level.debug = getcvar("debug")
+
 	//[200] chrissstrahl - this makes sure we have the correct zone set
 	thread maintainZoneTracking
 	
