@@ -12,7 +12,7 @@
 //=========================================================================
 main:{
 //=========================================================================
-	level.debug = getcvar("debug")
+
 	level.alarm_always_on = 0
 	level.alarm_always_on_base = 14
 	level.alarm_always_on_random = 7
