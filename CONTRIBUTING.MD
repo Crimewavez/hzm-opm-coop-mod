@@ -1,8 +1,5 @@
 
 ## Scope and Platform
-
-This mod targets **vanilla MOHAA** compatibility. It must work on the original Medal of Honor: Allied Assault engine.
-
 We test primarily on **OpenMoHAA (OPM)** because it's open-source, actively developed, and runs on modern systems. When we find issues on OPM that don't occur on vanilla, we report them upstream to the OPM project so that OPM becomes fully backwards-compatible with existing vanilla mods, including this one.
 
 - **Envirnoment:** OpenMoHAA, development builds, not release.
