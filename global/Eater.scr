@@ -15,7 +15,7 @@ main:
 			}
 			level.eater_trigger[local.i] thread EaterTrigger
 		}
-		level.debug = getcvar("debug")
+		
 
 		if(level.debug == "1")
 		{
